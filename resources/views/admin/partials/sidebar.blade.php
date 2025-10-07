@@ -19,147 +19,27 @@
             <span class="menu-label">MENU</span>
 
             <!-- Dashboard -->
-            <div class="menu-item active">
+            <div class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                 <a href="{{ route('admin.dashboard') }}" class="menu-link" data-title="Dashboard">
                     <i class="fas fa-th-large"></i>
                     <span class="menu-text">Dashboard</span>
                 </a>
             </div>
 
-            <!-- AI Assistant -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="AI Assistant" onclick="toggleDropdown(this); return false;">
-                    <i class="fas fa-robot"></i>
-                    <span class="menu-text">AI Assistant</span>
-                    <span class="badge-new">NEW</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </a>
-                <div class="submenu">
-                    <a href="#" class="submenu-link">Chat Assistant</a>
-                    <a href="#" class="submenu-link">Code Generator</a>
-                </div>
-            </div>
-
-            <!-- E-commerce -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="E-commerce" onclick="toggleDropdown(this); return false;">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="menu-text">E-commerce</span>
-                    <span class="badge-new">NEW</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </a>
-                <div class="submenu">
-                    <a href="#" class="submenu-link">Products</a>
-                    <a href="#" class="submenu-link">Orders</a>
-                    <a href="#" class="submenu-link">Customers</a>
-                </div>
-            </div>
-
-            <!-- Calendar -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="Calendar">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span class="menu-text">Calendar</span>
+            <!-- Company Settings -->
+            <div class="menu-item {{ request()->routeIs('admin.company-settings.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.company-settings.edit') }}" class="menu-link" data-title="Company Settings">
+                    <i class="fas fa-building"></i>
+                    <span class="menu-text">Company Settings</span>
                 </a>
             </div>
 
-            <!-- User Profile -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="User Profile">
-                    <i class="fas fa-user"></i>
-                    <span class="menu-text">User Profile</span>
+            <!-- Gallery Management -->
+            <div class="menu-item {{ request()->routeIs('admin.gallery.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.gallery.index') }}" class="menu-link" data-title="Gallery">
+                    <i class="fas fa-images"></i>
+                    <span class="menu-text">Gallery</span>
                 </a>
-            </div>
-
-            <!-- Task -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="Task" onclick="toggleDropdown(this); return false;">
-                    <i class="fas fa-tasks"></i>
-                    <span class="menu-text">Task</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </a>
-                <div class="submenu">
-                    <a href="#" class="submenu-link">All Tasks</a>
-                    <a href="#" class="submenu-link">My Tasks</a>
-                </div>
-            </div>
-
-            <!-- Forms -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="Forms" onclick="toggleDropdown(this); return false;">
-                    <i class="fas fa-file-alt"></i>
-                    <span class="menu-text">Forms</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </a>
-                <div class="submenu">
-                    <a href="#" class="submenu-link">Form Elements</a>
-                    <a href="#" class="submenu-link">Form Layouts</a>
-                </div>
-            </div>
-
-            <!-- Tables -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="Tables" onclick="toggleDropdown(this); return false;">
-                    <i class="fas fa-table"></i>
-                    <span class="menu-text">Tables</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </a>
-                <div class="submenu">
-                    <a href="#" class="submenu-link">Basic Table</a>
-                    <a href="#" class="submenu-link">Data Table</a>
-                </div>
-            </div>
-
-            <!-- Pages -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="Pages" onclick="toggleDropdown(this); return false;">
-                    <i class="fas fa-copy"></i>
-                    <span class="menu-text">Pages</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </a>
-                <div class="submenu">
-                    <a href="#" class="submenu-link">Settings</a>
-                    <a href="#" class="submenu-link">FAQ</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="menu-section">
-            <span class="menu-label">SUPPORT</span>
-
-            <!-- Chat -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="Chat">
-                    <i class="fas fa-comments"></i>
-                    <span class="menu-text">Chat</span>
-                </a>
-            </div>
-
-            <!-- Support Ticket -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="Support Ticket" onclick="toggleDropdown(this); return false;">
-                    <i class="fas fa-headset"></i>
-                    <span class="menu-text">Support Ticket</span>
-                    <span class="badge-new">NEW</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </a>
-                <div class="submenu">
-                    <a href="#" class="submenu-link">All Tickets</a>
-                    <a href="#" class="submenu-link">My Tickets</a>
-                </div>
-            </div>
-
-            <!-- Email -->
-            <div class="menu-item">
-                <a href="#" class="menu-link" data-title="Email" onclick="toggleDropdown(this); return false;">
-                    <i class="fas fa-envelope"></i>
-                    <span class="menu-text">Email</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </a>
-                <div class="submenu">
-                    <a href="#" class="submenu-link">Inbox</a>
-                    <a href="#" class="submenu-link">Sent</a>
-                </div>
             </div>
         </div>
     </div>

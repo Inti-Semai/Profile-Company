@@ -3,28 +3,9 @@
         <button class="mobile-toggle" onclick="toggleSidebar()">
             <i class="fas fa-bars"></i>
         </button>
-
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search or type command...">
-            <span class="shortcut">⌘K</span>
-        </div>
     </div>
 
     <div class="navbar-right">
-        <!-- Dark Mode Toggle -->
-        <button class="icon-btn" onclick="toggleDarkMode()">
-            <i class="fas fa-moon"></i>
-        </button>
-
-        <!-- Notifications -->
-        <div class="notification-btn">
-            <button class="icon-btn">
-                <i class="fas fa-bell"></i>
-                <span class="notification-badge">3</span>
-            </button>
-        </div>
-
         <!-- User Menu -->
         <div class="user-menu" onclick="toggleUserDropdown()">
             <div class="user-avatar">
@@ -51,14 +32,7 @@
                     <i class="fas fa-user"></i>
                     <span>My Profile</span>
                 </a>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </a>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-question-circle"></i>
-                    <span>Help</span>
-                </a>
+
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('admin.logout') }}">
                     @csrf
