@@ -25,6 +25,8 @@ class CompanySetting extends Model
         'youtube_url',
         'telegram_url',
         'tiktok_url',
+        'whatsapp_number',
+        'whatsapp_enabled',
     ];
 
     public function getHeroImageUrlAttribute()

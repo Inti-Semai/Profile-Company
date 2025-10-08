@@ -65,6 +65,9 @@
 
             <div class="form-section">
                 <h3><i class="fas fa-image"></i> Hero Section</h3>
+                <div class="alert alert-info" style="margin-bottom: 20px;">
+                    <i class="fas fa-info-circle"></i> <strong>Note:</strong> Hero section is used on both <strong>Landing Page</strong> and <strong>About Us Page</strong>.
+                </div>
 
                 <div class="form-group">
                     <label for="hero_title">Hero Title</label>
@@ -241,6 +244,35 @@
                     @error('tiktok_url')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
+                </div>
+            </div>
+
+            <!-- WhatsApp Settings -->
+            <h3 style="margin-top: 30px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
+                <i class="fab fa-whatsapp"></i> WhatsApp Settings
+            </h3>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="whatsapp_number">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Number
+                    </label>
+                    <input type="text" name="whatsapp_number" id="whatsapp_number" class="form-control @error('whatsapp_number') is-invalid @enderror" value="{{ old('whatsapp_number', $setting->whatsapp_number) }}" placeholder="628123456789 (format: 628xxx tanpa + atau spasi)">
+                    <small class="form-text text-muted">Format: 628123456789 (kode negara + nomor tanpa 0 di awal)</small>
+                    @error('whatsapp_number')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsapp_enabled">
+                        <i class="fas fa-toggle-on"></i> Enable WhatsApp Button
+                    </label>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+                        <input type="hidden" name="whatsapp_enabled" value="0">
+                        <input type="checkbox" name="whatsapp_enabled" id="whatsapp_enabled" value="1" {{ old('whatsapp_enabled', $setting->whatsapp_enabled) ? 'checked' : '' }} style="width: 20px; height: 20px; cursor: pointer;">
+                        <label for="whatsapp_enabled" style="margin: 0; cursor: pointer;">Show floating WhatsApp button on website</label>
+                    </div>
                 </div>
             </div>
 

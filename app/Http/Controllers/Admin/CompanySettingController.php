@@ -38,6 +38,8 @@ class CompanySettingController extends Controller
             'youtube_url' => 'nullable|url|max:255',
             'telegram_url' => 'nullable|url|max:255',
             'tiktok_url' => 'nullable|url|max:255',
+            'whatsapp_number' => 'nullable|string|max:20',
+            'whatsapp_enabled' => 'nullable|boolean',
         ]);
 
         $setting = CompanySetting::firstOrCreate([]);

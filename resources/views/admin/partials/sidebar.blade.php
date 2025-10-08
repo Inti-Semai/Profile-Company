@@ -41,6 +41,14 @@
                     <span class="menu-text">Gallery</span>
                 </a>
             </div>
+
+            <!-- About Us Management -->
+            <div class="menu-item {{ request()->routeIs('admin.about-us.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.about-us.edit') }}" class="menu-link" data-title="About Us">
+                    <i class="fas fa-info-circle"></i>
+                    <span class="menu-text">About Us</span>
+                </a>
+            </div>
         </div>
     </div>
 </aside>
