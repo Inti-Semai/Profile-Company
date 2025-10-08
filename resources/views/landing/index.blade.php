@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PT. Inti Semai Kalandra</title>
+    <title>PT. Inti Semai Kaliandra</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -418,13 +418,13 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 2.5fr 0.4fr 1.5fr;
-            gap: 5px;
+            grid-template-columns: 2.5fr 0.6fr 1.5fr;
+            gap: 20px;
             margin-bottom: 40px;
         }
 
         .footer-about h3 {
-            font-size: 20px;
+            font-size: 25px;
             font-weight: 700;
             margin-bottom: 15px;
             text-transform: none;
@@ -439,14 +439,14 @@
         }
 
         .footer-about p {
-            font-size: 14px;
+            font-size: 18px;
             line-height: 1.8;
             color: rgba(255,255,255,0.9);
-            margin-bottom: 5px;
+            margin-bottom: 0px;
         }
 
-        .footer-section h4 {
-            font-size: 18px;
+        .footer-section h3 {
+            font-size: 25px;
             font-weight: 700;
             margin-bottom: 20px;
             text-transform: none;
@@ -464,7 +464,7 @@
         .footer-section a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 18px;
             transition: color 0.3s;
         }
 
@@ -505,7 +505,6 @@
         .social-icon {
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.15);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -515,13 +514,28 @@
         }
 
         .social-icon:hover {
-            background: var(--light-orange);
             transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(237, 162, 132, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .social-icon svg {
-            fill: currentColor;
+        .social-icon.youtube {
+            background: #FF0000;
+        }
+
+        .social-icon.telegram {
+            background: #0088cc;
+        }
+
+        .social-icon.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .social-icon.tiktok {
+            background: #000000;
+        }
+
+        .social-icon.facebook {
+            background: #1877F2;
         }
 
         .footer-bottom {
@@ -721,34 +735,34 @@
 
                 <div class="social-links">
                     @if($setting && $setting->youtube_url)
-                        <a href="{{ $setting->youtube_url }}" target="_blank" class="social-icon">
+                        <a href="{{ $setting->youtube_url }}" target="_blank" class="social-icon youtube">
                             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
                         </a>
                     @endif
                     @if($setting && $setting->telegram_url)
-                        <a href="{{ $setting->telegram_url }}" target="_blank" class="social-icon">
+                        <a href="{{ $setting->telegram_url }}" target="_blank" class="social-icon telegram">
                             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.333-1.386 4.025-1.627 4.476-1.635z"/></svg>
                         </a>
                     @endif
                     @if($setting && $setting->instagram_url)
-                        <a href="{{ $setting->instagram_url }}" target="_blank" class="social-icon">
+                        <a href="{{ $setting->instagram_url }}" target="_blank" class="social-icon instagram">
                             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
                         </a>
                     @endif
                     @if($setting && $setting->tiktok_url)
-                        <a href="{{ $setting->tiktok_url }}" target="_blank" class="social-icon">
+                        <a href="{{ $setting->tiktok_url }}" target="_blank" class="social-icon tiktok">
                             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
                         </a>
                     @endif
                     @if($setting && $setting->facebook_url)
-                        <a href="{{ $setting->facebook_url }}" target="_blank" class="social-icon">
+                        <a href="{{ $setting->facebook_url }}" target="_blank" class="social-icon facebook">
                             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
                         </a>
                     @endif
                 </div>
             </div>
             <div class="footer-section">
-                <h4>Tautan</h4>
+                <h3>Tautan</h3>
                 <ul>
                     <li><a href="#beranda">Beranda</a></li>
                     <li><a href="#tentang-kami">Tentang Kami</a></li>
@@ -757,7 +771,7 @@
                 </ul>
             </div>
             <div class="footer-section footer-location" style="text-align: center;">
-                <h4 style="font-weight: 700;">Lokasi</h4>
+                <h3 style="font-weight: 700;">Lokasi</h3>
                 @if($setting && $setting->maps_embed_url)
                     <div class="map-container">
                         {!! $setting->maps_embed_url !!}

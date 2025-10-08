@@ -36,7 +36,7 @@
                 @endif
                 <input type="file" class="form-control @error('image') is-invalid @enderror"
                        id="image" name="image" accept="image/*">
-                <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 2MB</small>
+                <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 10MB</small>
                 @error('image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

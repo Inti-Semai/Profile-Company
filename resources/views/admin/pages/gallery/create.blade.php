@@ -30,7 +30,7 @@
                 <label for="image">Image <span class="required">*</span></label>
                 <input type="file" class="form-control @error('image') is-invalid @enderror"
                        id="image" name="image" accept="image/*" required>
-                <small class="form-text text-muted">Upload an image. Max size: 2MB. Formats: JPEG, PNG, JPG, GIF</small>
+                <small class="form-text text-muted">Upload an image. Max size: 10MB. Formats: JPEG, PNG, JPG, GIF</small>
                 @error('image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

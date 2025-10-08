@@ -52,7 +52,7 @@ class GalleryController extends Controller
     {
         $request->validate([
             'title' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
             'order' => 'nullable|integer',
         ]);
 

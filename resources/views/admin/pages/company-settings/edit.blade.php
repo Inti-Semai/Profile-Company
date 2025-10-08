@@ -95,7 +95,7 @@
                     @endif
                     <input type="file" class="form-control @error('hero_image') is-invalid @enderror"
                            id="hero_image" name="hero_image" accept="image/*">
-                    <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 2MB</small>
+                    <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 10MB</small>
                     @error('hero_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -123,7 +123,7 @@
                     @endif
                     <input type="file" class="form-control @error('vision_image') is-invalid @enderror"
                            id="vision_image" name="vision_image" accept="image/*">
-                    <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 2MB</small>
+                    <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 10MB</small>
                     @error('vision_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -151,7 +151,7 @@
                     @endif
                     <input type="file" class="form-control @error('mission_image') is-invalid @enderror"
                            id="mission_image" name="mission_image" accept="image/*">
-                    <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 2MB</small>
+                    <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 10MB</small>
                     @error('mission_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
