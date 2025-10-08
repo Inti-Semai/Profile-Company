@@ -606,21 +606,7 @@
         <div class="navbar-container">
             <div class="logo">
                 <div class="logo-icon">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Leaf icon with green gradient -->
-                        <defs>
-                            <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#A6B37D;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#3B5B18;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M50 10 Q20 30, 20 60 Q20 80, 35 90 L50 95 L65 90 Q80 80, 80 60 Q80 30, 50 10 Z" fill="url(#leafGradient)"/>
-                        <path d="M50 20 Q50 40, 50 80" stroke="white" stroke-width="3" fill="none"/>
-                        <path d="M50 35 Q35 45, 30 50" stroke="white" stroke-width="2" fill="none"/>
-                        <path d="M50 35 Q65 45, 70 50" stroke="white" stroke-width="2" fill="none"/>
-                        <path d="M50 50 Q35 60, 30 65" stroke="white" stroke-width="2" fill="none"/>
-                        <path d="M50 50 Q65 60, 70 65" stroke="white" stroke-width="2" fill="none"/>
-                    </svg>
+                    <img src="{{ asset('gambar/logo.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
                 <span>{{ $setting->company_name ?? 'PT. INTI SEMAI KALIANDRA' }}</span>
             </div>
