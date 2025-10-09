@@ -73,12 +73,12 @@
     .page-header h1 {
         font-size: 28px;
         font-weight: 600;
-        color: #1F2937;
+        color: var(--text-dark);
         margin-bottom: 5px;
     }
 
     .page-header p {
-        color: #6B7280;
+        color: var(--text-light);
         font-size: 14px;
     }
 
@@ -101,7 +101,7 @@
     label {
         display: block;
         font-weight: 500;
-        color: #374151;
+        color: var(--text-dark);
         margin-bottom: 8px;
         font-size: 14px;
     }
@@ -121,8 +121,8 @@
 
     .form-control:focus {
         outline: none;
-        border-color: #4F46E5;
-        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        border-color: var(--primary-green);
+        box-shadow: 0 0 0 3px rgba(59, 91, 24, 0.1);
     }
 
     .form-control.is-invalid {
@@ -143,7 +143,7 @@
     }
 
     .text-muted {
-        color: #6B7280;
+        color: var(--text-light);
     }
 
     .image-preview {
@@ -183,22 +183,23 @@
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
         color: white;
     }
 
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        box-shadow: 0 10px 20px rgba(59, 91, 24, 0.3);
     }
 
     .btn-secondary {
-        background: #6B7280;
-        color: white;
+        background: var(--light-green);
+        color: var(--text-dark);
     }
 
     .btn-secondary:hover {
-        background: #4B5563;
+        background: var(--dark-green);
+        color: white;
     }
 </style>
 

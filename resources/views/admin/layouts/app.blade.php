@@ -20,20 +20,24 @@
         }
 
         :root {
-            --primary-color: #4F46E5;
-            --secondary-color: #10B981;
+            --primary-green: #3B5B18;
+            --dark-green: #31460B;
+            --light-green: #A6B37D;
+            --orange: #FF6B1E;
+            --light-orange: #FB8B23;
+            --text-dark: #000000;
+            --text-light: #31460B;
+            --bg-light: #f8f9fa;
             --danger-color: #EF4444;
             --warning-color: #F59E0B;
-            --dark-color: #1F2937;
-            --light-color: #F9FAFB;
             --sidebar-width: 280px;
             --navbar-height: 70px;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--light-color);
-            color: var(--dark-color);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
         }
 
         .admin-wrapper {

@@ -73,8 +73,12 @@
     }
 
     .sidebar::-webkit-scrollbar-thumb {
-        background-color: #E5E7EB;
+        background-color: #A6B37D;
         border-radius: 3px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover {
+        background-color: #3B5B18;
     }
 
     .sidebar.collapsed {
@@ -141,7 +145,7 @@
         transform: translateY(-50%);
         margin-left: 15px;
         padding: 8px 12px;
-        background-color: var(--dark-color);
+        background-color: #31460B;
         color: white;
         font-size: 13px;
         white-space: nowrap;
@@ -149,7 +153,7 @@
         z-index: 1001;
         opacity: 0;
         animation: tooltipFadeIn 0.2s ease forwards;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 12px rgba(59, 91, 24, 0.3);
     }
 
     .sidebar.collapsed .menu-link:hover::before {
@@ -160,7 +164,7 @@
         transform: translateY(-50%);
         margin-left: 8px;
         border: 6px solid transparent;
-        border-right-color: var(--dark-color);
+        border-right-color: #31460B;
         z-index: 1001;
         opacity: 0;
         animation: tooltipFadeIn 0.2s ease forwards;
@@ -195,7 +199,7 @@
     .logo-icon {
         width: 40px;
         height: 40px;
-        background: linear-gradient(135deg, var(--primary-color), #7C3AED);
+        background: linear-gradient(135deg, #3B5B18, #31460B);
         border-radius: 10px;
         display: flex;
         align-items: center;
@@ -207,7 +211,7 @@
     .logo-text {
         font-size: 20px;
         font-weight: 700;
-        color: var(--dark-color);
+        color: #31460B;
         white-space: nowrap;
         transition: opacity 0.3s ease;
     }
@@ -225,13 +229,13 @@
     }
 
     .toggle-btn:hover {
-        background-color: var(--light-color);
-        color: var(--primary-color);
+        background-color: #f8f9fa;
+        color: #3B5B18;
     }
 
     .expand-btn {
         display: none;
-        background: linear-gradient(135deg, var(--primary-color), #7C3AED);
+        background: linear-gradient(135deg, #FF6B1E, #FB8B23);
         border: none;
         width: 40px;
         height: 40px;
@@ -243,12 +247,12 @@
         font-size: 16px;
         transition: all 0.3s ease;
         flex-shrink: 0;
-        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        box-shadow: 0 4px 12px rgba(255, 107, 30, 0.3);
     }
 
     .expand-btn:hover {
         transform: scale(1.1);
-        box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+        box-shadow: 0 6px 16px rgba(255, 107, 30, 0.4);
     }
 
     .expand-btn:active {
@@ -302,14 +306,15 @@
     }
 
     .menu-link:hover {
-        background-color: #F3F4F6;
-        color: var(--primary-color);
+        background-color: rgba(59, 91, 24, 0.05);
+        color: #3B5B18;
     }
 
     .menu-item.active .menu-link {
-        background-color: #EEF2FF;
-        color: var(--primary-color);
-        border-left: 3px solid var(--primary-color);
+        background-color: rgba(59, 91, 24, 0.1);
+        color: #3B5B18;
+        border-left: 3px solid #FF6B1E;
+        font-weight: 600;
     }
 
     .menu-text {
@@ -321,7 +326,7 @@
     }
 
     .badge-new {
-        background: linear-gradient(135deg, var(--secondary-color), #059669);
+        background: linear-gradient(135deg, #FF6B1E, #FB8B23);
         color: white;
         font-size: 10px;
         font-weight: 600;
@@ -355,8 +360,8 @@
     }
 
     .submenu-link:hover {
-        background-color: #F3F4F6;
-        color: var(--primary-color);
+        background-color: rgba(59, 91, 24, 0.05);
+        color: #3B5B18;
     }
 
     @media (max-width: 768px) {

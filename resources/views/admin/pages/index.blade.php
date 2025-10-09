@@ -98,8 +98,8 @@
                                 transform="rotate(-90 100 100)"/>
                         <defs>
                             <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+                                <stop offset="0%" style="stop-color:#FF6B1E;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FB8B23;stop-opacity:1" />
                             </linearGradient>
                         </defs>
                     </svg>
@@ -192,20 +192,24 @@
         color: white;
     }
 
+    /* WARNA HIJAU UNTUK CUSTOMERS */
     .stat-icon.customers {
-        background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        background: linear-gradient(135deg, #3B5B18, #31460B);
     }
 
+    /* WARNA ORANGE UNTUK ORDERS */
     .stat-icon.orders {
-        background: linear-gradient(135deg, #F59E0B, #F97316);
+        background: linear-gradient(135deg, #FF6B1E, #FB8B23);
     }
 
+    /* WARNA HIJAU MUDA UNTUK REVENUE */
     .stat-icon.revenue {
-        background: linear-gradient(135deg, #10B981, #059669);
+        background: linear-gradient(135deg, #3B5B18, #A6B37D);
     }
 
+    /* WARNA ORANGE-HIJAU UNTUK GROWTH */
     .stat-icon.growth {
-        background: linear-gradient(135deg, #06B6D4, #0891B2);
+        background: linear-gradient(135deg, #FB8B23, #A6B37D);
     }
 
     .stat-content {
@@ -221,7 +225,7 @@
     .stat-value {
         font-size: 28px;
         font-weight: 700;
-        color: var(--dark-color);
+        color: #31460B;
         margin-bottom: 8px;
     }
 
@@ -234,11 +238,11 @@
     }
 
     .stat-change.positive {
-        color: #10B981;
+        color: #3B5B18;
     }
 
     .stat-change.negative {
-        color: #EF4444;
+        color: #FF6B1E;
     }
 
     .charts-row {
@@ -265,7 +269,7 @@
     .card-header h3 {
         font-size: 18px;
         font-weight: 600;
-        color: var(--dark-color);
+        color: #31460B;
     }
 
     .card-subtitle {
@@ -285,8 +289,8 @@
     }
 
     .menu-btn:hover {
-        background-color: var(--light-color);
-        color: var(--primary-color);
+        background-color: #f8f9fa;
+        color: #3B5B18;
     }
 
     .chart-container {
@@ -321,12 +325,12 @@
     .percentage {
         font-size: 32px;
         font-weight: 700;
-        color: var(--dark-color);
+        color: #31460B;
     }
 
     .growth {
         font-size: 14px;
-        color: #10B981;
+        color: #FF6B1E;
         font-weight: 600;
     }
 
@@ -365,11 +369,11 @@
     }
 
     .stat-amount.red {
-        color: #EF4444;
+        color: #FF6B1E;
     }
 
     .stat-amount.green {
-        color: #10B981;
+        color: #3B5B18;
     }
 
     .statistics-card {
@@ -397,12 +401,12 @@
     }
 
     .tab-btn:hover {
-        background-color: var(--light-color);
+        background-color: #f8f9fa;
     }
 
     .tab-btn.active {
-        background-color: #EEF2FF;
-        color: var(--primary-color);
+        background-color: rgba(59, 91, 24, 0.1);
+        color: #3B5B18;
     }
 
     .date-range {
@@ -410,11 +414,16 @@
         align-items: center;
         gap: 8px;
         padding: 8px 16px;
-        background-color: var(--light-color);
+        background-color: #f8f9fa;
         border-radius: 8px;
         font-size: 14px;
         color: #6B7280;
         cursor: pointer;
+    }
+
+    .date-range:hover {
+        background-color: rgba(59, 91, 24, 0.05);
+        color: #3B5B18;
     }
 
     @media (max-width: 1024px) {
@@ -443,7 +452,7 @@
             datasets: [{
                 label: 'Sales',
                 data: [150, 380, 210, 310, 180, 280, 320, 120, 280, 370, 300, 180],
-                backgroundColor: '#4F46E5',
+                backgroundColor: '#3B5B18',
                 borderRadius: 8,
                 barThickness: 30
             }]
@@ -481,16 +490,16 @@
             datasets: [{
                 label: 'This Week',
                 data: [120, 180, 150, 200, 170, 250, 220],
-                borderColor: '#4F46E5',
-                backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                borderColor: '#3B5B18',
+                backgroundColor: 'rgba(59, 91, 24, 0.1)',
                 fill: true,
                 tension: 0.4,
                 borderWidth: 3
             }, {
                 label: 'Last Week',
                 data: [100, 150, 130, 180, 140, 200, 180],
-                borderColor: '#E5E7EB',
-                backgroundColor: 'rgba(229, 231, 235, 0.1)',
+                borderColor: '#A6B37D',
+                backgroundColor: 'rgba(166, 179, 125, 0.1)',
                 fill: true,
                 tension: 0.4,
                 borderWidth: 3

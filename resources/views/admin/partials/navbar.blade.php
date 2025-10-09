@@ -9,7 +9,7 @@
         <!-- User Menu -->
         <div class="user-menu" onclick="toggleUserDropdown()">
             <div class="user-avatar">
-                <img src="https://ui-avatars.com/api/?name={{ $admin->name }}&background=4F46E5&color=fff" alt="{{ $admin->name }}">
+                <img src="https://ui-avatars.com/api/?name={{ $admin->name }}&background=3B5B18&color=fff" alt="{{ $admin->name }}">
             </div>
             <div class="user-info">
                 <span class="user-name">{{ $admin->name }}</span>
@@ -20,7 +20,7 @@
             <div class="user-dropdown" id="userDropdown">
                 <div class="dropdown-header">
                     <div class="dropdown-avatar">
-                        <img src="https://ui-avatars.com/api/?name={{ $admin->name }}&background=4F46E5&color=fff" alt="{{ $admin->name }}">
+                        <img src="https://ui-avatars.com/api/?name={{ $admin->name }}&background=3B5B18&color=fff" alt="{{ $admin->name }}">
                     </div>
                     <div>
                         <div class="dropdown-name">{{ $admin->name }}</div>
@@ -79,7 +79,7 @@
         background: none;
         border: none;
         font-size: 20px;
-        color: var(--dark-color);
+        color: #31460B;
         cursor: pointer;
     }
 
@@ -87,7 +87,7 @@
         position: relative;
         display: flex;
         align-items: center;
-        background-color: var(--light-color);
+        background-color: #f8f9fa;
         border-radius: 10px;
         padding: 10px 16px;
         width: 100%;
@@ -96,7 +96,7 @@
     }
 
     .search-box:focus-within {
-        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        box-shadow: 0 0 0 3px rgba(59, 91, 24, 0.1);
     }
 
     .search-box i {
@@ -110,7 +110,7 @@
         outline: none;
         width: 100%;
         font-size: 14px;
-        color: var(--dark-color);
+        color: #31460B;
     }
 
     .search-box input::placeholder {
@@ -148,8 +148,8 @@
     }
 
     .icon-btn:hover {
-        background-color: var(--light-color);
-        color: var(--primary-color);
+        background-color: #f8f9fa;
+        color: #3B5B18;
     }
 
     .notification-btn {
@@ -160,7 +160,7 @@
         position: absolute;
         top: 8px;
         right: 8px;
-        background: linear-gradient(135deg, #EF4444, #DC2626);
+        background: linear-gradient(135deg, #FF6B1E, #FB8B23);
         color: white;
         font-size: 10px;
         font-weight: 600;
@@ -182,7 +182,7 @@
     }
 
     .user-menu:hover {
-        background-color: var(--light-color);
+        background-color: #f8f9fa;
     }
 
     .user-avatar {
@@ -190,6 +190,7 @@
         height: 40px;
         border-radius: 50%;
         overflow: hidden;
+        border: 2px solid #A6B37D;
     }
 
     .user-avatar img {
@@ -207,7 +208,7 @@
     .user-name {
         font-size: 14px;
         font-weight: 600;
-        color: var(--dark-color);
+        color: #31460B;
     }
 
     .user-info i {
@@ -226,6 +227,7 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         display: none;
         z-index: 1000;
+        border-top: 3px solid #3B5B18;
     }
 
     .dropdown-header {
@@ -240,6 +242,7 @@
         height: 50px;
         border-radius: 50%;
         overflow: hidden;
+        border: 2px solid #A6B37D;
     }
 
     .dropdown-avatar img {
@@ -251,7 +254,7 @@
     .dropdown-name {
         font-size: 15px;
         font-weight: 600;
-        color: var(--dark-color);
+        color: #31460B;
         margin-bottom: 4px;
     }
 
@@ -283,8 +286,8 @@
     }
 
     .dropdown-item:hover {
-        background-color: var(--light-color);
-        color: var(--primary-color);
+        background-color: rgba(59, 91, 24, 0.05);
+        color: #3B5B18;
     }
 
     .dropdown-item i {
@@ -293,12 +296,12 @@
     }
 
     .logout-btn {
-        color: var(--danger-color);
+        color: #FF6B1E;
     }
 
     .logout-btn:hover {
-        background-color: #FEE2E2;
-        color: var(--danger-color);
+        background-color: rgba(255, 107, 30, 0.1);
+        color: #FF6B1E;
     }
 
     @media (max-width: 768px) {

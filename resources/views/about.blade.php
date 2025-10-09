@@ -243,13 +243,13 @@
         .about-box {
             background: var(--light-green);
             border-radius: 30px;
-            padding: 60px;
+            padding: 40px;
             margin-bottom: 60px;
         }
 
         .about-title {
-            font-size: 36px;
-            font-weight: 700;
+            font-size: 45px;
+            font-weight: 400;
             color: #31460B;
             text-align: center;
             margin-bottom: 15px;
@@ -272,9 +272,9 @@
             margin-top: 40px;
         }
 
-        .about-icon svg {
-            width: 80px;
-            height: 80px;
+        .about-icon img {
+            width: 120px;
+            height: 120px;
             fill: var(--primary-green);
         }
 
@@ -597,16 +597,7 @@
             @endif
 
             <div class="about-icon">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="35" y="60" width="30" height="25" fill="#3B5B18"/>
-                    <ellipse cx="50" cy="60" rx="8" ry="3" fill="#31460B"/>
-                    <path d="M50 20 Q30 35, 30 55 L35 60 L50 65 L65 60 L70 55 Q70 35, 50 20 Z" fill="#3B5B18"/>
-                    <path d="M50 25 Q50 40, 50 60" stroke="#A6B37D" stroke-width="2" fill="none"/>
-                    <path d="M50 35 Q40 42, 35 48" stroke="#A6B37D" stroke-width="1.5" fill="none"/>
-                    <path d="M50 35 Q60 42, 65 48" stroke="#A6B37D" stroke-width="1.5" fill="none"/>
-                    <path d="M50 45 Q40 52, 35 57" stroke="#A6B37D" stroke-width="1.5" fill="none"/>
-                    <path d="M50 45 Q60 52, 65 57" stroke="#A6B37D" stroke-width="1.5" fill="none"/>
-                </svg>
+               <img src="{{ asset('gambar/icon_pucuk.png') }}" alt="Logo">
             </div>
         </div>
     </div>

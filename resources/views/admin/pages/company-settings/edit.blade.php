@@ -248,10 +248,9 @@
             </div>
 
             <!-- WhatsApp Settings -->
-            <h3 style="margin-top: 30px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
-                <i class="fab fa-whatsapp"></i> WhatsApp Settings
+            <h3 style="margin-top: 30px; margin-bottom: 20px; color: var(--text-dark); border-bottom: 2px solid var(--primary-green); padding-bottom: 10px;">
+            <i class="fab fa-whatsapp"></i> WhatsApp Settings
             </h3>
-
             <div class="form-row">
                 <div class="form-group">
                     <label for="whatsapp_number">
@@ -293,12 +292,12 @@
     .page-header h1 {
         font-size: 28px;
         font-weight: 600;
-        color: #1F2937;
+        color: var(--text-dark);
         margin-bottom: 5px;
     }
 
     .page-header p {
-        color: #6B7280;
+        color: var(--text-light);
         font-size: 14px;
     }
 
@@ -312,9 +311,9 @@
     }
 
     .alert-success {
-        background: #D1FAE5;
-        color: #065F46;
-        border: 1px solid #A7F3D0;
+        background: var(--light-green);
+        color: var(--primary-green);
+        border: 1px solid var(--primary-green);
     }
 
     .card {
@@ -341,7 +340,7 @@
     .form-section h3 {
         font-size: 18px;
         font-weight: 600;
-        color: #1F2937;
+        color: var(--text-dark);
         margin-bottom: 20px;
         display: flex;
         align-items: center;
@@ -349,7 +348,7 @@
     }
 
     .form-section h3 i {
-        color: #4F46E5;
+        color: var(--primary-green);
     }
 
     .form-group {
@@ -366,7 +365,7 @@
     label {
         display: block;
         font-weight: 500;
-        color: #374151;
+        color: var(--text-dark);
         margin-bottom: 8px;
         font-size: 14px;
     }
@@ -374,7 +373,7 @@
     .form-control {
         width: 100%;
         padding: 10px 14px;
-        border: 1px solid #D1D5DB;
+        border: 1px solid var(--text-light);
         border-radius: 8px;
         font-size: 14px;
         transition: all 0.3s;
@@ -382,8 +381,8 @@
 
     .form-control:focus {
         outline: none;
-        border-color: #4F46E5;
-        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        border-color: var(--primary-green);
+        box-shadow: 0 0 0 3px rgba(59, 91, 24, 0.1);
     }
 
     .form-control.is-invalid {
@@ -422,7 +421,7 @@
     }
 
     .text-muted {
-        color: #6B7280;
+        color: var(--text-light);
     }
 
     .form-actions {
@@ -445,13 +444,13 @@
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
         color: white;
     }
 
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        box-shadow: 0 10px 20px rgba(59, 91, 24, 0.3);
     }
 </style>
 @endsection

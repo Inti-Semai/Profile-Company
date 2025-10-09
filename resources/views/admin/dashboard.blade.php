@@ -11,9 +11,20 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-green: #3B5B18;
+            --dark-green: #31460B;
+            --light-green: #A6B37D;
+            --orange: #FF6B1E;
+            --light-orange: #FB8B23;
+            --text-dark: #000000;
+            --text-light: #31460B;
+            --bg-light: #f8f9fa;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
             min-height: 100vh;
         }
 
@@ -27,7 +38,7 @@
         }
 
         .navbar h1 {
-            color: #11998e;
+            color: var(--primary-green);
             font-size: 24px;
         }
 
@@ -38,13 +49,13 @@
         }
 
         .user-info {
-            color: #333;
+            color: var(--text-dark);
             font-weight: 500;
         }
 
         .btn-logout {
             padding: 10px 20px;
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -55,7 +66,7 @@
 
         .btn-logout:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(17, 153, 142, 0.3);
+            box-shadow: 0 5px 15px rgba(59, 91, 24, 0.3);
         }
 
         .container {
@@ -85,13 +96,13 @@
         }
 
         .card h3 {
-            color: #333;
+            color: var(--text-dark);
             margin-bottom: 15px;
             font-size: 18px;
         }
 
         .card p {
-            color: #666;
+            color: var(--text-light);
             line-height: 1.6;
         }
 
@@ -104,13 +115,13 @@
         }
 
         .welcome-section h2 {
-            color: #11998e;
+            color: var(--primary-green);
             margin-bottom: 15px;
             font-size: 32px;
         }
 
         .welcome-section p {
-            color: #666;
+            color: var(--text-light);
             font-size: 16px;
             line-height: 1.6;
         }
@@ -118,7 +129,7 @@
         .stat-number {
             font-size: 36px;
             font-weight: bold;
-            color: #11998e;
+            color: var(--primary-green);
             margin: 10px 0;
         }
     </style>

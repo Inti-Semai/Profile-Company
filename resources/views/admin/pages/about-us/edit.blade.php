@@ -10,12 +10,12 @@
     }
 
     .page-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
         color: white;
         padding: 30px;
         border-radius: 15px;
         margin-bottom: 30px;
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 10px 30px rgba(59, 91, 24, 0.3);
     }
 
     .page-header h1 {
@@ -31,8 +31,9 @@
     }
 
     .info-banner {
-        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-        border-left: 4px solid #667eea;
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+        opacity: 0.15;
+        border-left: 4px solid var(--primary-green);
         padding: 20px 25px;
         border-radius: 10px;
         margin-bottom: 30px;
@@ -43,7 +44,7 @@
 
     .info-banner i {
         font-size: 24px;
-        color: #667eea;
+        color: var(--primary-green);
     }
 
     .info-banner-content {
@@ -51,12 +52,12 @@
     }
 
     .info-banner-content strong {
-        color: #667eea;
+        color: var(--primary-green);
         font-size: 16px;
     }
 
     .info-banner a {
-        color: #667eea;
+        color: var(--primary-green);
         text-decoration: underline;
         font-weight: 600;
     }
@@ -82,7 +83,7 @@
     .section-header i {
         width: 40px;
         height: 40px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
         color: white;
         border-radius: 10px;
         display: flex;
@@ -106,13 +107,13 @@
         display: block;
         margin-bottom: 10px;
         font-weight: 600;
-        color: #2c3e50;
+        color: var(--text-dark);
         font-size: 14px;
     }
 
     .form-group label i {
         margin-right: 5px;
-        color: #667eea;
+        color: var(--primary-green);
     }
 
     .form-control {
@@ -126,8 +127,8 @@
 
     .form-control:focus {
         outline: none;
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        border-color: var(--primary-green);
+        box-shadow: 0 0 0 3px rgba(59, 91, 24, 0.1);
     }
 
     textarea.form-control {
@@ -151,8 +152,8 @@
     }
 
     .image-upload-box:hover {
-        border-color: #667eea;
-        background: #f0f2ff;
+        border-color: var(--primary-green);
+        background: var(--bg-light);
     }
 
     .image-upload-box label {
@@ -216,14 +217,14 @@
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
         color: white;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 4px 15px rgba(59, 91, 24, 0.4);
     }
 
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        box-shadow: 0 6px 20px rgba(59, 91, 24, 0.5);
     }
 
     .btn-secondary {

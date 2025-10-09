@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <style>
+        :root {
+            --primary-green: #3B5B18;
+            --dark-green: #31460B;
+            --light-green: #A6B37D;
+            --orange: #FF6B1E;
+            --light-orange: #FB8B23;
+            --text-dark: #000000;
+            --text-light: #31460B;
+            --bg-light: #f8f9fa;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,7 +24,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -32,7 +43,7 @@
 
         h1 {
             text-align: center;
-            color: #333;
+            color: var(--text-dark);
             margin-bottom: 40px;
             font-size: 32px;
             font-weight: 600;
@@ -45,7 +56,7 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
+            color: var(--text-dark);
             font-weight: 600;
             font-size: 14px;
         }
@@ -64,9 +75,9 @@
         input[type="text"]:focus,
         input[type="password"]:focus {
             outline: none;
-            border-color: #4CAF50;
+            border-color: var(--primary-green);
             background-color: white;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+            box-shadow: 0 0 0 3px rgba(59, 91, 24, 0.1);
         }
 
         .captcha-container {
@@ -83,7 +94,7 @@
         }
 
         .refresh-btn {
-            background: #4CAF50;
+            background: var(--primary-green);
             border: none;
             padding: 12px;
             border-radius: 10px;
@@ -95,7 +106,7 @@
         }
 
         .refresh-btn:hover {
-            background: #45a049;
+            background: var(--dark-green);
             transform: rotate(180deg);
         }
 
@@ -107,7 +118,7 @@
         .btn-login {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
             color: white;
             border: none;
             border-radius: 10px;
@@ -120,7 +131,7 @@
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 10px 20px rgba(59, 91, 24, 0.3);
         }
 
         .btn-login:active {

@@ -70,12 +70,12 @@
     .page-header h1 {
         font-size: 28px;
         font-weight: 600;
-        color: #1F2937;
+        color: var(--text-dark);
         margin-bottom: 5px;
     }
 
     .page-header p {
-        color: #6B7280;
+        color: var(--text-light);
         font-size: 14px;
     }
 
@@ -144,15 +144,15 @@
     .gallery-info h4 {
         font-size: 16px;
         font-weight: 600;
-        color: #1F2937;
+        color: var(--text-dark);
         margin-bottom: 8px;
     }
 
     .order-badge {
         display: inline-block;
         padding: 4px 12px;
-        background: #E0E7FF;
-        color: #4F46E5;
+        background: var(--light-green);
+        color: var(--primary-green);
         border-radius: 20px;
         font-size: 12px;
         font-weight: 500;
@@ -180,13 +180,13 @@
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
         color: white;
     }
 
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        box-shadow: 0 10px 20px rgba(59, 91, 24, 0.3);
     }
 
     .btn-sm {
@@ -227,12 +227,12 @@
     .empty-state h3 {
         font-size: 20px;
         font-weight: 600;
-        color: #6B7280;
+        color: var(--text-light);
         margin-bottom: 10px;
     }
 
     .empty-state p {
-        color: #9CA3AF;
+        color: var(--text-light);
         margin-bottom: 25px;
     }
 </style>
