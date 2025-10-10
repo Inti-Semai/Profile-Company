@@ -15,4 +15,12 @@ class LandingController extends Controller
 
         return view('landing.index', compact('setting', 'galleries'));
     }
+
+    public function english()
+    {
+        $setting = CompanySetting::first();
+        $galleries = Gallery::orderBy('order')->take(4)->get();
+
+        return view('landing.en.index', compact('setting', 'galleries'));
+    }
 }

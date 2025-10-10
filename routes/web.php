@@ -12,6 +12,10 @@ use App\Http\Controllers\Admin\AboutUsController;
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/tentang-kami', [AboutController::class, 'index'])->name('about');
 
+// English routes
+Route::get('/en', [LandingController::class, 'english'])->name('landing.en');
+Route::get('/en/about-us', [AboutController::class, 'english'])->name('about.en');
+
 // Admin login routes (without middleware)
 Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [LoginController::class, 'login']);

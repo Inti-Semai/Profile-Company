@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Kami - {{ $setting->company_name ?? 'PT. Inti Semai Kaliandra' }}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>{{ $setting->company_name ?? 'PT. INTI SEMAI KALIANDRA' }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -31,7 +29,7 @@
             line-height: 1.6;
         }
 
-        /* Navbar - sama seperti index */
+       /* Navbar */
         .navbar {
             background: rgba(255, 255, 255, 0.10);
             backdrop-filter: blur(5px);
@@ -66,7 +64,6 @@
             font-size: 16px;
             color: var(--text-dark);
             transition: color 0.3s ease;
-            text-decoration: none;
         }
 
         .navbar.scrolled .logo {
@@ -81,10 +78,10 @@
             justify-content: center;
         }
 
-        .logo-icon img {
+        .logo-icon svg {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         .nav-menu {
@@ -125,7 +122,7 @@
         }
 
         .navbar.scrolled .nav-menu a.active {
-            border-bottom: 3px solid var(--primary-green);
+            border-bottom: 3px solid var(--text-dark);
         }
 
         .nav-right {
@@ -143,6 +140,19 @@
             color: var(--text-dark);
             cursor: pointer;
             transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .navbar.scrolled .language-selector {
+            color: var(--text-dark);
+        }
+
+        .language-selector:hover {
+            color: var(--primary-green);
+        }
+
+        .navbar.scrolled .language-selector:hover {
+            color: var(--primary-green);
         }
 
         .search-box {
@@ -159,6 +169,14 @@
 
         .navbar.scrolled .search-box {
             background: #E8E8E8;
+        }
+
+        .search-box:hover {
+            background: rgba(220, 220, 220, 0.8);
+        }
+
+        .navbar.scrolled .search-box:hover {
+            background: #DCDCDC;
         }
 
         .search-input {
@@ -192,12 +210,29 @@
             flex-shrink: 0;
         }
 
+        .search-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
         .search-btn svg {
             width: 20px;
             height: 20px;
             stroke: #333;
             fill: none;
             stroke-width: 2;
+            transition: stroke 0.3s;
+        }
+
+        .navbar.scrolled .search-btn svg {
+            stroke: #333;
+        }
+
+        .search-btn:hover svg {
+            stroke: var(--primary-green);
+        }
+
+        .navbar.scrolled .search-btn:hover svg {
+            stroke: var(--primary-green);
         }
 
         /* Hero Section */
@@ -233,89 +268,151 @@
             letter-spacing: -0.5px;
         }
 
-        /* About Content Section */
-        .about-content {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 50px;
+        .hero-content p {
+            font-size: 52px;
+            font-weight: 700;
+            text-shadow: 2px 4px 12px rgba(0,0,0,0.5);
+            line-height: 1.2;
+            margin-top: 0;
+            letter-spacing: -0.5px;
         }
 
-        .about-box {
-            background: var(--light-green);
-            border-radius: 30px;
-            padding: 40px;
-            margin-bottom: 60px;
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 50px;
         }
 
-        .about-title {
-            font-size: 45px;
-            font-weight: 400;
-            color: #31460B;
-            text-align: center;
-            margin-bottom: 15px;
-            border-bottom: 3px solid #31460B;
-            padding-bottom: 15px;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .about-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--text-dark);
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .about-icon {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .about-icon img {
-            width: 120px;
-            height: 120px;
-            fill: var(--primary-green);
-        }
-
-        /* Gallery Grid */
-        .about-gallery {
+        /* Vision Section */
+        .vision-section {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 60px;
-            padding: 0 50px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
         }
 
-        .about-gallery-item {
+        .vision-image {
             width: 100%;
-            height: 375px;
+            height: 300px;
             border-radius: 20px;
+            background: linear-gradient(135deg, var(--light-green), var(--light-orange));
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
         }
 
-        .about-gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .about-gallery-item img {
+        .vision-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        /* Footer - sama seperti index */
+        .vision-content h2 {
+            font-size: 60px;
+            font-weight: 700;
+            color: #3B5B18;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .vision-content p {
+            color: var(--text-light);
+            font-size: 19px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .mission-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--light-orange), var(--orange));
+            overflow: hidden;
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mission-content h2 {
+            font-size: 60px;
+            font-weight: 700;
+            color: #3B5B18;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .mission-content p {
+            color: var(--text-light);
+            font-size: 18px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: var(--bg-light);
+            padding: 0;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #3B5B18;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 100%;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 375px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--light-green), var(--light-orange));
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
         .footer {
             background: var(--dark-green);
             color: white;
             padding: 60px 50px 30px;
-            margin-top: 80px;
         }
 
         .footer-container {
@@ -331,14 +428,8 @@
             font-size: 25px;
             font-weight: 700;
             margin-bottom: 15px;
+            text-transform: none;
             letter-spacing: 0.5px;
-        }
-
-        .footer-about p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 0px;
         }
 
         .footer-about h4 {
@@ -348,10 +439,18 @@
             margin-bottom: 15px;
         }
 
+        .footer-about p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0px;
+        }
+
         .footer-section h3 {
             font-size: 25px;
             font-weight: 700;
             margin-bottom: 20px;
+            text-transform: none;
             letter-spacing: 0.5px;
         }
 
@@ -381,8 +480,17 @@
             position: relative;
         }
 
+        .map-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            pointer-events: none;
+        }
+
         .map-container iframe {
-            width: 100%;
+            width: 50%;
             height: 220px;
             border: 0;
             border-radius: 10px;
@@ -489,44 +597,24 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
             }
 
-            .nav-menu {
-                gap: 20px;
+            .whatsapp-button {
+                padding: 12px 20px;
+                font-size: 14px;
             }
 
-            .hero {
-                min-height: 500px;
-                height: 60vh;
-                padding-left: 20px;
-                padding-right: 20px;
-                justify-content: center;
-                text-align: center;
+            .whatsapp-button span {
+                display: none;
             }
 
-            .hero-content {
-                max-width: 100%;
-            }
-
-            .hero-content h1 {
-                font-size: 32px;
-            }
-
-            .about-box {
-                padding: 40px 30px;
-            }
-
-            .about-title {
-                font-size: 28px;
-            }
-
-            .about-gallery {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 0 20px;
+            .whatsapp-icon {
+                width: 24px;
+                height: 24px;
             }
 
             .footer-container {
@@ -534,13 +622,50 @@
                 gap: 40px;
             }
 
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
+            .map-container iframe {
+                height: 200px;
+            }
+        }
+
+        /* Hubungi Kami Button */
+        .contact-button {
+            background: var(--primary-green);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .contact-button:hover {
+            background: var(--dark-green);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 91, 24, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .vision-section,
+            .mission-section {
+                grid-template-columns: 1fr;
             }
 
-            .whatsapp-button span {
-                display: none;
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .nav-menu {
+                gap: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
             }
         }
     </style>
@@ -549,22 +674,22 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="{{ route('landing') }}" class="logo">
+            <div class="logo">
                 <div class="logo-icon">
-                    <img src="{{ asset('gambar/logo.png') }}" alt="Logo">
+                    <img src="{{ asset('gambar/logo.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
                 <span>{{ $setting->company_name ?? 'PT. INTI SEMAI KALIANDRA' }}</span>
-            </a>
+            </div>
 
             <ul class="nav-menu">
-                <li><a href="{{ route('landing') }}#beranda" class="nav-link">Beranda</a></li>
-                <li><a href="{{ route('about') }}" class="nav-link active">Tentang Kami</a></li>
-                <li><a href="{{ route('landing') }}#produk" class="nav-link">Produk</a></li>
-                <li><a href="{{ route('landing') }}#hubungi-kami" class="nav-link">Hubungi Kami</a></li>
+                <li><a href="{{ route('landing.en') }}" class="nav-link active">Home</a></li>
+                <li><a href="{{ route('about.en') }}" class="nav-link">About Us</a></li>
+                <li><a href="{{ route('landing.en') }}#products" class="nav-link">Products</a></li>
+                <li><a href="{{ route('landing.en') }}#contact-us" class="nav-link">Contact Us</a></li>
             </ul>
 
             <div class="nav-right">
-                <div class="language-selector">EN</div>
+                <a href="{{ route('landing') }}"class="language-selector">ID</a>
                 <div class="search-box">
                     <input type="text" placeholder="Search..." class="search-input">
                     <button class="search-btn">
@@ -578,72 +703,91 @@
         </div>
     </nav>
 
-    <!-- Hero Section - Background dari Company Settings, Text dari About Us -->
-    <section class="hero" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
+    <!-- Hero Section -->
+    <section class="hero" id="home" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
         <div class="hero-content">
-            <h1>{{ $aboutUs->hero_text ?? 'Tentang Kami' }}</h1>
+            <h1>{{ $setting->hero_title_en ?? 'Innovation for Better and' }}</h1>
+            <p>{{ $setting->hero_subtitle_en ?? 'Sustainable Results' }}</p>
         </div>
     </section>
 
-    <!-- About Content -->
-    <div class="about-content">
-        <div class="about-box">
-            <h2 class="about-title">{{ $aboutUs->main_title ?? 'KENALI KAMI LEBIH DEKAT' }}</h2>
+    <!-- Vision Section -->
+    <div class="container">
+        <div class="vision-section" id="about-us">
+            <div class="vision-image">
+                @if($setting && $setting->vision_image)
+                    <img src="{{ $setting->vision_image_url }}" alt="Vision">
+                @endif
+            </div>
+            <div class="vision-content">
+                <h2>OUR VISION</h2>
+                <p>
+                    {{ $setting->vision_text_en ?? 'Delivering innovative, productive, and sustainable agricultural solutions to enhance farmer welfare through an environmentally friendly approach and long-term results orientation, focusing on diversification and high added value for sustainable and profitable agriculture.' }}
+                </p>
+            </div>
+        </div>
 
-            @if($aboutUs && $aboutUs->intro_text)
-                <p class="about-text" style="white-space: pre-line;">{{ $aboutUs->intro_text }}</p>
-            @else
-                <p class="about-text">PT. Inti Semai Kaliandra adalah perusahaan yang bergerak di bidang pertanian dan perkebunan.</p>
-            @endif
-
-            <div class="about-icon">
-               <img src="{{ asset('gambar/icon_pucuk.png') }}" alt="Logo">
+        <!-- Mission Section -->
+        <div class="mission-section">
+            <div class="mission-content">
+                <h2>OUR MISSION</h2>
+                <p>
+                    {{ $setting->mission_text_en ?? 'Providing high-quality agricultural products and services that support increased agricultural productivity, building strategic partnerships with local farmers, and implementing modern technology to produce sustainable and environmentally friendly yields that can increase the economic value of Indonesian agriculture.' }}
+                </p>
+            </div>
+            <div class="mission-image">
+                @if($setting && $setting->mission_image)
+                    <img src="{{ $setting->mission_image_url }}" alt="Mission">
+                @endif
             </div>
         </div>
     </div>
 
-    <!-- Gallery -->
-    @if($aboutUs && ($aboutUs->image_1 || $aboutUs->image_2 || $aboutUs->image_3 || $aboutUs->image_4))
-        <div class="about-gallery">
-            @if($aboutUs->image_1)
-                <div class="about-gallery-item">
-                    <img src="{{ $aboutUs->image_1_url }}" alt="Gallery Image 1">
-                </div>
-            @endif
-            @if($aboutUs->image_2)
-                <div class="about-gallery-item">
-                    <img src="{{ $aboutUs->image_2_url }}" alt="Gallery Image 2">
-                </div>
-            @endif
-            @if($aboutUs->image_3)
-                <div class="about-gallery-item">
-                    <img src="{{ $aboutUs->image_3_url }}" alt="Gallery Image 3">
-                </div>
-            @endif
-            @if($aboutUs->image_4)
-                <div class="about-gallery-item">
-                    <img src="{{ $aboutUs->image_4_url }}" alt="Gallery Image 4">
-                </div>
-            @endif
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="products">
+        <div class="gallery-container">
+            <h2 class="gallery-title">GALLERY</h2>
+            <div class="gallery-grid">
+                @if($galleries && $galleries->count() > 0)
+                    @foreach($galleries as $gallery)
+                        <div class="gallery-item">
+                            <img src="{{ $gallery->image_url }}" alt="{{ $gallery->title_en ?? $gallery->title }}">
+                        </div>
+                    @endforeach
+                @else
+                    <div class="gallery-item">
+                        <!-- Placeholder for gallery image 1 -->
+                    </div>
+                    <div class="gallery-item">
+                        <!-- Placeholder for gallery image 2 -->
+                    </div>
+                    <div class="gallery-item">
+                        <!-- Placeholder for gallery image 3 -->
+                    </div>
+                    <div class="gallery-item">
+                        <!-- Placeholder for gallery image 4 -->
+                    </div>
+                @endif
+            </div>
         </div>
-    @endif
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact-us">
         <div class="footer-container">
             <div class="footer-about">
                 <h3>{{ $setting->company_name ?? 'PT Inti Semai Kaliandra' }}</h3>
                 @if($setting && $setting->address)
-                    <p>{!! nl2br(e($setting->address)) !!}</p>
+                    <p>{!! nl2br(e($setting->address_en ?? $setting->address)) !!}</p>
                 @else
                     <p>Ruko Mahakam Square<br>
-                    Blok B No. 9, Jl. Untung Suropati, Karang Asam Ulu,<br>
-                    Sungai Kunjang, Kota Samarinda, Kalimantan Timur</p>
+                    Block B No. 9, Jl. Untung Suropati, Karang Asam Ulu,<br>
+                    Sungai Kunjang, Samarinda City, East Kalimantan</p>
                 @endif
-                <p><br>No. Telp : {{ $setting->phone ?? '082211088363' }}</p>
+                <p><br>Phone : {{ $setting->phone ?? '082211088363' }}</p>
                 <p>Email : {{ $setting->email ?? 'intisemai@gmail.com' }}</p>
 
-                <h4 style="margin-top: 20px; margin-bottom: 15px; font-style: italic; font-weight: bold; font-size: 22px;">Terhubung dengan kami!</h4>
+                <h4 style="margin-top: 20px; margin-bottom: 15px; font-style: italic; font-weight: bold; font-size: 22px;">Connect with us!</h4>
 
                 <div class="social-links">
                     @if($setting && $setting->youtube_url)
@@ -674,16 +818,16 @@
                 </div>
             </div>
             <div class="footer-section">
-                <h3>Tautan</h3>
+                <h3>Links</h3>
                 <ul>
-                    <li><a href="{{ route('landing') }}#beranda">Beranda</a></li>
-                    <li><a href="{{ route('about') }}">Tentang Kami</a></li>
-                    <li><a href="{{ route('landing') }}#produk">Produk</a></li>
-                    <li><a href="{{ route('landing') }}#hubungi-kami">Hubungi Kami</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-section footer-location" style="text-align: center;">
-                <h3 style="font-weight: 700;">Lokasi</h3>
+                <h3 style="font-weight: 700;">Location</h3>
                 @if($setting && $setting->maps_embed_url)
                     <div class="map-container">
                         {!! $setting->maps_embed_url !!}
@@ -710,13 +854,13 @@
                 <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                 </svg>
-                <span>Hubungi Kami</span>
+                <span>Contact Us</span>
             </a>
         </div>
     @endif
 
     <script>
-        // Navbar scroll effect
+        // Same JavaScript as original file
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -724,6 +868,54 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+        });
+
+        const sections = document.querySelectorAll('[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', function() {
+            let current = 'home';
+
+            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
+                current = 'contact-us';
+            } else {
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= (sectionTop - 150)) {
+                        const sectionId = section.getAttribute('id');
+                        if (sectionId && sectionId !== 'contact-us') {
+                            current = sectionId;
+                        }
+                    }
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
         });
     </script>
 </body>

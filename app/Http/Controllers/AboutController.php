@@ -20,6 +20,21 @@ class AboutController extends Controller
         );
         $setting = CompanySetting::first();
 
-        return view('about', compact('aboutUs', 'setting'));
+        return view('landing.about', compact('aboutUs', 'setting'));
+    }
+
+    public function english()
+    {
+        $aboutUs = AboutUs::firstOrCreate(
+            [],
+            [
+                'hero_text_en' => 'About Us',
+                'main_title_en' => 'GET TO KNOW US BETTER',
+                'intro_text_en' => 'PT. Inti Semai Kaliandra is a company engaged in agriculture and plantation.',
+            ]
+        );
+        $setting = CompanySetting::first();
+
+        return view('landing.en.about', compact('aboutUs', 'setting'));
     }
 }
