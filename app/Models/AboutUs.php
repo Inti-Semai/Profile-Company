@@ -10,8 +10,11 @@ class AboutUs extends Model
 
     protected $fillable = [
         'hero_text',
+        'hero_title_text_en',
         'main_title',
+        'main_title_en',
         'intro_text',
+        'intro_text_en',
         'image_1',
         'image_2',
         'image_3',

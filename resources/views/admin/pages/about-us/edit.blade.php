@@ -288,21 +288,23 @@
                 <i class="fas fa-heading"></i>
                 <h3>Hero Section Text</h3>
             </div>
-
-            <div class="form-group">
-                <label for="hero_text">
-                    <i class="fas fa-font"></i> Hero Title Text
-                </label>
-                <input type="text"
-                       name="hero_text"
-                       id="hero_text"
-                       class="form-control @error('hero_text') is-invalid @enderror"
-                       value="{{ old('hero_text', $aboutUs->hero_text) }}"
-                       placeholder="Tentang Kami">
-                <small class="form-hint">This text will be displayed on the hero section of About Us page</small>
-                @error('hero_text')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="hero_text"><i class="fas fa-font"></i> Hero Title Text (Indonesia)</label>
+                    <input type="text" name="hero_text" id="hero_text" class="form-control @error('hero_text') is-invalid @enderror" value="{{ old('hero_text', $aboutUs->hero_text) }}" placeholder="Tentang Kami">
+                    <small class="form-hint">Teks hero dalam bahasa Indonesia</small>
+                    @error('hero_text')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="hero_title_text_en"><i class="fas fa-font"></i> Hero Title Text (English)</label>
+                    <input type="text" name="hero_title_text_en" id="hero_title_text_en" class="form-control @error('hero_title_text_en') is-invalid @enderror" value="{{ old('hero_title_text_en', $aboutUs->hero_title_text_en) }}" placeholder="About Us">
+                    <small class="form-hint">Hero text in English</small>
+                    @error('hero_title_text_en')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
         </div>
 
@@ -312,36 +314,41 @@
                 <i class="fas fa-file-alt"></i>
                 <h3>Content Card</h3>
             </div>
-
-            <div class="form-group">
-                <label for="main_title">
-                    <i class="fas fa-heading"></i> Main Title
-                </label>
-                <input type="text"
-                       name="main_title"
-                       id="main_title"
-                       class="form-control @error('main_title') is-invalid @enderror"
-                       value="{{ old('main_title', $aboutUs->main_title) }}"
-                       placeholder="KENALI KAMI LEBIH DEKAT">
-                <small class="form-hint">The main heading for the about us content section</small>
-                @error('main_title')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="main_title"><i class="fas fa-heading"></i> Main Title (Indonesia)</label>
+                    <input type="text" name="main_title" id="main_title" class="form-control @error('main_title') is-invalid @enderror" value="{{ old('main_title', $aboutUs->main_title) }}" placeholder="KENALI KAMI LEBIH DEKAT">
+                    <small class="form-hint">Judul utama dalam bahasa Indonesia</small>
+                    @error('main_title')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="main_title_en"><i class="fas fa-heading"></i> Main Title (English)</label>
+                    <input type="text" name="main_title_en" id="main_title_en" class="form-control @error('main_title_en') is-invalid @enderror" value="{{ old('main_title_en', $aboutUs->main_title_en) }}" placeholder="GET TO KNOW US BETTER">
+                    <small class="form-hint">Main title in English</small>
+                    @error('main_title_en')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="intro_text">
-                    <i class="fas fa-align-left"></i> Introduction Text
-                </label>
-                <textarea name="intro_text"
-                          id="intro_text"
-                          rows="8"
-                          class="form-control @error('intro_text') is-invalid @enderror"
-                          placeholder="Ceritakan tentang perusahaan Anda...">{{ old('intro_text', $aboutUs->intro_text) }}</textarea>
-                <small class="form-hint">Tulis pengenalan atau deskripsi lengkap tentang perusahaan Anda</small>
-                @error('intro_text')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="intro_text"><i class="fas fa-align-left"></i> Introduction Text (Indonesia)</label>
+                    <textarea name="intro_text" id="intro_text" rows="8" class="form-control @error('intro_text') is-invalid @enderror" placeholder="Ceritakan tentang perusahaan Anda...">{{ old('intro_text', $aboutUs->intro_text) }}</textarea>
+                    <small class="form-hint">Pengenalan atau deskripsi lengkap dalam bahasa Indonesia</small>
+                    @error('intro_text')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="intro_text_en"><i class="fas fa-align-left"></i> Introduction Text (English)</label>
+                    <textarea name="intro_text_en" id="intro_text_en" rows="8" class="form-control @error('intro_text_en') is-invalid @enderror" placeholder="Tell about your company...">{{ old('intro_text_en', $aboutUs->intro_text_en) }}</textarea>
+                    <small class="form-hint">Introduction or full description in English</small>
+                    @error('intro_text_en')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
         </div>
 

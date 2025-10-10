@@ -49,6 +49,22 @@
                     <span class="menu-text">About Us</span>
                 </a>
             </div>
+
+             <!-- Product Landing -->
+            <div class="menu-item {{ request()->routeIs('admin.product-landing.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.product-landing.edit') }}" class="menu-link" data-title="Product Landing">
+                    <i class="fas fa-rocket"></i>
+                    <span class="menu-text">Product Landing</span>
+                </a>
+            </div>
+
+            <!-- Produk Management -->
+            <div class="menu-item {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
+                <a href="{{ route('admin.products.index') }}" class="menu-link" data-title="Produk">
+                    <i class="fas fa-box"></i>
+                    <span class="menu-text">Produk</span>
+                </a>
+            </div>
         </div>
     </div>
 </aside>

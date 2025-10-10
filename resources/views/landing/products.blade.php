@@ -1,7 +1,9 @@
+@php $active = 'produk'; @endphp
 <!DOCTYPE html>
 <html lang="id">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PT. Inti Semai Kaliandra</title>
+    <title>Produk Kami - {{ $setting->company_name ?? 'PT. Inti Semai Kaliandra' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -284,130 +286,6 @@
             padding: 80px 50px;
         }
 
-        /* Vision Section */
-        .vision-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            margin-bottom: 80px;
-        }
-
-        .vision-image {
-            width: 100%;
-            height: 300px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, var(--light-green), var(--light-orange));
-            overflow: hidden;
-        }
-
-        .vision-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .vision-content h2 {
-            font-size: 60px;
-            font-weight: 700;
-            color: #3B5B18;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .vision-content p {
-            color: var(--text-light);
-            font-size: 19px;
-            line-height: 1.7;
-            text-align: justify;
-        }
-
-        /* Mission Section */
-        .mission-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .mission-image {
-            width: 100%;
-            height: 300px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, var(--light-orange), var(--orange));
-            overflow: hidden;
-        }
-
-        .mission-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .mission-content h2 {
-            font-size: 60px;
-            font-weight: 700;
-            color: #3B5B18;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .mission-content p {
-            color: var(--text-light);
-            font-size: 18px;
-            line-height: 1.7;
-            text-align: justify;
-        }
-
-        /* Gallery Section */
-        .gallery-section {
-            background: var(--bg-light);
-            padding: 0;
-        }
-
-        .gallery-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 50px;
-        }
-
-        .gallery-title {
-            text-align: center;
-            font-size: 32px;
-            font-weight: 700;
-            color: #3B5B18;
-            margin-bottom: 40px;
-            letter-spacing: 1px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 100%;
-        }
-
-        .gallery-item {
-            width: 100%;
-            height: 375px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, var(--light-green), var(--light-orange));
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         /* Footer */
         .footer {
             background: var(--dark-green);
@@ -547,123 +425,15 @@
             font-size: 14px;
         }
 
-        /* Floating WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 999;
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-button {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #3B5B18;
-            color: #FFFFFF;
-            padding: 14px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 4px 20px rgba(59, 91, 24, 0.4);
-            transition: all 0.3s ease;
-            border: 2px solid #A6B37D;
-        }
-
-        .whatsapp-button:hover {
-            background: #31460B;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 30px rgba(59, 91, 24, 0.6);
-            border-color: #A6B37D;
-        }
-
-        .whatsapp-icon {
-            width: 28px;
-            height: 28px;
-            fill: #FFFFFF;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .whatsapp-button {
-                padding: 12px 20px;
-                font-size: 14px;
-            }
-
-            .whatsapp-button span {
-                display: none;
-            }
-
-            .whatsapp-icon {
-                width: 24px;
-                height: 24px;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .map-container iframe {
-                height: 200px;
-            }
-        }
-
-        /* Hubungi Kami Button */
-        .contact-button {
-            background: var(--primary-green);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .contact-button:hover {
-            background: var(--dark-green);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 91, 24, 0.4);
-        }
-
         /* Responsive */
         @media (max-width: 968px) {
-            .vision-section,
-            .mission-section {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .footer-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-
             .nav-menu {
                 gap: 20px;
             }
-
             .hero-content h1 {
                 font-size: 36px;
             }
@@ -671,7 +441,7 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- Navbar (inlined, copied from index.blade.php) -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="logo">
@@ -682,9 +452,9 @@
             </div>
 
             <ul class="nav-menu">
-                <li><a href="{{ route('landing') }}" class="nav-link active">Beranda</a></li>
+                <li><a href="{{ route('landing') }}" class="nav-link">Beranda</a></li>
                 <li><a href="{{ route('about') }}" class="nav-link">Tentang Kami</a></li>
-                <li><a href="{{ route('products') }}" class="nav-link">Produk</a></li>
+                <li><a href="{{ route('products') }}" class="nav-link active">Produk</a></li>
                 <li><a href="{{ route('landing') }}#hubungi-kami" class="nav-link">Hubungi Kami</a></li>
             </ul>
 
@@ -702,80 +472,70 @@
             </div>
         </div>
     </nav>
-
     <!-- Hero Section -->
-    <section class="hero" id="beranda" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
+    <section class="hero" id="produk" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
         <div class="hero-content">
-            <h1>{{ $setting->hero_title ?? 'Inovasi untuk Hasil yang' }}</h1>
             <p>{{ $landing->hero_subtitle_top ?? 'Lebih Baik, dan Berkelanjutan' }}</p>
-            @if(!empty($landing->hero_subtitle_bottom))
-            <span style="display:block; font-size:1.2rem; font-weight:400; margin-top:8px;">{{ $landing->hero_subtitle_bottom }}</span>
-            @endif
         </div>
     </section>
-
-    <!-- Vision Section -->
-    <div class="container">
-        <div class="vision-section" id="tentang-kami">
-            <div class="vision-image">
-                @if($setting && $setting->vision_image)
-                    <img src="{{ $setting->vision_image_url }}" alt="Vision">
-                @endif
-            </div>
-            <div class="vision-content">
-                <h2>VISI KAMI</h2>
-                <p>
-                    {{ $setting->vision_text ?? 'Menghadirkan solusi pertanian berbasis inovasi, produktivitas, dan keberlanjutan untuk meningkatkan kesejahteraan petani melalui pendekatan yang ramah lingkungan dan berorientasi pada hasil jangka panjang dengan fokus pada diversifikasi dan nilai tambah yang tinggi untuk pertanian yang berkelanjutan dan menguntungkan.' }}
-                </p>
-            </div>
+    <div class="container" style="margin-top: 60px;">
+        <div style="text-align:center; margin-bottom:24px;">
+            <span style="display:inline-block; color:var(--dark-green); font-size:2rem; font-weight:700; position:relative;">
+                {{ $landing->hero_subtitle_bottom ?? 'Inovasi Untuk Hasil yang Lebih Baik dan Berkelanjutan' }}
+                <span style="display:block; height:5px; background:#3B5B18; border-radius:3px; margin-top:8px; width:100%;"></span>
+            </span>
         </div>
-
-        <!-- Mission Section -->
-        <div class="mission-section">
-            <div class="mission-content">
-                <h2>MISI KAMI</h2>
-                <p>
-                    {{ $setting->mission_text ?? 'Menyediakan produk dan layanan pertanian berkualitas tinggi yang mendukung peningkatan produktivitas pertanian, membangun kemitraan strategis dengan petani lokal, serta menerapkan teknologi modern untuk menghasilkan hasil panen yang berkelanjutan dan ramah lingkungan yang dapat meningkatkan nilai ekonomi pertanian Indonesia.' }}
-                </p>
+        <div style="margin-bottom:130px;"></div>
+    <div class="product-grid" id="productGrid" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:40px; justify-content:center;">
+        @foreach($products as $i => $product)
+            <div class="product-card product-card-toggle" data-index="{{ $i }}" style="background:#A6B37D; border-radius:16px; border:3px solid #31460B; padding:18px 16px 18px 16px; display:flex; flex-direction:column; align-items:center; box-shadow:none; width:700px; height:914px; max-width:100%; position:relative; {{ $i > 1 ? 'display:none;' : '' }}">
+                <div style="background:white; border-radius:12px; border:2px solid #A6B37D; width:650px; height:450px; display:flex; align-items:center; justify-content:center; margin-bottom:12px; position:relative; overflow:hidden;">
+                        @if($product->image)
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" style="width:320px; height:180px; object-fit:contain; display:block; margin:auto;">
+                    @endif
+                </div>
+                <h3 style="font-size:32px; font-weight:700; color:#31460B; margin-bottom:8px; text-align:center;">{{ $product->name }}</h3>
+                <div style="color:#31460B; font-size:20px; margin-bottom:12px; text-align:center; min-height:32px; font-weight:400;">{{ $product->specification }}</div>
+                <div style="position:absolute; left:32px; bottom:32px; display:flex; gap:8px; z-index:2;">
+                    @if($product->shopee_url)
+                        <a href="{{ $product->shopee_url }}" target="_blank" style="background:#fff; border-radius:6px; border:1.5px solid #E8E8E8; padding:4px 8px; display:inline-flex; align-items:center;"><img src="/assets/shopee-icon.png" alt="Shopee" style="height:28px;"></a>
+                    @endif
+                    @if($product->tokopedia_url)
+                        <a href="{{ $product->tokopedia_url }}" target="_blank" style="background:#fff; border-radius:6px; border:1.5px solid #E8E8E8; padding:4px 8px; display:inline-flex; align-items:center;"><img src="/assets/tokopedia-icon.png" alt="Tokopedia" style="height:28px;"></a>
+                    @endif
+                </div>
+                <a href="{{ route('products.show', $product->id) }}" class="lihat-detail-btn" style="display:inline-block; background:#FB8B23; color:#191900; font-weight:700; border-radius:32px; width:288.75px; height:67.79px; line-height:67.79px; font-size:1.25rem; border:3px solid #31460B; box-shadow:none; font-family:'Poppins',sans-serif; letter-spacing:0.5px; text-align:center; transition:background 0.2s; text-decoration:none; padding:0; position:absolute; right:32px; bottom:32px;">{{ $product->button_label ?? 'Lihat Detail' }}</a>
             </div>
-            <div class="mission-image">
-                @if($setting && $setting->mission_image)
-                    <img src="{{ $setting->mission_image_url }}" alt="Mission">
-                @endif
-            </div>
-        </div>
+        @endforeach
     </div>
-
-    <!-- Gallery Section -->
-    <section class="gallery-section" id="produk">
-        <div class="gallery-container">
-            <h2 class="gallery-title">GALERI</h2>
-            <div class="gallery-grid">
-                @if($galleries && $galleries->count() > 0)
-                    @foreach($galleries as $gallery)
-                        <div class="gallery-item">
-                            <img src="{{ $gallery->image_url }}" alt="{{ $gallery->title }}">
-                        </div>
-                    @endforeach
-                @else
-                    <div class="gallery-item">
-                        <!-- Placeholder for gallery image 1 -->
-                    </div>
-                    <div class="gallery-item">
-                        <!-- Placeholder for gallery image 2 -->
-                    </div>
-                    <div class="gallery-item">
-                        <!-- Placeholder for gallery image 3 -->
-                    </div>
-                    <div class="gallery-item">
-                        <!-- Placeholder for gallery image 4 -->
-                    </div>
-                @endif
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    @if(count($products) > 2)
+    <div style="text-align:center; margin:40px 0;">
+        <a href="#" id="showMoreBtn" class="btn" style="background:#A6B37D; color:white; font-weight:600; border-radius:8px; padding:12px 40px; font-size:1.1rem;">Lebih Banyak ...</a>
+        <a href="#" id="showLessBtn" class="btn" style="background:#A6B37D; color:white; font-weight:600; border-radius:8px; padding:12px 40px; font-size:1.1rem; display:none;">Lebih Sedikit ...</a>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var showMoreBtn = document.getElementById('showMoreBtn');
+        var showLessBtn = document.getElementById('showLessBtn');
+        var cards = document.querySelectorAll('.product-card-toggle');
+        showMoreBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            cards.forEach(function(card) { card.style.display = 'flex'; });
+            showMoreBtn.style.display = 'none';
+            showLessBtn.style.display = 'inline-block';
+        });
+        showLessBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            cards.forEach(function(card, i) { card.style.display = (i > 1) ? 'none' : 'flex'; });
+            showMoreBtn.style.display = 'inline-block';
+            showLessBtn.style.display = 'none';
+            window.scrollTo({ top: document.getElementById('productGrid').offsetTop - 100, behavior: 'smooth' });
+        });
+    });
+    </script>
+    @endif
+    </div>
+    <!-- Footer (inlined, copied from index.blade.php) -->
     <footer class="footer" id="hubungi-kami">
         <div class="footer-container">
             <div class="footer-about">
@@ -849,82 +609,5 @@
             <p>© 2025 {{ $setting->company_name ?? 'PT Inti Semai Kaliandra' }}. All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- Floating WhatsApp Button -->
-    @if($setting && $setting->whatsapp_enabled && $setting->whatsapp_number)
-        <div class="whatsapp-float">
-            <a href="https://wa.me/{{ $setting->whatsapp_number }}" target="_blank" class="whatsapp-button">
-                <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                </svg>
-                <span>Hubungi Kami</span>
-            </a>
-        </div>
-    @endif
-
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Active navbar based on scroll position
-        const sections = document.querySelectorAll('[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', function() {
-            let current = 'beranda';
-
-            // Check if at bottom of page
-            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
-                current = 'hubungi-kami';
-            } else {
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= (sectionTop - 150)) {
-                        const sectionId = section.getAttribute('id');
-                        if (sectionId && sectionId !== 'hubungi-kami') {
-                            current = sectionId;
-                        }
-                    }
-                });
-            }
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const href = link.getAttribute('href');
-                if (href === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scroll untuk links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-
-                // Hanya prevent default untuk link internal (yang dimulai dengan #)
-                if (targetId.startsWith('#')) {
-                    e.preventDefault();
-                    const targetSection = document.querySelector(targetId);
-
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-                // Link eksternal atau route (tidak dimulai dengan #) akan berfungsi normal
-            });
-        });
-    </script>
 </body>
 </html>

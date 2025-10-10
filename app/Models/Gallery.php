@@ -10,6 +10,7 @@ class Gallery extends Model
         'title',
         'image',
         'order',
+        'product_id',
     ];
 
     public function getImageUrlAttribute()

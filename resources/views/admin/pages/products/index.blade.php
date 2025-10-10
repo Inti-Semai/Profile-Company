@@ -1,0 +1,80 @@
+@extends('admin.layouts.app')
+
+@section('title', 'Product List')
+
+@section('content')
+<style>
+    .product-table-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .product-table-card { background: #fff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: none; margin-bottom: 32px; overflow: hidden; }
+    .product-table-header { background: #3B5B18; color: #fff; padding: 32px 40px; border-bottom: none; display: flex; align-items: center; justify-content: space-between; }
+    .product-table-header h1 { font-size: 1.85rem; font-weight: 700; margin: 0; color: #fff; letter-spacing: 0.3px; }
+    .product-table-body { padding: 32px 40px; background: #f8f9fa; }
+    .table { width: 100%; border-collapse: collapse; background: #fff; }
+    .table th, .table td { padding: 14px 18px; border-bottom: 1px solid #e0e0e0; text-align: left; }
+    .table th { background: #f3f3f3; font-weight: 700; color: #3B5B18; }
+    .table tr:last-child td { border-bottom: none; }
+    .btn { border: none; border-radius: 10px; padding: 10px 24px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .btn-primary { background: #3B5B18; color: #fff; }
+    .btn-primary:hover { background: #2d4612; }
+    .btn-secondary { background: #6c757d; color: #fff; }
+    .btn-secondary:hover { background: #5a6268; }
+    .btn-edit { background: #FB8B23; color: #fff; }
+    .btn-edit:hover { background: #d97706; }
+    .product-image-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #e0e0e0; }
+</style>
+<div class="product-table-container">
+    <div class="product-table-card">
+        <div class="product-table-header">
+            <h1>Product List</h1>
+            <a href="{{ route('admin.products.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Create Produk</a>
+        </div>
+        <div class="product-table-body">
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Cover</th>
+                        <th>Nama Produk</th>
+                        <th>Spesifikasi</th>
+                        <th>Shopee</th>
+                        <th>Tokopedia</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($products as $product)
+                        <tr>
+                            <td>
+                                @if($product->image)
+                                    <img src="{{ asset('storage/'.$product->image) }}" class="product-image-thumb" alt="cover">
+                                @else
+                                    <span>-</span>
+                                @endif
+                            </td>
+                            <td>{{ $product->name }}</td>
+                            <td style="max-width:220px;white-space:pre-line;">{{ $product->specification }}</td>
+                            <td>
+                                @if($product->shopee_url)
+                                    <a href="{{ $product->shopee_url }}" target="_blank" class="btn btn-secondary">Shopee</a>
+                                @else - @endif
+                            </td>
+                            <td>
+                                @if($product->tokopedia_url)
+                                    <a href="{{ $product->tokopedia_url }}" target="_blank" class="btn btn-secondary">Tokopedia</a>
+                                @else - @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr><td colspan="6" style="text-align:center;">Belum ada produk.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection

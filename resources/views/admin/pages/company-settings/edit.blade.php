@@ -68,27 +68,38 @@
                 <div class="alert alert-info" style="margin-bottom: 20px;">
                     <i class="fas fa-info-circle"></i> <strong>Note:</strong> Hero section is used on both <strong>Landing Page</strong> and <strong>About Us Page</strong>.
                 </div>
-
-                <div class="form-group">
-                    <label for="hero_title">Hero Title</label>
-                    <input type="text" class="form-control @error('hero_title') is-invalid @enderror"
-                           id="hero_title" name="hero_title"
-                           value="{{ old('hero_title', $setting->hero_title ?? '') }}">
-                    @error('hero_title')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="hero_title">Hero Title (Indonesia)</label>
+                        <input type="text" class="form-control @error('hero_title') is-invalid @enderror" id="hero_title" name="hero_title" value="{{ old('hero_title', $setting->hero_title ?? '') }}">
+                        @error('hero_title')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="hero_title_en">Hero Title (English)</label>
+                        <input type="text" class="form-control @error('hero_title_en') is-invalid @enderror" id="hero_title_en" name="hero_title_en" value="{{ old('hero_title_en', $setting->hero_title_en ?? '') }}">
+                        @error('hero_title_en')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="hero_subtitle">Hero Subtitle</label>
-                    <input type="text" class="form-control @error('hero_subtitle') is-invalid @enderror"
-                           id="hero_subtitle" name="hero_subtitle"
-                           value="{{ old('hero_subtitle', $setting->hero_subtitle ?? '') }}">
-                    @error('hero_subtitle')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="hero_subtitle">Hero Subtitle (Indonesia)</label>
+                        <input type="text" class="form-control @error('hero_subtitle') is-invalid @enderror" id="hero_subtitle" name="hero_subtitle" value="{{ old('hero_subtitle', $setting->hero_subtitle ?? '') }}">
+                        @error('hero_subtitle')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="hero_subtitle_en">Hero Subtitle (English)</label>
+                        <input type="text" class="form-control @error('hero_subtitle_en') is-invalid @enderror" id="hero_subtitle_en" name="hero_subtitle_en" value="{{ old('hero_subtitle_en', $setting->hero_subtitle_en ?? '') }}">
+                        @error('hero_subtitle_en')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
-
                 <div class="form-group">
                     <label for="hero_image">Hero Background Image</label>
                     @if($setting && $setting->hero_image)
@@ -96,8 +107,7 @@
                             <img src="{{ $setting->hero_image_url }}" alt="Hero Image">
                         </div>
                     @endif
-                    <input type="file" class="form-control @error('hero_image') is-invalid @enderror"
-                           id="hero_image" name="hero_image" accept="image/*">
+                    <input type="file" class="form-control @error('hero_image') is-invalid @enderror" id="hero_image" name="hero_image" accept="image/*">
                     <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 10MB</small>
                     @error('hero_image')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -107,16 +117,38 @@
 
             <div class="form-section">
                 <h3><i class="fas fa-eye"></i> Vision Section</h3>
-
-                <div class="form-group">
-                    <label for="vision_text">Vision Text</label>
-                    <textarea class="form-control @error('vision_text') is-invalid @enderror"
-                              id="vision_text" name="vision_text" rows="4">{{ old('vision_text', $setting->vision_text ?? '') }}</textarea>
-                    @error('vision_text')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="vision_section">Vision Section (Indonesia)</label>
+                        <input type="text" class="form-control @error('vision_section') is-invalid @enderror" id="vision_section" name="vision_section" value="{{ old('vision_section', $setting->vision_section ?? '') }}">
+                        @error('vision_section')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="vision_section_en">Vision Section (English)</label>
+                        <input type="text" class="form-control @error('vision_section_en') is-invalid @enderror" id="vision_section_en" name="vision_section_en" value="{{ old('vision_section_en', $setting->vision_section_en ?? '') }}">
+                        @error('vision_section_en')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
-
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="vision_text">Vision Text (Indonesia)</label>
+                        <textarea class="form-control @error('vision_text') is-invalid @enderror" id="vision_text" name="vision_text" rows="4">{{ old('vision_text', $setting->vision_text ?? '') }}</textarea>
+                        @error('vision_text')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="vision_text_en">Vision Text (English)</label>
+                        <textarea class="form-control @error('vision_text_en') is-invalid @enderror" id="vision_text_en" name="vision_text_en" rows="4">{{ old('vision_text_en', $setting->vision_text_en ?? '') }}</textarea>
+                        @error('vision_text_en')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="vision_image">Vision Image</label>
                     @if($setting && $setting->vision_image)
@@ -124,8 +156,7 @@
                             <img src="{{ $setting->vision_image_url }}" alt="Vision Image">
                         </div>
                     @endif
-                    <input type="file" class="form-control @error('vision_image') is-invalid @enderror"
-                           id="vision_image" name="vision_image" accept="image/*">
+                    <input type="file" class="form-control @error('vision_image') is-invalid @enderror" id="vision_image" name="vision_image" accept="image/*">
                     <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 10MB</small>
                     @error('vision_image')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -135,16 +166,38 @@
 
             <div class="form-section">
                 <h3><i class="fas fa-bullseye"></i> Mission Section</h3>
-
-                <div class="form-group">
-                    <label for="mission_text">Mission Text</label>
-                    <textarea class="form-control @error('mission_text') is-invalid @enderror"
-                              id="mission_text" name="mission_text" rows="4">{{ old('mission_text', $setting->mission_text ?? '') }}</textarea>
-                    @error('mission_text')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="mission_section">Mission Section (Indonesia)</label>
+                        <input type="text" class="form-control @error('mission_section') is-invalid @enderror" id="mission_section" name="mission_section" value="{{ old('mission_section', $setting->mission_section ?? '') }}">
+                        @error('mission_section')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="mission_section_en">Mission Section (English)</label>
+                        <input type="text" class="form-control @error('mission_section_en') is-invalid @enderror" id="mission_section_en" name="mission_section_en" value="{{ old('mission_section_en', $setting->mission_section_en ?? '') }}">
+                        @error('mission_section_en')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
-
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="mission_text">Mission Text (Indonesia)</label>
+                        <textarea class="form-control @error('mission_text') is-invalid @enderror" id="mission_text" name="mission_text" rows="4">{{ old('mission_text', $setting->mission_text ?? '') }}</textarea>
+                        @error('mission_text')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="mission_text_en">Mission Text (English)</label>
+                        <textarea class="form-control @error('mission_text_en') is-invalid @enderror" id="mission_text_en" name="mission_text_en" rows="4">{{ old('mission_text_en', $setting->mission_text_en ?? '') }}</textarea>
+                        @error('mission_text_en')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="mission_image">Mission Image</label>
                     @if($setting && $setting->mission_image)
@@ -152,8 +205,7 @@
                             <img src="{{ $setting->mission_image_url }}" alt="Mission Image">
                         </div>
                     @endif
-                    <input type="file" class="form-control @error('mission_image') is-invalid @enderror"
-                           id="mission_image" name="mission_image" accept="image/*">
+                    <input type="file" class="form-control @error('mission_image') is-invalid @enderror" id="mission_image" name="mission_image" accept="image/*">
                     <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 10MB</small>
                     @error('mission_image')
                         <div class="invalid-feedback">{{ $message }}</div>

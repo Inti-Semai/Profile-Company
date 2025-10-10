@@ -21,8 +21,11 @@ class AboutUsController extends Controller
     {
         $request->validate([
             'hero_text' => 'nullable|string|max:255',
+            'hero_title_text_en' => 'nullable|string|max:255',
             'main_title' => 'nullable|string|max:255',
+            'main_title_en' => 'nullable|string|max:255',
             'intro_text' => 'nullable|string',
+            'intro_text_en' => 'nullable|string',
             'image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
             'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
             'image_3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',

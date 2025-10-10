@@ -145,7 +145,7 @@
             transition: color 0.3s;
             text-decoration: none;
         }
-        
+
         .navbar.scrolled .language-selector {
             color: var(--text-dark);
         }
@@ -568,7 +568,7 @@
             <ul class="nav-menu">
                 <li><a href="{{ route('landing') }}" class="nav-link">Beranda</a></li>
                 <li><a href="{{ route('about') }}" class="nav-link active">Tentang Kami</a></li>
-                <li><a href="{{ route('landing') }}#produk" class="nav-link">Produk</a></li>
+                <li><a href="{{ route('products') }}" class="nav-link">Produk</a></li>
                 <li><a href="{{ route('landing') }}#hubungi-kami" class="nav-link">Hubungi Kami</a></li>
             </ul>
 
@@ -687,7 +687,7 @@
                 <ul>
                     <li><a href="{{ route('landing') }}#beranda">Beranda</a></li>
                     <li><a href="{{ route('about') }}">Tentang Kami</a></li>
-                    <li><a href="{{ route('landing') }}#produk">Produk</a></li>
+                    <li><a href="{{ route('products') }}">Produk</a></li>
                     <li><a href="{{ route('landing') }}#hubungi-kami">Hubungi Kami</a></li>
                 </ul>
             </div>
