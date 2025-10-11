@@ -20,6 +20,10 @@ Route::get('/en/about', [AboutController::class, 'english'])->name('about.en');
 Route::get('/produk', [ProductController::class, 'index'])->name('products');
 Route::get('/produk/{id}', [ProductController::class, 'show'])->name('products.show');
 
+// English version routes
+Route::get('/en/products', [ProductController::class, 'english'])->name('products.en');
+Route::get('/en/products/{id}', [ProductController::class, 'showEnglish'])->name('products.show.en');
+
 // Admin login routes (without middleware)
 Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [LoginController::class, 'login']);

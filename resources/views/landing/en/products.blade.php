@@ -1,9 +1,9 @@
 @php $active = 'produk'; @endphp
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produk Kami - {{ $setting->company_name ?? 'PT. Inti Semai Kaliandra' }}</title>
+    <title>Our Products - {{ $setting->company_name ?? 'PT. Inti Semai Kaliandra' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -703,7 +703,7 @@
     </style>
 </head>
 <body>
-    <!-- Navbar (inlined, copied from index.blade.php) -->
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="logo">
@@ -714,14 +714,14 @@
             </div>
 
             <ul class="nav-menu">
-                <li><a href="{{ route('landing') }}" class="nav-link">Beranda</a></li>
-                <li><a href="{{ route('about') }}" class="nav-link">Tentang Kami</a></li>
-                <li><a href="{{ route('products') }}" class="nav-link active">Produk</a></li>
-                <li><a href="{{ route('landing') }}#hubungi-kami" class="nav-link">Hubungi Kami</a></li>
+                <li><a href="{{ route('landing.en') }}" class="nav-link">Home</a></li>
+                <li><a href="{{ route('about.en') }}" class="nav-link">About Us</a></li>
+                <li><a href="{{ route('products.en') }}" class="nav-link active">Products</a></li>
+                <li><a href="{{ route('landing.en') }}#contact-us" class="nav-link">Contact Us</a></li>
             </ul>
 
             <div class="nav-right">
-                <a href="{{ route('products.en') }}"class="language-selector">EN</a>
+                <a href="{{ route('products') }}" class="language-selector">ID</a>
                 <div class="search-box">
                     <input type="text" placeholder="Search..." class="search-input">
                     <button class="search-btn">
@@ -735,15 +735,15 @@
         </div>
     </nav>
     <!-- Hero Section -->
-    <section class="hero" id="produk" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
+    <section class="hero" id="products" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
         <div class="hero-content">
-            <p>{{ $landing->hero_subtitle_top ?? 'Produk Kami' }}</p>
+            <p>{{ $landing->hero_subtitle_top ?? 'Our Products' }}</p>
         </div>
     </section>
     <div class="container" style="margin-top: 60px;">
         <div class="page-title-container">
             <span class="page-title">
-                {{ $landing->hero_subtitle_bottom ?? 'Inovasi Untuk Hasil yang Lebih Baik dan Berkelanjutan' }}
+                {{ $landing->hero_subtitle_bottom ?? 'Innovation for Better and Sustainable Results' }}
                 <span class="title-underline"></span>
             </span>
         </div>
@@ -753,11 +753,11 @@
             <div class="product-card product-card-toggle" data-index="{{ $i }}" style="{{ $i > 1 ? 'display:none;' : '' }}">
                 <div class="product-image-container">
                     @if($product->image)
-                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="product-image">
+                        <img src="{{ $product->image_url }}" alt="{{ $product->name_en }}" class="product-image">
                     @endif
                 </div>
-                <h3 class="product-title">{{ $product->name }}</h3>
-                <div class="product-spec">{{ $product->specification }}</div>
+                <h3 class="product-title">{{ $product->name_en }}</h3>
+                <div class="product-spec">{{ $product->specification_en }}</div>
                 <div class="product-links marketplace-icons">
                     @if($product->shopee_url)
                         <a href="{{ $product->shopee_url }}" target="_blank" class="shop-link">
@@ -770,34 +770,33 @@
                         </a>
                     @endif
                 </div>
-                <a href="{{ route('products.show', $product->id) }}" class="detail-button">{{ $product->button_label ?? 'Lihat Detail' }}</a>
+                <a href="{{ route('products.show.en', $product->id) }}" class="detail-button">{{ $product->button_label_en ?? 'View Details' }}</a>
             </div>
         @endforeach
     </div>
     @if(count($products) > 2)
     <div style="text-align:center;">
-        <a href="#" id="showMoreBtn" class="load-more-btn">Lebih Banyak ...</a>
-        <a href="#" id="showLessBtn" class="load-more-btn" style="display:none;">Lebih Sedikit ...</a>
+        <a href="#" id="showMoreBtn" class="load-more-btn">Show More...</a>
+        <a href="#" id="showLessBtn" class="load-more-btn" style="display:none;">Show Less...</a>
     </div>
-
     @endif
     </div>
-    <!-- Footer (inlined, copied from index.blade.php) -->
-    <footer class="footer" id="hubungi-kami">
+    <!-- Footer -->
+    <footer class="footer" id="contact-us">
         <div class="footer-container">
             <div class="footer-about">
                 <h3>{{ $setting->company_name ?? 'PT Inti Semai Kaliandra' }}</h3>
-                @if($setting && $setting->address)
-                    <p>{!! nl2br(e($setting->address)) !!}</p>
+                @if($setting && $setting->address_en)
+                    <p>{!! nl2br(e($setting->address_en)) !!}</p>
                 @else
                     <p>Ruko Mahakam Square<br>
-                    Blok B No. 9, Jl. Untung Suropati, Karang Asam Ulu,<br>
-                    Sungai Kunjang, Kota Samarinda, Kalimantan Timur</p>
+                    Block B No. 9, Jl. Untung Suropati, Karang Asam Ulu,<br>
+                    Sungai Kunjang, Samarinda City, East Kalimantan</p>
                 @endif
-                <p><br>No. Telp : {{ $setting->phone ?? '082211088363' }}</p>
+                <p><br>Phone : {{ $setting->phone ?? '082211088363' }}</p>
                 <p>Email : {{ $setting->email ?? 'intisemai@gmail.com' }}</p>
 
-                <h4 style="margin-top: 20px; margin-bottom: 15px; font-style: italic; font-weight: bold; font-size: 22px;">Terhubung dengan kami!</h4>
+                <h4 style="margin-top: 20px; margin-bottom: 15px; font-style: italic; font-weight: bold; font-size: 22px;">Connect with us!</h4>
 
                 <div class="social-links">
                     @if($setting && $setting->youtube_url)
@@ -828,16 +827,16 @@
                 </div>
             </div>
             <div class="footer-section">
-                <h3>Tautan</h3>
+                <h3>Links</h3>
                 <ul>
-                    <li><a href="#beranda">Beranda</a></li>
-                    <li><a href="#tentang-kami">Tentang Kami</a></li>
-                    <li><a href="{{ route('products') }}">Produk</a></li>
-                    <li><a href="#hubungi-kami">Hubungi Kami</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                    <li><a href="{{ route('products.en') }}">Products</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-section footer-location" style="text-align: center;">
-                <h3 style="font-weight: 700;">Lokasi</h3>
+                <h3 style="font-weight: 700;">Location</h3>
                 @if($setting && $setting->maps_embed_url)
                     <div class="map-container">
                         {!! $setting->maps_embed_url !!}
@@ -858,7 +857,7 @@
     </footer>
     
     <script>
-                // Navbar scroll effect
+        // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -868,75 +867,33 @@
             }
         });
 
-        // Active navbar based on scroll position
-        const sections = document.querySelectorAll('[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
+        // Show more/less functionality for products
+        document.addEventListener('DOMContentLoaded', function() {
+            const productCards = document.querySelectorAll('.product-card-toggle');
+            const showMoreBtn = document.getElementById('showMoreBtn');
+            const showLessBtn = document.getElementById('showLessBtn');
 
-        window.addEventListener('scroll', function() {
-            let current = 'beranda';
+            if (showMoreBtn && showLessBtn) {
+                showMoreBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    productCards.forEach(card => {
+                        card.style.display = 'flex';
+                    });
+                    showMoreBtn.style.display = 'none';
+                    showLessBtn.style.display = 'inline-block';
+                });
 
-            // Check if at bottom of page
-            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
-                current = 'hubungi-kami';
-            } else {
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= (sectionTop - 150)) {
-                        const sectionId = section.getAttribute('id');
-                        if (sectionId && sectionId !== 'hubungi-kami') {
-                            current = sectionId;
+                showLessBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    productCards.forEach((card, index) => {
+                        if (index > 1) {
+                            card.style.display = 'none';
                         }
-                    }
+                    });
+                    showLessBtn.style.display = 'none';
+                    showMoreBtn.style.display = 'inline-block';
                 });
             }
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const href = link.getAttribute('href');
-                if (href === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scroll untuk links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-
-                // Hanya prevent default untuk link internal (yang dimulai dengan #)
-                if (targetId.startsWith('#')) {
-                    e.preventDefault();
-                    const targetSection = document.querySelector(targetId);
-
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-                // Link eksternal atau route (tidak dimulai dengan #) akan berfungsi normal
-            });
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            var showMoreBtn = document.getElementById('showMoreBtn');
-            var showLessBtn = document.getElementById('showLessBtn');
-            var cards = document.querySelectorAll('.product-card-toggle');
-            showMoreBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                cards.forEach(function(card) { card.style.display = 'flex'; });
-                showMoreBtn.style.display = 'none';
-                showLessBtn.style.display = 'inline-block';
-            });
-            showLessBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                cards.forEach(function(card, i) { card.style.display = (i > 1) ? 'none' : 'flex'; });
-                showMoreBtn.style.display = 'inline-block';
-                showLessBtn.style.display = 'none';
-                window.scrollTo({ top: document.getElementById('productGrid').offsetTop - 100, behavior: 'smooth' });
-            });
         });
     </script>
 </body>

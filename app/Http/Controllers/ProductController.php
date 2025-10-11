@@ -27,13 +27,15 @@ class ProductController extends Controller
     {
         $setting = CompanySetting::first();
         $products = Product::orderBy('order')->get();
-        return view('landing.en.products', compact('setting', 'products'));
+        $landing = \App\Models\ProductLanding::first();
+        return view('landing.en.products', compact('setting', 'products', 'landing'));
     }
 
-    public function showEnglish($slug)
+    public function showEnglish($id)
     {
         $setting = CompanySetting::first();
-        $product = Product::where('slug', $slug)->firstOrFail();
-        return view('landing.en.product-detail', compact('setting', 'product'));
+        $product = Product::findOrFail($id);
+        $landing = \App\Models\ProductLanding::first();
+        return view('landing.en.product-detail', compact('setting', 'product', 'landing'));
     }
 }
