@@ -375,24 +375,40 @@
                         <i class="fas fa-info-circle"></i>
                         <span>Product Info</span>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
+                    <div class="form-row" style="gap:40px;">
+                        <div class="form-group" style="flex:1;">
                             <label for="name">
                                 <i class="fas fa-globe-asia"></i>
-                                Product Name <span class="text-danger">*</span>
+                                Product Name (ID) <span class="text-danger">*</span>
                             </label>
                             <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required placeholder="Nama produk">
                             @error('name')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
                         </div>
+                        <div class="form-group" style="flex:1;">
+                            <label for="name_en">
+                                <i class="fas fa-globe"></i>
+                                Product Name (EN)
+                            </label>
+                            <input type="text" name="name_en" id="name_en" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en') }}" placeholder="Product name (English)">
+                            @error('name_en')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
+                        </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group full-width">
+                    <div class="form-row" style="gap:40px;">
+                        <div class="form-group full-width" style="flex:1;">
                             <label for="specification">
                                 <i class="fas fa-list"></i>
-                                Spesifikasi Produk
+                                Spesifikasi Produk (ID)
                             </label>
                             <textarea name="specification" id="specification" class="form-control @error('specification') is-invalid @enderror" rows="5" placeholder="Tulis spesifikasi produk...">{{ old('specification') }}</textarea>
                             @error('specification')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
+                        </div>
+                        <div class="form-group full-width" style="flex:1;">
+                            <label for="specification_en">
+                                <i class="fas fa-list"></i>
+                                Product Specification (EN)
+                            </label>
+                            <textarea name="specification_en" id="specification_en" class="form-control @error('specification_en') is-invalid @enderror" rows="5" placeholder="Product specification (English)">{{ old('specification_en') }}</textarea>
+                            @error('specification_en')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
                         </div>
                     </div>
                 </div>

@@ -9,14 +9,15 @@ class Product extends Model
         'name',
         'name_en',
         'specification',
-        'image',
-        'description',
-        'description_en',
-        'shopee_url',
-        'tokopedia_url',
-        'button_label',
-        'button_label_en',
-        'order',
+    'image',
+    'description',
+    'description_en',
+    'specification_en',
+    'shopee_url',
+    'tokopedia_url',
+    'button_label',
+    'button_label_en',
+    'order',
     ];
 
     public function galleries()

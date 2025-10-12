@@ -9,5 +9,7 @@ class ProductLanding extends Model
     protected $fillable = [
         'hero_subtitle_top',
         'hero_subtitle_bottom',
+        'hero_subtitle_top_en',
+        'hero_subtitle_bottom_en',
     ];
 }

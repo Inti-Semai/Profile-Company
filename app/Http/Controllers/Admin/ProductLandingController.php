@@ -21,9 +21,16 @@ class ProductLandingController extends Controller
         $request->validate([
             'hero_subtitle_top' => 'nullable|string|max:255',
             'hero_subtitle_bottom' => 'nullable|string|max:255',
+            'hero_subtitle_top_en' => 'nullable|string|max:255',
+            'hero_subtitle_bottom_en' => 'nullable|string|max:255',
         ]);
         $landing = ProductLanding::firstOrCreate([]);
-        $landing->update($request->only(['hero_subtitle_top', 'hero_subtitle_bottom']));
+        $landing->update($request->only([
+            'hero_subtitle_top',
+            'hero_subtitle_bottom',
+            'hero_subtitle_top_en',
+            'hero_subtitle_bottom_en',
+        ]));
         return redirect()->route('admin.product-landing.edit')->with('success', 'Product landing updated successfully!');
     }
 }

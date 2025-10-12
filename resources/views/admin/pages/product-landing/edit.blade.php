@@ -65,7 +65,7 @@
         font-weight: 600;
     }
 </style>
-<div class="product-landing-card">
+<div class="product-landing-card" style="max-width:1100px;">
     <h2>Edit Product Landing</h2>
     @if(session('success'))
         <div class="product-landing-success">{{ session('success') }}</div>
@@ -73,21 +73,41 @@
     <form action="{{ route('admin.product-landing.update') }}" method="POST">
         @csrf
         @method('PUT')
-        <div class="mb-3">
-            <label for="hero_subtitle_top" class="product-landing-label">Hero Subtitle Top</label>
-            <input type="text" class="product-landing-input @error('hero_subtitle_top') is-invalid @enderror" id="hero_subtitle_top" name="hero_subtitle_top" value="{{ old('hero_subtitle_top', $landing->hero_subtitle_top ?? '') }}">
-            @error('hero_subtitle_top')
-                <div class="invalid-feedback" style="color:#b94a48;">{{ $message }}</div>
-            @enderror
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+            <div>
+                <div class="mb-3">
+                    <label for="hero_subtitle_top" class="product-landing-label">Hero Subtitle Top (ID)</label>
+                    <input type="text" class="product-landing-input @error('hero_subtitle_top') is-invalid @enderror" id="hero_subtitle_top" name="hero_subtitle_top" value="{{ old('hero_subtitle_top', $landing->hero_subtitle_top ?? '') }}">
+                    @error('hero_subtitle_top')
+                        <div class="invalid-feedback" style="color:#b94a48;">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="hero_subtitle_bottom" class="product-landing-label">Hero Subtitle Bottom (ID)</label>
+                    <input type="text" class="product-landing-input @error('hero_subtitle_bottom') is-invalid @enderror" id="hero_subtitle_bottom" name="hero_subtitle_bottom" value="{{ old('hero_subtitle_bottom', $landing->hero_subtitle_bottom ?? '') }}">
+                    @error('hero_subtitle_bottom')
+                        <div class="invalid-feedback" style="color:#b94a48;">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div>
+                <div class="mb-3">
+                    <label for="hero_subtitle_top_en" class="product-landing-label">Hero Subtitle Top (EN)</label>
+                    <input type="text" class="product-landing-input @error('hero_subtitle_top_en') is-invalid @enderror" id="hero_subtitle_top_en" name="hero_subtitle_top_en" value="{{ old('hero_subtitle_top_en', $landing->hero_subtitle_top_en ?? '') }}">
+                    @error('hero_subtitle_top_en')
+                        <div class="invalid-feedback" style="color:#b94a48;">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="hero_subtitle_bottom_en" class="product-landing-label">Hero Subtitle Bottom (EN)</label>
+                    <input type="text" class="product-landing-input @error('hero_subtitle_bottom_en') is-invalid @enderror" id="hero_subtitle_bottom_en" name="hero_subtitle_bottom_en" value="{{ old('hero_subtitle_bottom_en', $landing->hero_subtitle_bottom_en ?? '') }}">
+                    @error('hero_subtitle_bottom_en')
+                        <div class="invalid-feedback" style="color:#b94a48;">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="hero_subtitle_bottom" class="product-landing-label">Hero Subtitle Bottom</label>
-            <input type="text" class="product-landing-input @error('hero_subtitle_bottom') is-invalid @enderror" id="hero_subtitle_bottom" name="hero_subtitle_bottom" value="{{ old('hero_subtitle_bottom', $landing->hero_subtitle_bottom ?? '') }}">
-            @error('hero_subtitle_bottom')
-                <div class="invalid-feedback" style="color:#b94a48;">{{ $message }}</div>
-            @enderror
-        </div>
-        <button type="submit" class="product-landing-btn">Simpan</button>
+        <button type="submit" class="product-landing-btn" style="margin-left:auto; margin-right:auto; display:block;">Simpan</button>
     </form>
 </div>
 @endsection

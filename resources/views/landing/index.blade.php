@@ -707,10 +707,7 @@
     <section class="hero" id="beranda" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
         <div class="hero-content">
             <h1>{{ $setting->hero_title ?? 'Inovasi untuk Hasil yang' }}</h1>
-            <p>{{ $landing->hero_subtitle_top ?? 'Lebih Baik, dan Berkelanjutan' }}</p>
-            @if(!empty($landing->hero_subtitle_bottom))
-            <span style="display:block; font-size:1.2rem; font-weight:400; margin-top:8px;">{{ $landing->hero_subtitle_bottom }}</span>
-            @endif
+            <p>{{ $productLanding->hero_subtitle_top ?? 'Lebih Baik, dan Berkelanjutan' }}</p>
         </div>
     </section>
 

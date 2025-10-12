@@ -8,6 +8,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        .load-more-btn {
+            background: #B6C491;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.35rem;
+            border: none;
+            border-radius: 12px;
+            padding: 8px 24px;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+            box-shadow: none;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+        .load-more-btn:hover {
+            background: #A6B37D;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -320,7 +341,7 @@
             background: white;
             border-radius: 6px;
             border: 3px solid var(--dark-green);
-            
+
             padding: 4px 8px;
             display: inline-flex;
             align-items: center;
@@ -547,7 +568,7 @@
             overflow: hidden;
             padding: 16px;
         }
-        
+
         .product-image {
             width: 100%;
             height: 100%;
@@ -573,7 +594,7 @@
             font-weight: 400;
         }
 
-        .product-links {        
+        .product-links {
             position: absolute;
             left: 32px;
             bottom: 32px;
@@ -609,7 +630,7 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        
+
 
         /* Responsive */
         @media (min-width: 1920px) {
@@ -737,13 +758,13 @@
     <!-- Hero Section -->
     <section class="hero" id="products" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
         <div class="hero-content">
-            <p>{{ $landing->hero_subtitle_top ?? 'Our Products' }}</p>
+            <p>{{ $landing->hero_subtitle_top_en ?? 'Our Products' }}</p>
         </div>
     </section>
     <div class="container" style="margin-top: 60px;">
         <div class="page-title-container">
             <span class="page-title">
-                {{ $landing->hero_subtitle_bottom ?? 'Innovation for Better and Sustainable Results' }}
+                {{ $landing->hero_subtitle_bottom_en ?? 'Innovation for Better and Sustainable Results' }}
                 <span class="title-underline"></span>
             </span>
         </div>
@@ -775,7 +796,7 @@
         @endforeach
     </div>
     @if(count($products) > 2)
-    <div style="text-align:center;">
+    <div style="text-align:center; margin-top:60px;">
         <a href="#" id="showMoreBtn" class="load-more-btn">Show More...</a>
         <a href="#" id="showLessBtn" class="load-more-btn" style="display:none;">Show Less...</a>
     </div>
@@ -855,7 +876,7 @@
             <p>© 2025 {{ $setting->company_name ?? 'PT Inti Semai Kaliandra' }}. All rights reserved.</p>
         </div>
     </footer>
-    
+
     <script>
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
