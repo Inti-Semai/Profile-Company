@@ -149,7 +149,7 @@
         }
 
         .navbar.scrolled .nav-menu a.active {
-            border-bottom: 3px solid var(--text-dark);
+            border-bottom: 3px solid var(--primary-green);
         }
 
         .nav-right {
@@ -260,6 +260,56 @@
 
         .navbar.scrolled .search-btn:hover svg {
             stroke: var(--primary-green);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: transparent;
+            border: none;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
         }
 
         /* Hero Section */
@@ -635,8 +685,62 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
 
-        /* Responsive */
+        .whatsapp-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #3B5B18;
+            color: #FFFFFF;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(59, 91, 24, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid #A6B37D;
+        }
+
+        .whatsapp-button:hover {
+            background: #31460B;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(59, 91, 24, 0.6);
+            border-color: #A6B37D;
+        }
+
+        .whatsapp-icon {
+            width: 28px;
+            height: 28px;
+            fill: #FFFFFF;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        /* ============================================
+           RESPONSIVE DESIGN - Products Page
+           ============================================ */
+
+        /* Large Desktop (1920px+) */
         @media (min-width: 1920px) {
             .product-grid {
                 max-width: 1800px;
@@ -647,82 +751,967 @@
                 min-height: 800px;
             }
             .product-image-container {
-                max-width: 702.6px; /* Original size for 1920px */
+                max-width: 702.6px;
+                height: 500px;
+            }
+            .product-title {
+                font-size: 36px;
+            }
+            .product-spec {
+                font-size: 22px;
             }
         }
 
-        @media (min-width: 1367px) and (max-width: 1919px) {
-            .product-grid {
-                max-width: 1366px;
-                gap: 32px;
+        /* Ultra Wide & 4K (1921px+) */
+        @media (min-width: 1921px) {
+            .navbar {
+                padding: 25px 120px;
             }
+
+            .navbar.scrolled {
+                padding: 18px 120px;
+            }
+
+            .navbar-container {
+                max-width: 1920px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .nav-menu {
+                gap: 50px;
+            }
+
+            .nav-menu a {
+                font-size: 17px;
+            }
+
+            .search-box {
+                width: 280px;
+            }
+
+            .hero {
+                min-height: 750px;
+            }
+
+            .hero-content p {
+                font-size: 24px;
+            }
+
+            .container {
+                padding: 100px 120px;
+            }
+
+            .page-title {
+                font-size: 2.75rem;
+            }
+
+            .product-grid {
+                max-width: 1800px;
+                gap: 40px;
+            }
+            
             .product-card {
-                max-width: 660px;
+                max-width: 850px;
+                min-height: 820px;
+                padding: 20px;
+            }
+            
+            .product-image-container {
+                max-width: 810px;
+                height: 480px;
+            }
+
+            .product-title {
+                font-size: 36px;
+                margin-bottom: 20px;
+            }
+
+            .product-spec {
+                font-size: 22px;
+                line-height: 1.7;
+            }
+
+            .detail-button {
+                width: 280px;
+                height: 64px;
+                font-size: 1.3rem;
+            }
+
+            .shop-link {
+                width: 64px;
+                height: 64px;
+            }
+
+            .shop-link svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            .footer {
+                padding: 70px 120px 35px;
+            }
+
+            .whatsapp-float {
+                bottom: 35px;
+                right: 35px;
+            }
+
+            .whatsapp-button {
+                padding: 16px 32px;
+                font-size: 17px;
+            }
+
+            .whatsapp-icon {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        /* Large Desktop (1600px - 1920px) */
+        @media (min-width: 1601px) and (max-width: 1920px) {
+            .navbar {
+                padding: 20px 100px;
+            }
+
+            .navbar.scrolled {
+                padding: 15px 100px;
+            }
+
+            .navbar-container {
+                max-width: 1800px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .logo-icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .nav-menu {
+                gap: 45px;
+            }
+
+            .nav-menu a {
+                font-size: 16px;
+            }
+
+            .hero {
                 min-height: 700px;
             }
+
+            .hero-content p {
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 90px 100px;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .product-grid {
+                max-width: 1700px;
+                gap: 38px;
+            }
+
+            .product-card {
+                max-width: 800px;
+                min-height: 780px;
+                padding: 18px;
+            }
+
             .product-image-container {
-                max-width: 600px; /* Proportionally scaled from 702.6px */
+                max-width: 760px;
+                height: 450px;
+            }
+
+            .product-title {
+                font-size: 34px;
+            }
+
+            .product-spec {
+                font-size: 21px;
+            }
+
+            .detail-button {
+                width: 270px;
+                height: 62px;
+                font-size: 1.2rem;
+            }
+
+            .shop-link {
+                width: 62px;
+                height: 62px;
+            }
+
+            .footer {
+                padding: 65px 100px 32px;
             }
         }
 
-        @media (max-width: 1366px) {
-            .container {
-                padding: 60px 32px;
+        /* Desktop Medium (1440px - 1600px) */
+        @media (max-width: 1600px) {
+            .navbar {
+                padding: 18px 60px;
             }
+
+            .navbar.scrolled {
+                padding: 14px 60px;
+            }
+
+            .nav-menu {
+                gap: 35px;
+            }
+
+            .nav-menu a {
+                font-size: 14px;
+            }
+
+            .product-grid {
+                max-width: 1400px;
+                gap: 32px;
+            }
+            
+            .product-card {
+                max-width: 680px;
+                min-height: 720px;
+            }
+            
+            .product-image-container {
+                max-width: 620px;
+                height: 410px;
+            }
+        }
+
+        /* Desktop Small & Laptop (1280px - 1439px) */
+        @media (max-width: 1439px) {
+            .navbar {
+                padding: 16px 50px;
+            }
+
+            .navbar.scrolled {
+                padding: 12px 50px;
+            }
+
+            .nav-menu {
+                gap: 30px;
+            }
+
+            .nav-menu a {
+                font-size: 14px;
+            }
+
+            .logo {
+                font-size: 15px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .container {
+                padding: 60px 40px;
+            }
+            
             .product-grid {
                 gap: 24px;
+                max-width: 1200px;
             }
+            
             .product-card {
                 max-width: 580px;
                 min-height: 650px;
+                padding: 14px;
             }
+            
             .product-image-container {
-                max-width: 520px; /* Further scaled down */
+                max-width: 520px;
+                height: 380px;
             }
+            
             .product-title {
                 font-size: 28px;
             }
+
+            .product-spec {
+                font-size: 18px;
+            }
+            
             .detail-button {
                 width: 240px;
                 height: 56px;
-                line-height: 56px;
                 font-size: 1.1rem;
+            }
+
+            .product-links {
+                left: 24px;
+                bottom: 24px;
+            }
+
+            .shop-link {
+                width: 56px;
+                height: 56px;
             }
         }
 
-        @media (max-width: 968px) {
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
+        /* Tablet Landscape Large (1024px - 1279px) */
+        @media (max-width: 1279px) {
+            .navbar {
+                padding: 15px 40px;
             }
+
+            .navbar.scrolled {
+                padding: 12px 40px;
+            }
+
             .nav-menu {
-                gap: 20px;
+                gap: 25px;
             }
-            .hero-content h1 {
+
+            .nav-menu a {
+                font-size: 13px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .product-grid {
+                gap: 20px;
+                max-width: 1100px;
+            }
+            
+            .product-card {
+                max-width: 520px;
+                min-height: 620px;
+            }
+            
+            .product-image-container {
+                max-width: 480px;
+                height: 350px;
+            }
+        }
+
+        /* Tablet Portrait & Small Desktop (768px - 1023px) */
+        @media (max-width: 1023px) {
+            .hero {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .navbar {
+                padding: 15px 30px;
+            }
+
+            .navbar.scrolled {
+                padding: 12px 30px;
+            }
+
+            .navbar-container {
+                flex-wrap: nowrap;
+                justify-content: space-between;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            /* Show hamburger on tablet portrait */
+            .hamburger {
+                display: flex;
+                order: 3;
+            }
+
+            /* Mobile menu slide-in */
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 80px 30px 30px;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+                gap: 0;
+                transform: none;
+                left: auto;
+                align-items: flex-start;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 15px 0;
+                font-size: 16px;
+                width: 100%;
+                border-bottom: none !important;
+            }
+
+            .nav-menu a.active {
+                color: var(--primary-green);
+                border-bottom: none !important;
+                border-left: 3px solid var(--primary-green);
+                padding-left: 10px;
+            }
+
+            .mobile-menu-overlay {
+                display: block;
+            }
+
+            .nav-right {
+                gap: 10px;
+                order: 2;
+                margin-right: 10px;
+            }
+
+            .search-box {
+                width: 180px;
+            }
+
+            .search-input {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding-left: 30px;
+                padding-right: 30px;
+                min-height: 500px;
+                height: 60vh;
+            }
+
+            .hero-content p {
                 font-size: 36px;
             }
+
+            .container {
+                padding: 50px 30px;
+            }
+
+            .page-title {
+                font-size: 1.75rem;
+            }
+
             .product-grid {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                gap: 28px;
             }
+
+            .product-card {
+                max-width: 100%;
+                min-height: 580px;
+            }
+
+            .product-image-container {
+                height: 320px;
+            }
+
+            .product-title {
+                font-size: 26px;
+            }
+
+            .product-spec {
+                font-size: 17px;
+            }
+
+            .detail-button {
+                width: 200px;
+                height: 52px;
+                font-size: 1rem;
+                right: 24px;
+                bottom: 24px;
+            }
+
+            .product-links {
+                left: 20px;
+                bottom: 20px;
+            }
+
+            .shop-link {
+                width: 52px;
+                height: 52px;
+            }
+
+            .footer {
+                padding: 50px 30px 25px;
+            }
+
+            .footer-container {
+                grid-template-columns: 2fr 1fr 1.5fr;
+                gap: 30px;
+            }
+        }
+
+        /* Mobile Landscape & Small Tablet (481px - 767px) */
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .navbar.scrolled {
+                padding: 10px 20px;
+            }
+
+            .navbar-container {
+                flex-wrap: nowrap;
+                gap: 15px;
+                justify-content: space-between;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            /* Show hamburger on mobile */
+            .hamburger {
+                display: flex;
+                order: 3;
+            }
+
+            /* Mobile menu slide-in */
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 80px 30px 30px;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+                gap: 0;
+                transform: none;
+                left: auto;
+                align-items: flex-start;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 15px 0;
+                font-size: 16px;
+                width: 100%;
+                border-bottom: none !important;
+            }
+
+            .nav-menu a.active {
+                color: var(--primary-green);
+                border-bottom: none !important;
+                border-left: 3px solid var(--primary-green);
+                padding-left: 10px;
+            }
+
+            .mobile-menu-overlay {
+                display: block;
+            }
+
+            .nav-right {
+                gap: 10px;
+                order: 2;
+            }
+
+            .search-box {
+                width: 180px;
+                padding: 8px 15px;
+            }
+
+            .search-input {
+                font-size: 12px;
+            }
+
+            .search-btn {
+                width: 30px;
+                height: 30px;
+            }
+
+            .language-selector {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding-left: 20px;
+                padding-right: 20px;
+                min-height: 400px;
+                height: 50vh;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-content p {
+                font-size: 28px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
             .product-card {
                 max-width: 100%;
                 min-height: 520px;
+                padding: 12px;
             }
+
             .product-image-container {
                 height: 280px;
             }
+
+            .product-title {
+                font-size: 24px;
+                margin-bottom: 6px;
+            }
+
+            .product-spec {
+                font-size: 16px;
+                margin-bottom: 16px;
+            }
+
             .detail-button {
                 width: 180px;
                 height: 50px;
                 font-size: 1rem;
+                right: 16px;
+                bottom: 16px;
             }
+
+            .product-links {
+                left: 16px;
+                bottom: 16px;
+                height: 50px;
+            }
+
             .shop-link {
                 width: 50px;
                 height: 50px;
             }
+
+            .load-more-btn {
+                font-size: 1.15rem;
+                padding: 6px 20px;
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .footer-about h3,
+            .footer-section h3 {
+                font-size: 22px;
+            }
+
+            .footer-about p,
+            .footer-section a {
+                font-size: 16px;
+            }
+
+            .footer-about h4 {
+                font-size: 18px;
+            }
+
+            .map-container iframe {
+                width: 100%;
+                height: 180px;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-button {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .whatsapp-button span {
+                display: none;
+            }
+
+            .whatsapp-icon {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        /* Mobile Portrait (320px - 480px) */
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .navbar.scrolled {
+                padding: 8px 15px;
+            }
+
+            .logo {
+                font-size: 12px;
+                gap: 8px;
+            }
+
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .nav-menu {
+                gap: 10px;
+            }
+
+            .nav-menu a {
+                font-size: 12px;
+            }
+
+            .nav-right {
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .search-box {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .hero {
+                padding-left: 15px;
+                padding-right: 15px;
+                min-height: 350px;
+            }
+
+            .hero-content p {
+                font-size: 24px;
+            }
+
             .container {
-                padding: 40px 20px;
+                padding: 30px 15px;
+            }
+
+            .page-title {
+                font-size: 1.35rem;
+            }
+
+            .title-underline {
+                height: 4px;
+            }
+
+            .product-grid {
+                gap: 20px;
+            }
+
+            .product-card {
+                min-height: 480px;
+                padding: 10px;
+            }
+
+            .product-image-container {
+                height: 240px;
+                padding: 12px;
+            }
+
+            .product-title {
+                font-size: 22px;
+            }
+
+            .product-spec {
+                font-size: 15px;
+                min-height: 24px;
+            }
+
+            .detail-button {
+                width: 160px;
+                height: 46px;
+                font-size: 0.95rem;
+                right: 12px;
+                bottom: 12px;
+            }
+
+            .product-links {
+                left: 12px;
+                bottom: 12px;
+                height: 46px;
+                gap: 8px;
+            }
+
+            .shop-link {
+                width: 46px;
+                height: 46px;
+            }
+
+            .load-more-btn {
+                font-size: 1rem;
+                padding: 6px 18px;
+            }
+
+            .footer {
+                padding: 30px 15px 15px;
+            }
+
+            .footer-container {
+                gap: 30px;
+            }
+
+            .footer-about h3,
+            .footer-section h3 {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+
+            .footer-about p,
+            .footer-section a {
+                font-size: 14px;
+            }
+
+            .footer-about h4 {
+                font-size: 16px;
+                margin-top: 15px;
+            }
+
+            .social-links {
+                gap: 10px;
+            }
+
+            .social-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .footer-bottom {
+                font-size: 12px;
+                padding-top: 20px;
+            }
+
+            .whatsapp-float {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .whatsapp-button {
+                padding: 10px 16px;
+            }
+
+            .whatsapp-icon {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        /* Extra Small Mobile (max 374px) */
+        @media (max-width: 374px) {
+            .navbar-container {
+                gap: 10px;
+            }
+
+            .logo {
+                font-size: 11px;
+            }
+
+            .nav-menu a {
+                font-size: 11px;
+            }
+
+            .hero-content p {
+                font-size: 20px;
+            }
+
+            .page-title {
+                font-size: 1.2rem;
+            }
+
+            .product-card {
+                min-height: 450px;
+            }
+
+            .product-image-container {
+                height: 220px;
+            }
+
+            .product-title {
+                font-size: 20px;
+            }
+
+            .product-spec {
+                font-size: 14px;
+            }
+
+            .detail-button {
+                width: 140px;
+                height: 42px;
+                font-size: 0.9rem;
+            }
+
+            .shop-link {
+                width: 42px;
+                height: 42px;
             }
         }
     </style>
@@ -757,12 +1746,22 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
     <!-- Hero Section -->
     <section class="hero" id="produk" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
         <div class="hero-content">
-            <p>{{ $landing->hero_subtitle_top ?? 'Produk Kami' }}</p>
+            <h1>{{ $landing->hero_subtitle_top ?? 'Produk Kami' }}</h1>
         </div>
     </section>
     <div class="container" style="margin-top: 60px;">
@@ -855,10 +1854,10 @@
             <div class="footer-section">
                 <h3>Tautan</h3>
                 <ul>
-                    <li><a href="#beranda">Beranda</a></li>
-                    <li><a href="#tentang-kami">Tentang Kami</a></li>
+                    <li><a href="{{ route('landing') }}">Beranda</a></li>
+                    <li><a href="{{ route('about') }}">Tentang Kami</a></li>
                     <li><a href="{{ route('products') }}">Produk</a></li>
-                    <li><a href="#hubungi-kami">Hubungi Kami</a></li>
+                    <li><a href="{{ route('landing') }}#hubungi-kami">Hubungi Kami</a></li>
                 </ul>
             </div>
             <div class="footer-section footer-location" style="text-align: center;">
@@ -882,8 +1881,47 @@
         </div>
     </footer>
 
+    <!-- Floating WhatsApp Button -->
+    @if($setting && $setting->whatsapp_enabled && $setting->whatsapp_number)
+        <div class="whatsapp-float">
+            <a href="https://wa.me/{{ $setting->whatsapp_number }}" target="_blank" class="whatsapp-button">
+                <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                <span>Hubungi Kami</span>
+            </a>
+        </div>
+    @endif
+
     <script>
-                // Navbar scroll effect
+        // Hamburger Menu Toggle
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const body = document.body;
+
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Event listeners for hamburger menu
+        document.querySelector('.hamburger').addEventListener('click', toggleMenu);
+        document.querySelector('.mobile-menu-overlay').addEventListener('click', toggleMenu);
+
+        // Close menu when clicking nav links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                const hamburger = document.querySelector('.hamburger');
+                if (hamburger.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {

@@ -209,6 +209,57 @@
             stroke-width: 2;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
         /* Hero Section */
         .hero {
             margin-top: 0;
@@ -498,14 +549,454 @@
             }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* Ultra Wide & 4K (1921px+) */
+        @media (min-width: 1921px) {
             .navbar {
-                padding: 15px 20px;
+                padding: 25px 120px;
+            }
+
+            .navbar.scrolled {
+                padding: 18px 120px;
+            }
+
+            .navbar-container {
+                max-width: 1920px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .logo-icon {
+                width: 50px;
+                height: 50px;
             }
 
             .nav-menu {
-                gap: 20px;
+                gap: 50px;
+            }
+
+            .nav-menu a {
+                font-size: 17px;
+            }
+
+            .search-box {
+                width: 280px;
+            }
+
+            .hero {
+                padding: 120px 120px;
+                min-height: 750px;
+            }
+
+            .hero-content h1 {
+                font-size: 58px;
+            }
+
+            .about-box {
+                padding: 80px 120px;
+            }
+
+            .about-title {
+                font-size: 48px;
+            }
+
+            .about-text {
+                font-size: 20px;
+                line-height: 1.8;
+            }
+
+            .about-gallery {
+                padding: 0 120px;
+                gap: 24px;
+            }
+
+            .gallery-image {
+                height: 420px;
+            }
+
+            .footer {
+                padding: 70px 120px 35px;
+            }
+
+            .whatsapp-float {
+                bottom: 35px;
+                right: 35px;
+            }
+
+            .whatsapp-button {
+                padding: 16px 32px;
+                font-size: 17px;
+            }
+
+            .whatsapp-icon {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        /* Large Desktop (1600px - 1920px) */
+        @media (min-width: 1601px) and (max-width: 1920px) {
+            .navbar {
+                padding: 20px 100px;
+            }
+
+            .navbar.scrolled {
+                padding: 15px 100px;
+            }
+
+            .navbar-container {
+                max-width: 1800px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .logo-icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .nav-menu {
+                gap: 45px;
+            }
+
+            .nav-menu a {
+                font-size: 16px;
+            }
+
+            .hero {
+                min-height: 700px;
+            }
+
+            .hero-content h1 {
+                font-size: 52px;
+            }
+
+            .about-box {
+                padding: 75px 100px;
+            }
+
+            .about-title {
+                font-size: 44px;
+            }
+
+            .about-text {
+                font-size: 19px;
+            }
+
+            .about-gallery {
+                padding: 0 100px;
+            }
+
+            .gallery-image {
+                height: 380px;
+            }
+
+            .footer {
+                padding: 65px 100px 32px;
+            }
+        }
+
+        /* Desktop Medium (1440px - 1600px) */
+        @media (max-width: 1600px) {
+            .navbar {
+                padding: 18px 60px;
+            }
+
+            .navbar.scrolled {
+                padding: 14px 60px;
+            }
+
+            .nav-menu {
+                gap: 35px;
+            }
+
+            .nav-menu a {
+                font-size: 14px;
+            }
+        }
+
+        /* Desktop Small & Laptop (1280px - 1439px) */
+        @media (max-width: 1439px) {
+            .navbar {
+                padding: 16px 50px;
+            }
+
+            .navbar.scrolled {
+                padding: 12px 50px;
+            }
+
+            .nav-menu {
+                gap: 30px;
+            }
+
+            .nav-menu a {
+                font-size: 14px;
+            }
+
+            .logo {
+                font-size: 15px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .hero {
+                padding-left: 50px;
+                padding-right: 50px;
+            }
+
+            .hero-content h1 {
+                font-size: 44px;
+            }
+
+            .about-box {
+                padding: 60px 50px;
+            }
+
+            .about-gallery {
+                padding: 0 50px;
+            }
+        }
+
+        /* Tablet Landscape Large (1024px - 1279px) */
+        @media (max-width: 1279px) {
+            .navbar {
+                padding: 15px 40px;
+            }
+
+            .navbar.scrolled {
+                padding: 12px 40px;
+            }
+
+            .nav-menu {
+                gap: 25px;
+            }
+
+            .nav-menu a {
+                font-size: 13px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        /* Tablet Portrait (768px - 1023px) */
+        @media (max-width: 1023px) {
+            .hero {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+            .navbar {
+                padding: 15px 30px;
+            }
+
+            .navbar.scrolled {
+                padding: 12px 30px;
+            }
+
+            .navbar-container {
+                flex-wrap: nowrap;
+                justify-content: space-between;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            /* Show hamburger on tablet portrait */
+            .hamburger {
+                display: flex;
+                order: 3;
+            }
+
+            /* Mobile menu slide-in */
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 80px 30px 30px;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+                gap: 0;
+                transform: none;
+                left: auto;
+                align-items: flex-start;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 15px 0;
+                font-size: 16px;
+                width: 100%;
+                border-bottom: none !important;
+            }
+
+            .nav-menu a.active {
+                color: var(--primary-green);
+                border-bottom: none !important;
+                border-left: 3px solid var(--primary-green);
+                padding-left: 10px;
+            }
+
+            .mobile-menu-overlay {
+                display: block;
+            }
+
+            .nav-right {
+                gap: 10px;
+                order: 2;
+                margin-right: 10px;
+            }
+
+            .search-box {
+                width: 180px;
+            }
+
+            .search-input {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding-left: 30px;
+                padding-right: 30px;
+                min-height: 500px;
+                height: 60vh;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .about-box {
+                padding: 50px 40px;
+            }
+
+            .about-title {
+                font-size: 32px;
+            }
+
+            .about-gallery {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+                padding: 0 30px;
+            }
+        }
+
+        /* Mobile (768px and below) */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .navbar.scrolled {
+                padding: 10px 20px;
+            }
+
+            .navbar-container {
+                flex-wrap: nowrap;
+                gap: 15px;
+                justify-content: space-between;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            /* Show hamburger on mobile */
+            .hamburger {
+                display: flex;
+                order: 3;
+            }
+
+            /* Mobile menu slide-in */
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 80px 30px 30px;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+                gap: 0;
+                transform: none;
+                left: auto;
+                align-items: flex-start;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 15px 0;
+                font-size: 16px;
+                width: 100%;
+                border-bottom: none !important;
+            }
+
+            .nav-menu a.active {
+                color: var(--primary-green);
+                border-bottom: none !important;
+                border-left: 3px solid var(--primary-green);
+                padding-left: 10px;
+            }
+
+            .mobile-menu-overlay {
+                display: block;
+            }
+
+            .nav-right {
+                gap: 10px;
+                order: 2;
             }
 
             .hero {
@@ -568,7 +1059,7 @@
             <ul class="nav-menu">
                 <li><a href="{{ route('landing.en') }}" class="nav-link">Home</a></li>
                 <li><a href="{{ route('about.en') }}" class="nav-link active">About Us</a></li>
-                <li><a href="{{ route('landing.en') }}#products" class="nav-link">Products</a></li>
+                <li><a href="{{ route('products.en') }}" class="nav-link">Products</a></li>
                 <li><a href="{{ route('landing.en') }}#contact-us" class="nav-link">Contact Us</a></li>
             </ul>
 
@@ -584,8 +1075,18 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
 
     <!-- Hero Section - Background from Company Settings, Text from About Us -->
     <section class="hero" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
@@ -685,9 +1186,9 @@
             <div class="footer-section">
                 <h3>Links</h3>
                 <ul>
-                    <li><a href="{{ route('landing.en') }}#home">Home</a></li>
+                    <li><a href="{{ route('landing.en') }}">Home</a></li>
                     <li><a href="{{ route('about.en') }}">About Us</a></li>
-                    <li><a href="{{ route('landing.en') }}#products">Products</a></li>
+                    <li><a href="{{ route('products.en') }}">Products</a></li>
                     <li><a href="{{ route('landing.en') }}#contact-us">Contact Us</a></li>
                 </ul>
             </div>
@@ -725,6 +1226,33 @@
     @endif
 
     <script>
+        // Hamburger Menu Toggle
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const body = document.body;
+
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Event listeners for hamburger menu
+        document.querySelector('.hamburger').addEventListener('click', toggleMenu);
+        document.querySelector('.mobile-menu-overlay').addEventListener('click', toggleMenu);
+
+        // Close menu when clicking nav links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                const hamburger = document.querySelector('.hamburger');
+                if (hamburger.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
