@@ -19,8 +19,9 @@ class ProductController extends Controller
     {
         $setting = CompanySetting::first();
         $product = Product::findOrFail($id);
+        $specifications = $product->specification; // Mengambil spesifikasi dari database
         $landing = \App\Models\ProductLanding::first();
-        return view('landing.product-detail', compact('setting', 'product', 'landing'));
+        return view('landing.product-detail', compact('setting', 'product', 'specifications', 'landing'));
     }
 
     public function english()

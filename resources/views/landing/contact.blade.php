@@ -1464,7 +1464,7 @@
             <div class="nav-right">
                 <a href="{{ route('contact.en') }}" class="language-selector">EN</a>
                 <div class="search-box">
-                    <input type="text" class="search-input" placeholder="Cari...">
+                    <input type="text" class="search-input" placeholder="Search...">
                     <button class="search-btn">
                         <svg viewBox="0 0 24 24">
                             <circle cx="11" cy="11" r="8"/>

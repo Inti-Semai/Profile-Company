@@ -392,7 +392,7 @@
                             <div id="gallery-inputs">
                                 @if(isset($product) && $product->galleries && count($product->galleries))
                                     @foreach($product->galleries as $gallery)
-                                        <div class="file-upload-wrapper gallery-input-row">
+                                        <div class="file-upload-wrapper gallery-input-row" style="align-items:flex-start;">
                                             <input type="file" name="gallery[]" class="form-control gallery-input" accept="image/*" onchange="previewSingleGalleryImage(this)">
                                             <div class="file-upload-label">
                                                 <i class="fas fa-cloud-upload-alt"></i>
@@ -402,6 +402,11 @@
                                             <div style="margin-top:10px;">
                                                 <img src="{{ asset('storage/' . $gallery->image) }}" alt="Gallery Image" style="max-width:120px;max-height:120px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
                                                 <div style="font-size:0.85rem;color:#888;">Current gallery image</div>
+                                                <div style="margin-top:5px;">
+                                                    <label style="font-size:0.9em;color:#b00;">
+                                                        <input type="checkbox" name="remove_gallery[]" value="{{ $gallery->id }}"> Hapus gambar ini
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     @endforeach

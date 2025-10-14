@@ -60,6 +60,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'gallery.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
             'shopee_url' => 'nullable|url',
@@ -76,6 +77,30 @@ class ProductController extends Controller
             $data['image'] = $request->file('image')->store('products', 'public');
         }
         $product->update($data);
+
+        // Handle gallery images update
+        if ($request->has('remove_gallery')) {
+            // Remove selected gallery images (IDs in remove_gallery[])
+            foreach ($request->input('remove_gallery') as $galleryId) {
+                $gallery = $product->galleries()->find($galleryId);
+                if ($gallery) {
+                    \Storage::disk('public')->delete($gallery->image);
+                    $gallery->delete();
+                }
+            }
+        }
+
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $galleryImage) {
+                if ($galleryImage) {
+                    $galleryPath = $galleryImage->store('products/gallery', 'public');
+                    $product->galleries()->create([
+                        'image' => $galleryPath,
+                    ]);
+                }
+            }
+        }
+
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully!');
     }
 
