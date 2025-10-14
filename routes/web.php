@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CompanySettingController;
@@ -19,6 +20,12 @@ Route::get('/tentang-kami', [AboutController::class, 'index'])->name('about');
 Route::get('/en/about', [AboutController::class, 'english'])->name('about.en');
 Route::get('/produk', [ProductController::class, 'index'])->name('products');
 Route::get('/produk/{id}', [ProductController::class, 'show'])->name('products.show');
+
+// Contact Us routes
+Route::get('/hubungi-kami', [ContactController::class, 'index'])->name('contact');
+Route::post('/hubungi-kami', [ContactController::class, 'submit'])->name('contact.submit');
+Route::get('/en/contact-us', [ContactController::class, 'english'])->name('contact.en');
+Route::post('/en/contact-us', [ContactController::class, 'submitEnglish'])->name('contact.submit.en');
 
 // English version routes
 Route::get('/en/products', [ProductController::class, 'english'])->name('products.en');

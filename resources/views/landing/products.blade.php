@@ -1731,7 +1731,7 @@
                 <li><a href="{{ route('landing') }}" class="nav-link">Beranda</a></li>
                 <li><a href="{{ route('about') }}" class="nav-link">Tentang Kami</a></li>
                 <li><a href="{{ route('products') }}" class="nav-link active">Produk</a></li>
-                <li><a href="{{ route('landing') }}#hubungi-kami" class="nav-link">Hubungi Kami</a></li>
+                <li><a href="{{ route('contact') }}" class="nav-link">Hubungi Kami</a></li>
             </ul>
 
             <div class="nav-right">
@@ -1857,7 +1857,7 @@
                     <li><a href="{{ route('landing') }}">Beranda</a></li>
                     <li><a href="{{ route('about') }}">Tentang Kami</a></li>
                     <li><a href="{{ route('products') }}">Produk</a></li>
-                    <li><a href="{{ route('landing') }}#hubungi-kami">Hubungi Kami</a></li>
+                    <li><a href="{{ route('contact') }}">Hubungi Kami</a></li>
                 </ul>
             </div>
             <div class="footer-section footer-location" style="text-align: center;">

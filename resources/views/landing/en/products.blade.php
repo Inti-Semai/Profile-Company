@@ -1339,7 +1339,7 @@
                 <li><a href="{{ route('landing.en') }}" class="nav-link">Home</a></li>
                 <li><a href="{{ route('about.en') }}" class="nav-link">About Us</a></li>
                 <li><a href="{{ route('products.en') }}" class="nav-link active">Products</a></li>
-                <li><a href="{{ route('landing.en') }}#contact-us" class="nav-link">Contact Us</a></li>
+                <li><a href="{{ route('contact.en') }}" class="nav-link">Contact Us</a></li>
             </ul>
 
             <div class="nav-right">
@@ -1464,7 +1464,7 @@
                     <li><a href="{{ route('landing.en') }}">Home</a></li>
                     <li><a href="{{ route('about.en') }}">About Us</a></li>
                     <li><a href="{{ route('products.en') }}">Products</a></li>
-                    <li><a href="{{ route('landing.en') }}#contact-us">Contact Us</a></li>
+                    <li><a href="{{ route('contact.en') }}">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-section footer-location" style="text-align: center;">
