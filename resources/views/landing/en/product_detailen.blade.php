@@ -1,34 +1,14 @@
-@php $active = 'produk'; @endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Products - {{ $setting->company_name ?? 'PT. Inti Semai Kaliandra' }}</title>
+    <title>Product Detail - {{ $setting->company_name ?? 'PT. Inti Semai Kaliandra' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .load-more-btn {
-            background: #B6C491;
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.35rem;
-            border: none;
-            border-radius: 12px;
-            padding: 8px 24px;
-            display: inline-block;
-            text-align: center;
-            text-decoration: none;
-            transition: background 0.2s;
-            box-shadow: none;
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 0.5px;
-            margin: 0 auto;
-            cursor: pointer;
-        }
-        .load-more-btn:hover {
-            background: #A6B37D;
-        }
         * {
             margin: 0;
             padding: 0;
@@ -50,9 +30,68 @@
             font-family: 'Poppins', sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
+            background-color: #f8f9fa;
         }
 
-       /* Navbar */
+        /* Back Button Styles */
+        .back-btn-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            padding-right: 30px;
+        }
+
+        @media (max-width: 1200px) {
+            .back-btn-wrapper {
+                padding-right: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .back-btn-wrapper {
+                justify-content: center;
+                margin-bottom: 5px;
+                padding-right: 0;
+            }
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #A6B37D;
+            color: #3B5B18;
+            border: 2px solid #3B5B18;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(59,91,24,0.08);
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            margin-bottom: 18px;
+        }
+
+        .back-btn:hover {
+            background: #3B5B18;
+            color: #fff;
+            border-color: #3B5B18;
+        }
+
+        .back-btn svg {
+            margin-right: 2px;
+            stroke: currentColor;
+        }
+
+        @media (max-width: 767px) {
+            .back-btn {
+                font-size: 0.95rem;
+                padding: 7px 12px;
+            }
+        }
+
+        /* Navbar Styles */
         .navbar {
             background: rgba(255, 255, 255, 0.10);
             backdrop-filter: blur(5px);
@@ -263,18 +302,18 @@
             display: none;
             flex-direction: column;
             gap: 5px;
-            background: none;
-            border: none;
             cursor: pointer;
-            padding: 5px;
+            padding: 8px;
+            background: transparent;
+            border: none;
             z-index: 1001;
         }
 
         .hamburger span {
-            display: block;
             width: 25px;
             height: 3px;
-            background-color: #333;
+            background: var(--text-dark);
+            border-radius: 3px;
             transition: all 0.3s ease;
         }
 
@@ -305,141 +344,17 @@
         }
 
         .mobile-menu-overlay.active {
-            display: block;
             opacity: 1;
         }
 
-        /* Hero Section */
-        .hero {
-            margin-top: 0;
-            padding-top: 100px;
-            height: 70vh;
-            min-height: 650px;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%233B5B18" width="1200" height="400"/></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            text-align: right;
-            color: #ffffff;
-            position: relative;
-            padding-left: 80px;
-            padding-right: 80px;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            padding: 0;
-        }
-
-        .hero-content h1 {
-            font-size: 52px;
+        .spec-title {
+            color: #000 !important;
             font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 2px 4px 12px rgba(0,0,0,0.5);
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-        }
-
-        .hero-content p {
-            font-size: 52px;
-            font-weight: 700;
-            text-shadow: 2px 4px 12px rgba(0,0,0,0.5);
-            line-height: 1.2;
-            margin-top: 0;
-            letter-spacing: -0.5px;
-        }
-
-        /* Page Title */
-        .page-title-container {
+            margin-bottom: 18px;
             text-align: center;
-            margin-bottom: 24px;
-            padding: 0 20px;
         }
 
-        .page-title {
-            display: inline-block;
-            color: var(--dark-green);
-            font-size: 2rem;
-            font-weight: 700;
-            position: relative;
-        }
-
-        .title-underline {
-            display: block;
-            height: 5px;
-            background: var(--primary-green);
-            border-radius: 3px;
-            margin-top: 8px;
-            width: 100%;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 50px;
-        }
-
-        /* Marketplace Icons */
-        .marketplace-icons {
-            display: flex;
-            gap: 8px;
-        }
-
-        .shop-link {
-            background: white;
-            border-radius: 6px;
-            border: 3px solid var(--dark-green);
-
-            padding: 4px 8px;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .shop-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .shop-icon {
-            height: 28px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .shop-link {
-            background: white;
-            border-radius: 12px;
-            border: 1.5px solid #E8E8E8;
-            padding: 4px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            width: 67.79px;  /* Sama dengan height button detail */
-            height: 67.79px; /* Sama dengan height button detail */
-        }
-
-        .shop-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .shop-link:hover .shop-icon {
-            transform: scale(1.05);
-        }
-
-        .shop-link .shop-icon {
-            width: 75%;    /* Memberikan ruang untuk padding */
-            height: 75%;   /* Memberikan ruang untuk padding */
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        /* Footer */
+        /* Footer Styles */
         .footer {
             background: var(--dark-green);
             color: white;
@@ -521,7 +436,7 @@
         }
 
         .map-container iframe {
-            width: 50%;
+            width: 100%;
             height: 220px;
             border: 0;
             border-radius: 10px;
@@ -578,108 +493,164 @@
             font-size: 14px;
         }
 
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            justify-content: center;
-            max-width: 1280px;
+        /* Container and Product Styles */
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
+            padding-top: 120px;
         }
 
-        .product-card {
-            background: var(--light-green);
-            border-radius: 16px;
-            border: 3px solid var(--dark-green);
-            padding: 16px;
+        .header {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            width: 100%;
-            height: auto;
-            min-height: 600px;
-            position: relative;
-            max-width: 620px;
-            margin: 0 auto;
-        }
-
-        .product-image-container {
-            background: white;
-            border-radius: 12px;
-            border: 2px solid var(--light-green);
-            width: 100%;
-            max-width: 500px; /* Scaled proportionally from 702.6px for 1366px screens */
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 20px 0;
             margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-            padding: 16px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            color: #000;
+            padding-left: 32px;
+        }
+
+        .header h1 b {
+            font-weight: 700;
+        }
+
+        .marketplace-logo {
+            width: 32px;
+            height: 32px;
+            display: block;
+            object-fit: contain;
+            margin-right: 8px;
+        }
+
+        .product-section {
+            display: flex;
+            gap: 20px;
+            background-color: #e9f0e8;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 0 auto 40px;
+            width: 100%;
         }
 
         .product-image {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .product-swiper {
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .product-swiper .swiper-slide img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            display: block;
-            margin: auto;
+            object-fit: cover;
+            border-radius: 12px;
         }
 
-        .product-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--dark-green);
-            margin-bottom: 8px;
-            text-align: center;
+        .product-specifications {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
         }
 
-        .product-spec {
-            color: var(--dark-green);
-            font-size: 20px;
+        .product-specifications h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #3B5B18;
             margin-bottom: 20px;
             text-align: center;
-            min-height: 32px;
-            font-weight: 400;
         }
 
-        .product-links {
-            position: absolute;
-            left: 32px;
-            bottom: 32px;
+        .product-specifications ul {
+            list-style: none;
+            padding: 0;
+            flex: 1;
+        }
+
+        .product-specifications ul li {
+            font-size: 1rem;
+            margin: 8px 0;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(59, 91, 24, 0.1);
+        }
+
+        .action-buttons {
             display: flex;
-            gap: 12px;
-            z-index: 2;
-            height: 67.79px; /* Sama dengan height button detail */
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        .detail-button {
-            display: inline-flex;
-            background: var(--light-orange);
-            color: #191900;
-            font-weight: 700;
-            border-radius: 32px;
-            width: 288.75px;
-            height: 67.79px;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            border: 3px solid var(--dark-green);
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 0.5px;
+        .action-buttons a {
             text-decoration: none;
-            transition: all 0.3s ease;
-            position: absolute;
-            right: 32px;
-            bottom: 32px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
         }
 
-        .detail-button:hover {
-            background: var(--orange);
+        /* Marketplace Section */
+        .marketplace-section {
+            margin: 40px auto 0;
+            text-align: left;
+        }
+
+        .marketplace-section > div:first-child {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 22px;
+            padding-left: 0;
+            text-align: left;
+            margin-left: 180px;
+        }
+
+        .marketplace-buttons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .marketplace-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 3px solid;
+            border-radius: 16px;
+            padding: 12px 32px;
+            font-size: 20px;
+            font-weight: 500;
+            color: inherit;
+            background: #fff;
+            transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+
+        .marketplace-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .marketplace-btn.tokopedia {
+            border-color: #222;
+            color: #222;
+        }
+
+        .marketplace-btn.shopee {
+            border-color: #31460B;
+            color: #31460B;
         }
 
         /* Floating WhatsApp Button */
@@ -732,377 +703,8 @@
             }
         }
 
-
-        /* Responsive */
-        @media (min-width: 1920px) {
-            .product-grid {
-                max-width: 1800px;
-                gap: 40px;
-            }
-            .product-card {
-                max-width: 860px;
-                min-height: 800px;
-            }
-            .product-image-container {
-                max-width: 702.6px; /* Original size for 1920px */
-            }
-        }
-
-        /* Ultra Wide & 4K (1921px+) */
-        @media (min-width: 1921px) {
-            .navbar {
-                padding: 25px 120px;
-            }
-
-            .navbar.scrolled {
-                padding: 18px 120px;
-            }
-
-            .navbar-container {
-                max-width: 1920px;
-            }
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .logo-icon {
-                width: 50px;
-                height: 50px;
-            }
-
-            .nav-menu {
-                gap: 50px;
-            }
-
-            .nav-menu a {
-                font-size: 17px;
-            }
-
-            .search-box {
-                width: 280px;
-            }
-
-            .hero {
-                min-height: 750px;
-            }
-
-            .hero-content p {
-                font-size: 24px;
-            }
-
-            .container {
-                padding: 100px 120px;
-            }
-
-            .page-title {
-                font-size: 2.75rem;
-            }
-
-            .product-grid {
-                max-width: 1800px;
-                gap: 40px;
-            }
-
-            .product-card {
-                max-width: 850px;
-                min-height: 820px;
-                padding: 20px;
-            }
-
-            .product-image-container {
-                max-width: 810px;
-                height: 480px;
-            }
-
-            .product-title {
-                font-size: 36px;
-                margin-bottom: 20px;
-            }
-
-            .product-spec {
-                font-size: 22px;
-                line-height: 1.7;
-            }
-
-            .detail-button {
-                width: 280px;
-                height: 64px;
-                font-size: 1.3rem;
-            }
-
-            .shop-link {
-                width: 64px;
-                height: 64px;
-            }
-
-            .footer {
-                padding: 70px 120px 35px;
-            }
-
-            .whatsapp-float {
-                bottom: 35px;
-                right: 35px;
-            }
-
-            .whatsapp-button {
-                padding: 16px 32px;
-                font-size: 17px;
-            }
-
-            .whatsapp-icon {
-                width: 30px;
-                height: 30px;
-            }
-        }
-
-        /* Large Desktop (1600px - 1920px) */
-        @media (min-width: 1601px) and (max-width: 1920px) {
-            .navbar {
-                padding: 20px 100px;
-            }
-
-            .navbar.scrolled {
-                padding: 15px 100px;
-            }
-
-            .navbar-container {
-                max-width: 1800px;
-            }
-
-            .logo {
-                font-size: 17px;
-            }
-
-            .logo-icon {
-                width: 48px;
-                height: 48px;
-            }
-
-            .nav-menu {
-                gap: 45px;
-            }
-
-            .nav-menu a {
-                font-size: 16px;
-            }
-
-            .hero {
-                min-height: 700px;
-            }
-
-            .hero-content p {
-                font-size: 22px;
-            }
-
-            .container {
-                padding: 90px 100px;
-            }
-
-            .page-title {
-                font-size: 2.5rem;
-            }
-
-            .product-grid {
-                max-width: 1700px;
-                gap: 38px;
-            }
-
-            .product-card {
-                max-width: 800px;
-                min-height: 780px;
-                padding: 18px;
-            }
-
-            .product-image-container {
-                max-width: 760px;
-                height: 450px;
-            }
-
-            .product-title {
-                font-size: 34px;
-            }
-
-            .product-spec {
-                font-size: 21px;
-            }
-
-            .detail-button {
-                width: 270px;
-                height: 62px;
-                font-size: 1.2rem;
-            }
-
-            .shop-link {
-                width: 62px;
-                height: 62px;
-            }
-
-            .footer {
-                padding: 65px 100px 32px;
-            }
-        }
-
-        /* Desktop Medium (1440px - 1600px) */
-        @media (max-width: 1600px) {
-            .navbar {
-                padding: 18px 60px;
-            }
-
-            .navbar.scrolled {
-                padding: 14px 60px;
-            }
-
-            .nav-menu {
-                gap: 35px;
-            }
-
-            .nav-menu a {
-                font-size: 14px;
-            }
-
-            .product-grid {
-                max-width: 1400px;
-                gap: 32px;
-            }
-
-            .product-card {
-                max-width: 680px;
-                min-height: 720px;
-            }
-
-            .product-image-container {
-                max-width: 620px;
-                height: 410px;
-            }
-        }
-
-        /* Desktop Small & Laptop (1280px - 1439px) */
-        @media (max-width: 1439px) {
-            .navbar {
-                padding: 16px 50px;
-            }
-
-            .navbar.scrolled {
-                padding: 12px 50px;
-            }
-
-            .nav-menu {
-                gap: 30px;
-            }
-
-            .nav-menu a {
-                font-size: 14px;
-            }
-
-            .logo {
-                font-size: 15px;
-            }
-
-            .logo-icon {
-                width: 40px;
-                height: 40px;
-            }
-
-            .container {
-                padding: 60px 40px;
-            }
-
-            .product-grid {
-                gap: 24px;
-                max-width: 1200px;
-            }
-
-            .product-card {
-                max-width: 580px;
-                min-height: 650px;
-                padding: 14px;
-            }
-
-            .product-image-container {
-                max-width: 520px;
-                height: 380px;
-            }
-
-            .product-title {
-                font-size: 28px;
-            }
-
-            .product-spec {
-                font-size: 18px;
-            }
-
-            .detail-button {
-                width: 240px;
-                height: 56px;
-                font-size: 1.1rem;
-            }
-
-            .product-links {
-                left: 24px;
-                bottom: 24px;
-            }
-
-            .shop-link {
-                width: 56px;
-                height: 56px;
-            }
-        }
-
-        /* Tablet Landscape Large (1024px - 1279px) */
-        @media (max-width: 1279px) {
-            .navbar {
-                padding: 15px 40px;
-            }
-
-            .navbar.scrolled {
-                padding: 12px 40px;
-            }
-
-            .nav-menu {
-                gap: 25px;
-            }
-
-            .nav-menu a {
-                font-size: 13px;
-            }
-
-            .logo {
-                font-size: 14px;
-            }
-
-            .logo-icon {
-                width: 38px;
-                height: 38px;
-            }
-
-            .product-grid {
-                gap: 20px;
-                max-width: 1100px;
-            }
-
-            .product-card {
-                max-width: 520px;
-                min-height: 620px;
-            }
-
-            .product-image-container {
-                max-width: 480px;
-                height: 350px;
-            }
-        }
-
-        /* Tablet Portrait (768px - 1023px) */
+        /* Responsive Styles */
         @media (max-width: 1023px) {
-            .hero {
-                justify-content: center;
-                text-align: center;
-            }
-
-            .hero-content {
-                max-width: 100%;
-            }
-
             .navbar {
                 padding: 15px 30px;
             }
@@ -1125,13 +727,11 @@
                 height: 36px;
             }
 
-            /* Show hamburger on tablet portrait */
             .hamburger {
                 display: flex;
                 order: 3;
             }
 
-            /* Mobile menu slide-in */
             .nav-menu {
                 position: fixed;
                 top: 0;
@@ -1188,27 +788,70 @@
                 width: 180px;
             }
 
-            .search-input {
-                font-size: 13px;
+            .container {
+                padding: 20px;
+                padding-top: 100px;
             }
 
-            .product-grid {
-                grid-template-columns: 1fr;
-                gap: 28px;
+            .header {
+                padding-left: 0;
             }
 
-            .product-card {
-                max-width: 100%;
-                min-height: 580px;
+            .header h1 {
+                font-size: 1.5rem;
+                padding-left: 0;
+                text-align: center;
             }
 
-            .product-image-container {
-                height: 320px;
+            .product-section {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px;
+                height: auto;
+            }
+
+            .product-swiper {
+                height: 300px;
+            }
+
+            .product-specifications h2 {
+                font-size: 1.25rem;
+            }
+
+            .product-specifications ul li {
+                font-size: 0.95rem;
+            }
+
+            .marketplace-section {
+                margin: 20px auto 0;
+                padding: 0 16px;
+            }
+
+            .marketplace-section > div:first-child {
+                font-size: 18px;
+                padding-left: 0;
+            }
+
+            .marketplace-buttons {
+                gap: 16px;
+            }
+
+            .marketplace-btn {
+                font-size: 16px;
+                padding: 10px 24px;
+            }
+
+            .footer {
+                padding: 50px 30px 25px;
+            }
+
+            .footer-container {
+                grid-template-columns: 2fr 1fr 1.5fr;
+                gap: 30px;
             }
         }
 
-        /* Mobile (968px and below) */
-        @media (max-width: 968px) {
+        @media (max-width: 767px) {
             .navbar {
                 padding: 12px 20px;
             }
@@ -1232,13 +875,11 @@
                 height: 35px;
             }
 
-            /* Show hamburger on mobile */
             .hamburger {
                 display: flex;
                 order: 3;
             }
 
-            /* Mobile menu slide-in */
             .nav-menu {
                 position: fixed;
                 top: 0;
@@ -1290,36 +931,449 @@
                 order: 2;
             }
 
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            .search-box {
+                width: 180px;
+                padding: 8px 15px;
             }
 
-            .hero-content h1 {
-                font-size: 36px;
+            .search-input {
+                font-size: 12px;
             }
-            .product-grid {
+
+            .search-btn {
+                width: 30px;
+                height: 30px;
+            }
+
+            .language-selector {
+                font-size: 13px;
+            }
+
+            .container {
+                padding: 16px;
+                padding-top: 100px;
+            }
+
+            .header h1 {
+                font-size: 1.25rem;
+                text-align: center;
+            }
+
+            .product-section {
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .product-swiper {
+                height: 250px;
+            }
+
+            .product-specifications h2 {
+                font-size: 1.125rem;
+                margin-bottom: 16px;
+            }
+
+            .product-specifications ul li {
+                font-size: 0.9rem;
+                margin: 6px 0;
+            }
+
+            .marketplace-section {
+                margin: 24px auto 0;
+            }
+
+            .marketplace-section > div:first-child {
+                font-size: 16px;
+            }
+
+            .marketplace-buttons {
+                gap: 12px;
+                justify-content: center;
+            }
+
+            .marketplace-btn {
+                font-size: 14px;
+                padding: 8px 20px;
+                flex: 1;
+                min-width: 140px;
+                justify-content: center;
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-container {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                gap: 35px;
             }
-            .product-card {
-                max-width: 100%;
-                min-height: 520px;
+
+            .footer-about h3,
+            .footer-section h3 {
+                font-size: 22px;
             }
-            .product-image-container {
-                height: 280px;
+
+            .footer-about p,
+            .footer-section a {
+                font-size: 16px;
             }
-            .detail-button {
-                width: 180px;
-                height: 50px;
+
+            .footer-about h4 {
+                font-size: 18px;
+            }
+
+            .map-container iframe {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .navbar.scrolled {
+                padding: 8px 15px;
+            }
+
+            .logo {
+                font-size: 12px;
+                gap: 8px;
+            }
+
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .nav-menu {
+                gap: 10px;
+            }
+
+            .nav-menu a {
+                font-size: 12px;
+            }
+
+            .nav-right {
+                flex-direction: row;
+                gap: 5px;
+            }
+
+            .search-box {
+                width: auto;
+                flex: 1;
+                min-width: 100px;
+                padding: 6px 12px;
+            }
+
+            .search-input {
+                font-size: 11px;
+            }
+
+            .search-btn {
+                width: 28px;
+                height: 28px;
+            }
+
+            .language-selector {
+                font-size: 12px;
+                white-space: nowrap;
+            }
+
+            .container {
+                padding: 12px;
+                padding-top: 90px;
+            }
+
+            .header h1 {
+                font-size: 1.125rem;
+            }
+
+            .product-section {
+                padding: 12px;
+                border-radius: 8px;
+            }
+
+            .product-swiper {
+                height: 200px;
+            }
+
+            .product-specifications h2 {
                 font-size: 1rem;
             }
-            .shop-link {
-                width: 50px;
-                height: 50px;
+
+            .product-specifications ul li {
+                font-size: 0.875rem;
             }
+
+            .marketplace-section > div:first-child {
+                font-size: 14px;
+            }
+
+            .marketplace-buttons {
+                gap: 8px;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .marketplace-btn {
+                width: 100%;
+                max-width: 200px;
+                font-size: 14px;
+                padding: 10px 16px;
+            }
+
+            .footer {
+                padding: 30px 15px 15px;
+            }
+
+            .footer-container {
+                gap: 30px;
+            }
+
+            .footer-about h3,
+            .footer-section h3 {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+
+            .footer-about p,
+            .footer-section a {
+                font-size: 14px;
+            }
+
+            .footer-about h4 {
+                font-size: 16px;
+                margin-top: 15px;
+            }
+
+            .social-links {
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .social-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .footer-bottom {
+                font-size: 12px;
+                padding-top: 20px;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-button {
+                padding: 10px 14px;
+            }
+
+            .whatsapp-button span {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .navbar {
+                padding: 8px 10px;
+            }
+
+            .navbar.scrolled {
+                padding: 6px 10px;
+            }
+
+            .logo {
+                font-size: 11px;
+                gap: 6px;
+            }
+
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .nav-right {
+                gap: 6px;
+            }
+
+            .search-box {
+                width: auto;
+                flex: 1;
+                min-width: 80px;
+                padding: 6px 10px;
+            }
+
+            .search-input {
+                font-size: 11px;
+            }
+
+            .search-btn {
+                width: 28px;
+                height: 28px;
+            }
+
+            .language-selector {
+                font-size: 12px;
+            }
+
+            .hamburger span {
+                width: 20px;
+                height: 2px;
+            }
+
+            .nav-menu {
+                width: 100vw;
+                padding: 70px 20px 20px;
+            }
+
             .container {
-                padding: 40px 20px;
+                padding: 8px;
+                padding-top: 80px;
+            }
+
+            .back-btn-wrapper {
+                padding: 0 8px;
+            }
+
+            .back-btn {
+                font-size: 0.875rem;
+                padding: 6px 10px;
+                gap: 6px;
+            }
+
+            .back-btn svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .header h1 {
+                font-size: 1rem;
+                padding-left: 0;
+            }
+
+            .product-section {
+                padding: 8px;
+                gap: 8px;
+                border-radius: 6px;
+            }
+
+            .product-swiper {
+                height: 160px;
+                border-radius: 6px;
+            }
+
+            .product-swiper .swiper-button-next,
+            .product-swiper .swiper-button-prev {
+                width: 24px;
+                height: 24px;
+            }
+
+            .product-specifications h2 {
+                font-size: 0.875rem;
+                margin-bottom: 12px;
+            }
+
+            .product-specifications ul li {
+                font-size: 0.8rem;
+                margin: 4px 0;
+                padding: 2px 0;
+            }
+
+            .marketplace-section {
+                margin: 16px auto 0;
+            }
+
+            .marketplace-section > div:first-child {
+                font-size: 13px;
+                margin-bottom: 12px;
+            }
+
+            .marketplace-buttons {
+                gap: 6px;
+            }
+
+            .marketplace-btn {
+                font-size: 13px;
+                padding: 8px 12px;
+                gap: 6px;
+                min-width: auto;
+                width: 100%;
+                max-width: none;
+            }
+
+            .marketplace-logo {
+                width: 24px;
+                height: 24px;
+            }
+
+            .footer {
+                padding: 20px 10px 10px;
+            }
+
+            .footer-container {
+                gap: 20px;
+            }
+
+            .footer-about h3,
+            .footer-section h3 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+
+            .footer-about p,
+            .footer-section a {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .footer-about h4 {
+                font-size: 15px;
+                margin-top: 12px;
+                margin-bottom: 10px;
+            }
+
+            .social-links {
+                gap: 8px;
+            }
+
+            .social-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .social-icon svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .map-container iframe {
+                height: 140px;
+                border-radius: 6px;
+            }
+
+            .footer-bottom {
+                font-size: 11px;
+                padding-top: 16px;
+            }
+
+            .whatsapp-float {
+                bottom: 16px;
+                right: 16px;
+            }
+
+            .whatsapp-button {
+                padding: 8px 12px;
+                font-size: 14px;
+                gap: 8px;
+                border-radius: 40px;
+            }
+
+            .whatsapp-icon {
+                width: 24px;
+                height: 24px;
             }
         }
     </style>
@@ -1334,14 +1388,12 @@
                 </div>
                 <span>{{ $setting->company_name ?? 'PT. INTI SEMAI KALIANDRA' }}</span>
             </div>
-
             <ul class="nav-menu">
                 <li><a href="{{ route('landing.en') }}" class="nav-link">Home</a></li>
                 <li><a href="{{ route('about.en') }}" class="nav-link">About Us</a></li>
                 <li><a href="{{ route('products.en') }}" class="nav-link active">Products</a></li>
-                <li><a href="{{ route('contact.en') }}" class="nav-link">Contact Us</a></li>
+                <li><a href="{{ route('contact.en') }}" class="nav-link">Contact</a></li>
             </ul>
-
             <div class="nav-right">
                 <a href="{{ route('products') }}" class="language-selector">ID</a>
                 <div class="search-box">
@@ -1354,8 +1406,6 @@
                     </button>
                 </div>
             </div>
-
-            <!-- Hamburger Menu Button -->
             <button class="hamburger" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -1363,70 +1413,82 @@
             </button>
         </div>
     </nav>
-
-    <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay"></div>
-    <!-- Hero Section -->
-    <section class="hero" id="products" @if($setting && $setting->hero_image) style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{{ $setting->hero_image_url }}'); background-size: cover; background-position: center;" @endif>
-        <div class="hero-content">
-            <h1>{{ $landing->hero_subtitle_top_en ?? 'Our Products' }}</h1>
+    <div class="container">
+        <div class="back-btn-wrapper">
+            <a href="{{ route('products.en') }}" class="back-btn">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+                <span>Back to Products</span>
+            </a>
         </div>
-    </section>
-    <div class="container" style="margin-top: 60px;">
-        <div class="page-title-container">
-            <span class="page-title">
-                {{ $landing->hero_subtitle_bottom_en ?? 'Innovation for Better and Sustainable Results' }}
-                <span class="title-underline"></span>
-            </span>
+        <div class="header">
+            <h1>Product <b>Details</b></h1>
         </div>
-        <div style="margin-bottom:130px;"></div>
-    <div class="product-grid" id="productGrid">
-        @foreach($products as $i => $product)
-            <div class="product-card product-card-toggle" data-index="{{ $i }}" style="{{ $i > 1 ? 'display:none;' : '' }}">
-                <div class="product-image-container">
-                    @if($product->image)
-                        <img src="{{ $product->image_url }}" alt="{{ $product->name_en }}" class="product-image">
-                    @endif
+        <div class="product-section">
+            <div class="product-image">
+                <!-- Swiper -->
+                <div class="swiper product-swiper">
+                    <div class="swiper-wrapper">
+                        @if($product->image_url)
+                        <div class="swiper-slide">
+                            <img src="{{ $product->image_url }}" alt="Cover Image">
+                        </div>
+                        @endif
+                        @if($product->galleries && $product->galleries->count())
+                            @foreach($product->galleries as $gallery)
+                                <div class="swiper-slide">
+                                    <img src="{{ $gallery->image_url }}" alt="Gallery Image">
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Navigation -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
-                <h3 class="product-title">{{ $product->name_en }}</h3>
-                <div class="product-spec">{{ $product->specification_en }}</div>
-                <div class="product-links marketplace-icons">
-                    @if($product->shopee_url)
-                        <a href="{{ $product->shopee_url }}" target="_blank" class="shop-link">
-                            <img src="{{ asset('gambar/shopee_icon.png') }}" alt="Shopee" class="shop-icon">
-                        </a>
-                    @endif
-                    @if($product->tokopedia_url)
-                        <a href="{{ $product->tokopedia_url }}" target="_blank" class="shop-link">
-                            <img src="{{ asset('gambar/tokopedia_icon.png') }}" alt="Tokopedia" class="shop-icon">
-                        </a>
-                    @endif
-                </div>
-                <a href="{{ route('products.show.en', $product->id) }}" class="detail-button">{{ $product->button_label_en ?? 'View Details' }}</a>
             </div>
-        @endforeach
+            <div class="product-specifications">
+                <h2 class="spec-title">Specifications</h2>
+                <div class="specification-content" style="white-space: pre-line;">
+                    {!! nl2br(e($product->specification_en ?? '')) !!}
+                </div>
+            </div>
+        </div>
+        <div class="marketplace-section">
+            <div>Visit Us On</div>
+            <div class="marketplace-buttons">
+                @if($product->tokopedia_url)
+                <a href="{{ $product->tokopedia_url }}" target="_blank" class="marketplace-btn tokopedia">
+                    <img src="{{ asset('gambar/tokopedia_icon.png') }}" alt="Tokopedia" class="marketplace-logo">
+                    Tokopedia
+                </a>
+                @endif
+                @if($product->shopee_url)
+                <a href="{{ $product->shopee_url }}" target="_blank" class="marketplace-btn shopee">
+                    <img src="{{ asset('gambar/shopee_icon.png') }}" alt="Shopee" class="marketplace-logo">
+                    Shopee
+                </a>
+                @endif
+            </div>
+        </div>
     </div>
-    @if(count($products) > 2)
-    <div style="text-align:center; margin-top:60px;">
-        <a href="#" id="showMoreBtn" class="load-more-btn">Show More...</a>
-        <a href="#" id="showLessBtn" class="load-more-btn" style="display:none;">Show Less...</a>
-    </div>
-    @endif
-    </div>
+
     <!-- Footer -->
     <footer class="footer" id="contact-us">
         <div class="footer-container">
             <div class="footer-about">
                 <h3>{{ $setting->company_name ?? 'PT Inti Semai Kaliandra' }}</h3>
-                @if($setting && $setting->address_en)
-                    <p>{!! nl2br(e($setting->address_en)) !!}</p>
+                @if($setting && $setting->address)
+                    <p>{!! nl2br(e($setting->address)) !!}</p>
                 @else
                     <p>Ruko Mahakam Square<br>
-                    Block B No. 9, Jl. Untung Suropati, Karang Asam Ulu,<br>
-                    Sungai Kunjang, Samarinda City, East Kalimantan</p>
+                    Blok B No. 9, Jl. Untung Suropati, Karang Asem Ulu,<br>
+                    Sungai Kunjang, Kota Samarinda, Kalimantan Timur</p>
                 @endif
-                <p><br>Phone : {{ $setting->phone ?? '082211088363' }}</p>
-                <p>Email : {{ $setting->email ?? 'intisemai@gmail.com' }}</p>
+                <p><br>Phone: {{ $setting->phone ?? '082211088363' }}</p>
+                <p>Email: {{ $setting->email ?? 'intisemai@gmail.com' }}</p>
 
                 <h4 style="margin-top: 20px; margin-bottom: 15px; font-style: italic; font-weight: bold; font-size: 22px;">Connect with us!</h4>
 
@@ -1464,7 +1526,7 @@
                     <li><a href="{{ route('landing.en') }}">Home</a></li>
                     <li><a href="{{ route('about.en') }}">About Us</a></li>
                     <li><a href="{{ route('products.en') }}">Products</a></li>
-                    <li><a href="{{ route('contact.en') }}">Contact Us</a></li>
+                    <li><a href="{{ route('contact.en') }}">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section footer-location" style="text-align: center;">
@@ -1475,7 +1537,7 @@
                     </div>
                 @else
                     <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.817!2d117.15!3d-0.50!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMzAnMDAuMCJTIDExN8KwMDknMDAuMCJF!5e0!3m2!1sid!2sid!4v1234567890"
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.817!2d117.15!3d-0.50!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMzAnMDAuMCJTIDExN8KwMDknMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890"
                             width="100%" height="200"
                             style="border:0; border-radius:10px;"
                             allowfullscreen="" loading="lazy"></iframe>
@@ -1500,71 +1562,59 @@
         </div>
     @endif
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Hamburger Menu Toggle
-        function toggleMenu() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-            const overlay = document.querySelector('.mobile-menu-overlay');
-            const body = document.body;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Swiper
+            new Swiper('.product-swiper', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
 
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : '';
-        }
-
-        // Event listeners for hamburger menu
-        document.querySelector('.hamburger').addEventListener('click', toggleMenu);
-        document.querySelector('.mobile-menu-overlay').addEventListener('click', toggleMenu);
-
-        // Close menu when clicking nav links
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function() {
+            // Hamburger Menu Toggle
+            function toggleMenu() {
                 const hamburger = document.querySelector('.hamburger');
-                if (hamburger.classList.contains('active')) {
-                    toggleMenu();
+                const navMenu = document.querySelector('.nav-menu');
+                const overlay = document.querySelector('.mobile-menu-overlay');
+                const body = document.body;
+
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : '';
+            }
+
+            // Event listeners for hamburger menu
+            document.querySelector('.hamburger').addEventListener('click', toggleMenu);
+            document.querySelector('.mobile-menu-overlay').addEventListener('click', toggleMenu);
+
+            // Close menu when clicking nav links
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    const hamburger = document.querySelector('.hamburger');
+                    if (hamburger.classList.contains('active')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
                 }
             });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Show more/less functionality for products
-        document.addEventListener('DOMContentLoaded', function() {
-            const productCards = document.querySelectorAll('.product-card-toggle');
-            const showMoreBtn = document.getElementById('showMoreBtn');
-            const showLessBtn = document.getElementById('showLessBtn');
-
-            if (showMoreBtn && showLessBtn) {
-                showMoreBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    productCards.forEach(card => {
-                        card.style.display = 'flex';
-                    });
-                    showMoreBtn.style.display = 'none';
-                    showLessBtn.style.display = 'inline-block';
-                });
-
-                showLessBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    productCards.forEach((card, index) => {
-                        if (index > 1) {
-                            card.style.display = 'none';
-                        }
-                    });
-                    showLessBtn.style.display = 'none';
-                    showMoreBtn.style.display = 'inline-block';
-                });
-            }
         });
     </script>
 </body>

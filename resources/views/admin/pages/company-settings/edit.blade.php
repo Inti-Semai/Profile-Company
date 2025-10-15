@@ -19,10 +19,10 @@
             @method('PUT')
 
             <div class="form-section">
-                <h3><i class="fas fa-building"></i> Company Information</h3>
+                <h3><i class="fas fa-building"></i> Informasi Perusahaan</h3>
 
                 <div class="form-group">
-                    <label for="company_name">Company Name</label>
+                    <label for="company_name">Nama Perusahaan</label>
                     <input type="text" class="form-control @error('company_name') is-invalid @enderror"
                            id="company_name" name="company_name"
                            value="{{ old('company_name', $setting->company_name ?? 'PT. INTI SEMAI KALANDRA') }}" required>
@@ -33,7 +33,7 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="phone">Phone</label>
+                        <label for="phone">Telepon</label>
                         <input type="text" class="form-control @error('phone') is-invalid @enderror"
                                id="phone" name="phone"
                                value="{{ old('phone', $setting->phone ?? '') }}">
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="address">Address</label>
+                    <label for="address">Alamat</label>
                     <textarea class="form-control @error('address') is-invalid @enderror"
                               id="address" name="address" rows="3">{{ old('address', $setting->address ?? '') }}</textarea>
                     @error('address')
@@ -64,20 +64,20 @@
             </div>
 
             <div class="form-section">
-                <h3><i class="fas fa-image"></i> Hero Section</h3>
+                <h3><i class="fas fa-image"></i> Bagian Header</h3>
                 <div class="alert alert-info" style="margin-bottom: 20px;">
                     <i class="fas fa-info-circle"></i> <strong>Note:</strong> Hero section is used on both <strong>Landing Page</strong> and <strong>About Us Page</strong>.
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="hero_title">Hero Title (Indonesia)</label>
+                        <label for="hero_title">Teks Header 1 (Indonesia)</label>
                         <input type="text" class="form-control @error('hero_title') is-invalid @enderror" id="hero_title" name="hero_title" value="{{ old('hero_title', $setting->hero_title ?? '') }}">
                         @error('hero_title')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="hero_title_en">Hero Title (English)</label>
+                        <label for="hero_title_en">Teks Header 1 (English)</label>
                         <input type="text" class="form-control @error('hero_title_en') is-invalid @enderror" id="hero_title_en" name="hero_title_en" value="{{ old('hero_title_en', $setting->hero_title_en ?? '') }}">
                         @error('hero_title_en')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -86,14 +86,14 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="hero_subtitle">Hero Subtitle (Indonesia)</label>
+                        <label for="hero_subtitle">Teks Header 2 (Indonesia)</label>
                         <input type="text" class="form-control @error('hero_subtitle') is-invalid @enderror" id="hero_subtitle" name="hero_subtitle" value="{{ old('hero_subtitle', $setting->hero_subtitle ?? '') }}">
                         @error('hero_subtitle')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="hero_subtitle_en">Hero Subtitle (English)</label>
+                        <label for="hero_subtitle_en">Teks Header 2 (English)</label>
                         <input type="text" class="form-control @error('hero_subtitle_en') is-invalid @enderror" id="hero_subtitle_en" name="hero_subtitle_en" value="{{ old('hero_subtitle_en', $setting->hero_subtitle_en ?? '') }}">
                         @error('hero_subtitle_en')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="hero_image">Hero Background Image</label>
+                    <label for="hero_image">Gambar Header</label>
                     @if($setting && $setting->hero_image)
                         <div class="current-image">
                             <img src="{{ $setting->hero_image_url }}" alt="Hero Image">
@@ -116,33 +116,17 @@
             </div>
 
             <div class="form-section">
-                <h3><i class="fas fa-eye"></i> Vision Section</h3>
+                <h3><i class="fas fa-eye"></i> Bagian Visi</h3>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="vision_section">Vision Section (Indonesia)</label>
-                        <input type="text" class="form-control @error('vision_section') is-invalid @enderror" id="vision_section" name="vision_section" value="{{ old('vision_section', $setting->vision_section ?? '') }}">
-                        @error('vision_section')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="vision_section_en">Vision Section (English)</label>
-                        <input type="text" class="form-control @error('vision_section_en') is-invalid @enderror" id="vision_section_en" name="vision_section_en" value="{{ old('vision_section_en', $setting->vision_section_en ?? '') }}">
-                        @error('vision_section_en')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="vision_text">Vision Text (Indonesia)</label>
+                        <label for="vision_text">Text Visi (Indonesia)</label>
                         <textarea class="form-control @error('vision_text') is-invalid @enderror" id="vision_text" name="vision_text" rows="4">{{ old('vision_text', $setting->vision_text ?? '') }}</textarea>
                         @error('vision_text')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="vision_text_en">Vision Text (English)</label>
+                        <label for="vision_text_en">Text Visi (English)</label>
                         <textarea class="form-control @error('vision_text_en') is-invalid @enderror" id="vision_text_en" name="vision_text_en" rows="4">{{ old('vision_text_en', $setting->vision_text_en ?? '') }}</textarea>
                         @error('vision_text_en')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -150,7 +134,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="vision_image">Vision Image</label>
+                    <label for="vision_image">Gambar Visi</label>
                     @if($setting && $setting->vision_image)
                         <div class="current-image">
                             <img src="{{ $setting->vision_image_url }}" alt="Vision Image">
@@ -165,33 +149,17 @@
             </div>
 
             <div class="form-section">
-                <h3><i class="fas fa-bullseye"></i> Mission Section</h3>
+                <h3><i class="fas fa-bullseye"></i> Bagian Misi</h3>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="mission_section">Mission Section (Indonesia)</label>
-                        <input type="text" class="form-control @error('mission_section') is-invalid @enderror" id="mission_section" name="mission_section" value="{{ old('mission_section', $setting->mission_section ?? '') }}">
-                        @error('mission_section')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="mission_section_en">Mission Section (English)</label>
-                        <input type="text" class="form-control @error('mission_section_en') is-invalid @enderror" id="mission_section_en" name="mission_section_en" value="{{ old('mission_section_en', $setting->mission_section_en ?? '') }}">
-                        @error('mission_section_en')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="mission_text">Mission Text (Indonesia)</label>
+                        <label for="mission_text">Text Misi (Indonesia)</label>
                         <textarea class="form-control @error('mission_text') is-invalid @enderror" id="mission_text" name="mission_text" rows="4">{{ old('mission_text', $setting->mission_text ?? '') }}</textarea>
                         @error('mission_text')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="mission_text_en">Mission Text (English)</label>
+                        <label for="mission_text_en">Text Misi (English)</label>
                         <textarea class="form-control @error('mission_text_en') is-invalid @enderror" id="mission_text_en" name="mission_text_en" rows="4">{{ old('mission_text_en', $setting->mission_text_en ?? '') }}</textarea>
                         @error('mission_text_en')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -199,7 +167,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="mission_image">Mission Image</label>
+                    <label for="mission_image">Gambar Misi</label>
                     @if($setting && $setting->mission_image)
                         <div class="current-image">
                             <img src="{{ $setting->mission_image_url }}" alt="Mission Image">
@@ -215,12 +183,12 @@
 
             <!-- Footer Settings Section -->
             <div class="section-header">
-                <h2>Footer Settings</h2>
+                <h2>Pengaturan Footer</h2>
             </div>
 
             <div class="form-group">
                 <label for="maps_embed_url">
-                    <i class="fas fa-map-marked-alt"></i> Google Maps Embed URL
+                    <i class="fas fa-map-marked-alt"></i> Massukan Embed URL Google Maps
                 </label>
                 <textarea name="maps_embed_url" id="maps_embed_url" rows="3" class="form-control @error('maps_embed_url') is-invalid @enderror" placeholder="<iframe src='https://www.google.com/maps/embed...'></iframe>">{{ old('maps_embed_url', $setting->maps_embed_url) }}</textarea>
                 <small class="form-text">Paste the complete iframe embed code from Google Maps</small>
@@ -230,7 +198,7 @@
             </div>
 
             <div class="section-header">
-                <h2>Social Media Links</h2>
+                <h2>Link Social Media</h2>
             </div>
 
             <div class="form-row">
@@ -301,12 +269,12 @@
 
             <!-- WhatsApp Settings -->
             <h3 style="margin-top: 30px; margin-bottom: 20px; color: var(--text-dark); border-bottom: 2px solid var(--primary-green); padding-bottom: 10px;">
-            <i class="fab fa-whatsapp"></i> WhatsApp Settings
+            <i class="fab fa-whatsapp"></i> Pengaturan WhatsApp
             </h3>
             <div class="form-row">
                 <div class="form-group">
                     <label for="whatsapp_number">
-                        <i class="fab fa-whatsapp"></i> WhatsApp Number
+                        <i class="fab fa-whatsapp"></i> Nomor WhatsApp
                     </label>
                     <input type="text" name="whatsapp_number" id="whatsapp_number" class="form-control @error('whatsapp_number') is-invalid @enderror" value="{{ old('whatsapp_number', $setting->whatsapp_number) }}" placeholder="628123456789 (format: 628xxx tanpa + atau spasi)">
                     <small class="form-text text-muted">Format: 628123456789 (kode negara + nomor tanpa 0 di awal)</small>
@@ -317,19 +285,19 @@
 
                 <div class="form-group">
                     <label for="whatsapp_enabled">
-                        <i class="fas fa-toggle-on"></i> Enable WhatsApp Button
+                        <i class="fas fa-toggle-on"></i> Aktifkan Tombol WhatsApp
                     </label>
                     <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
                         <input type="hidden" name="whatsapp_enabled" value="0">
                         <input type="checkbox" name="whatsapp_enabled" id="whatsapp_enabled" value="1" {{ old('whatsapp_enabled', $setting->whatsapp_enabled) ? 'checked' : '' }} style="width: 20px; height: 20px; cursor: pointer;">
-                        <label for="whatsapp_enabled" style="margin: 0; cursor: pointer;">Show floating WhatsApp button on website</label>
+                        <label for="whatsapp_enabled" style="margin: 0; cursor: pointer;">Tampilkan tombol WhatsApp mengambang di situs web</label>
                     </div>
                 </div>
             </div>
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Save Changes
+                    <i class="fas fa-save"></i> Simpan Perubahan
                 </button>
             </div>
         </form>
@@ -504,5 +472,63 @@
         transform: translateY(-2px);
         box-shadow: 0 10px 20px rgba(59, 91, 24, 0.3);
     }
+@media (max-width: 1200px) {
+    .card-body {
+        padding: 18px;
+    }
+    .form-section {
+        padding-bottom: 18px;
+        margin-bottom: 18px;
+    }
+}
+@media (max-width: 992px) {
+    .page-header h1 {
+        font-size: 20px;
+    }
+    .form-section h3 {
+        font-size: 15px;
+    }
+    .form-control {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+    .btn {
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+}
+@media (max-width: 768px) {
+    .card-body {
+        padding: 8px;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .form-section {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .btn {
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+@media (max-width: 480px) {
+    .page-header {
+        padding: 10px 2px;
+    }
+    .card-body {
+        padding: 2px;
+    }
+    .form-section {
+        padding-bottom: 4px;
+        margin-bottom: 4px;
+    }
+    .btn {
+        font-size: 11px;
+        padding: 8px 0;
+    }
+}
 </style>
 @endsection

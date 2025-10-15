@@ -28,9 +28,9 @@
                     </div>
                 </div>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
+                <a href="{{ route('admin.profile.edit') }}" class="dropdown-item">
                     <i class="fas fa-user"></i>
-                    <span>My Profile</span>
+                    <span>Profil Saya</span>
                 </a>
 
                 <div class="dropdown-divider"></div>
@@ -304,28 +304,90 @@
         color: #FF6B1E;
     }
 
-    @media (max-width: 768px) {
-        .navbar {
-            left: 0;
-            padding: 0 20px;
-        }
+</style>
 
-        .mobile-toggle {
-            display: block;
-        }
-
-        .search-box {
-            max-width: 200px;
-        }
-
-        .shortcut {
-            display: none;
-        }
-
-        .user-name {
-            display: none;
-        }
+<style>
+/* Responsive improvements for navbar */
+@media (max-width: 1200px) {
+    .navbar {
+        padding: 0 18px;
     }
+    .user-dropdown {
+        width: 220px;
+    }
+}
+@media (max-width: 992px) {
+    .navbar {
+        padding: 0 10px;
+    }
+    .user-avatar, .dropdown-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    .dropdown-header {
+        padding: 12px;
+    }
+    .dropdown-name {
+        font-size: 13px;
+    }
+    .dropdown-email {
+        font-size: 11px;
+    }
+}
+@media (max-width: 768px) {
+    .navbar {
+        left: 0;
+        padding: 0 8px;
+        height: 54px;
+    }
+    .mobile-toggle {
+        display: block;
+    }
+    .search-box {
+        max-width: 120px;
+        padding: 7px 8px;
+    }
+    .shortcut {
+        display: none;
+    }
+    .user-name {
+        display: none;
+    }
+    .user-avatar, .dropdown-avatar {
+        width: 28px;
+        height: 28px;
+    }
+    .user-dropdown {
+        width: 160px;
+        right: -30px;
+    }
+    .dropdown-header {
+        padding: 8px;
+        gap: 6px;
+    }
+    .dropdown-item {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0 2vw;
+        height: 48px;
+    }
+    .user-dropdown {
+        width: 98vw;
+        min-width: 0;
+        right: -10vw;
+    }
+    .dropdown-header {
+        padding: 6px 2vw;
+    }
+    .dropdown-item {
+        padding: 7px 8px;
+        font-size: 11px;
+    }
+}
 </style>
 
 <script>

@@ -1,7 +1,7 @@
 
 @extends('admin.layouts.app')
 
-@section('title', 'Edit Product')
+@section('title', 'Edit Produk')
 
 @section('content')
 <style>
@@ -272,32 +272,78 @@
         color: #155724;
         border-left: 4px solid #28a745;
     }
+    @media (max-width: 1024px) {
+        .product-form-container {
+            padding: 10px;
+        }
+        .product-form-header,
+        .product-form-body,
+        .product-form-footer {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
     @media (max-width: 768px) {
         .form-row {
             flex-direction: column;
             gap: 0;
         }
         .product-form-header {
-            padding: 24px 20px;
+            padding: 24px 12px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .product-form-header i {
+            width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            padding: 10px;
+        }
+        .product-form-header h1 {
+            font-size: 1.2rem;
         }
         .product-form-body {
-            padding: 24px 20px;
+            padding: 18px 8px;
         }
         .form-section {
-            padding: 20px;
+            padding: 12px;
+        }
+        .form-section-title {
+            font-size: 1rem;
+            padding-bottom: 8px;
+        }
+        .form-group label {
+            font-size: 0.95rem;
+        }
+        .form-control {
+            padding: 10px 12px;
+            font-size: 0.95rem;
+        }
+        .file-upload-wrapper input[type="file"] {
+            padding: 18px 8px;
         }
         .product-form-footer {
-            padding: 20px;
+            padding: 12px 8px;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
         }
         .footer-actions {
             width: 100%;
             flex-direction: column;
+            gap: 10px;
         }
         .btn {
             width: 100%;
             justify-content: center;
+        }
+        .gallery-input-row {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        #gallery-preview img {
+            max-width: 70px !important;
+            max-height: 70px !important;
         }
     }
 </style>
@@ -309,19 +355,19 @@
         <div class="product-form-card">
             <div class="product-form-header">
                 <i class="fas fa-box"></i>
-                <h1>Edit Product</h1>
+                <h1>Edit Produk</h1>
             </div>
             <div class="product-form-body">
                 <div class="form-section">
                     <div class="form-section-title">
                         <i class="fas fa-info-circle"></i>
-                        <span>Product Info</span>
+                        <span>Info Produk</span>
                     </div>
                     <div class="form-row" style="gap:40px;">
                         <div class="form-group" style="flex:1;">
                             <label for="name">
                                 <i class="fas fa-globe-asia"></i>
-                                Product Name (ID) <span class="text-danger">*</span>
+                                Nama Produk (ID) <span class="text-danger">*</span>
                             </label>
                             <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $product->name ?? '') }}" required placeholder="Nama produk">
                             @error('name')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
@@ -329,7 +375,7 @@
                         <div class="form-group" style="flex:1;">
                             <label for="name_en">
                                 <i class="fas fa-globe"></i>
-                                Product Name (EN)
+                                Nama Produk (EN)
                             </label>
                             <input type="text" name="name_en" id="name_en" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en', $product->name_en ?? '') }}" placeholder="Product name (English)">
                             @error('name_en')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
@@ -347,7 +393,7 @@
                         <div class="form-group full-width" style="flex:1;">
                             <label for="specification_en">
                                 <i class="fas fa-list"></i>
-                                Product Specification (EN)
+                                Spesifikasi Produk (EN)
                             </label>
                             <textarea name="specification_en" id="specification_en" class="form-control @error('specification_en') is-invalid @enderror" rows="5" placeholder="Product specification (English)">{{ old('specification_en', $product->specification_en ?? '') }}</textarea>
                             @error('specification_en')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
@@ -357,19 +403,19 @@
                 <div class="form-section">
                     <div class="form-section-title">
                         <i class="fas fa-image"></i>
-                        <span>Product Images</span>
+                        <span>Gambar Produk</span>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="image">
                                 <i class="fas fa-image"></i>
-                                Cover Image <span class="text-danger">*</span>
+                                Gambar Utama <span class="text-danger">*</span>
                             </label>
                             <div class="file-upload-wrapper">
                                 <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" accept="image/*" {{ isset($product) ? '' : 'required' }}>
                                 <div class="file-upload-label">
                                     <i class="fas fa-cloud-upload-alt"></i>
-                                    <div>Upload cover image</div>
+                                    <div>Unggah gambar utama</div>
                                 </div>
                             </div>
                             <small class="form-text text-muted">
@@ -379,7 +425,7 @@
                             @if(isset($product) && $product->image)
                                 <div style="margin-top:10px;">
                                     <img src="{{ asset('storage/' . $product->image) }}" alt="Current Cover" style="max-width:180px;max-height:180px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-                                    <div style="font-size:0.9rem;color:#888;">Current cover image</div>
+                                    <div style="font-size:0.9rem;color:#888;">Gambar utama saat ini</div>
                                 </div>
                             @endif
                             @error('image')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
@@ -387,7 +433,7 @@
                         <div class="form-group">
                             <label>
                                 <i class="fas fa-images"></i>
-                                Gallery Images (multiple)
+                                Gambar Galeri (bisa lebih dari satu)
                             </label>
                             <div id="gallery-inputs">
                                 @if(isset($product) && $product->galleries && count($product->galleries))
@@ -396,12 +442,12 @@
                                             <input type="file" name="gallery[]" class="form-control gallery-input" accept="image/*" onchange="previewSingleGalleryImage(this)">
                                             <div class="file-upload-label">
                                                 <i class="fas fa-cloud-upload-alt"></i>
-                                                <div>Upload gallery image</div>
+                                                <div>Unggah gambar galeri</div>
                                             </div>
                                             <button type="button" class="btn btn-danger" style="margin-left:10px;" onclick="removeGalleryInput(this)"><i class="fas fa-trash"></i></button>
                                             <div style="margin-top:10px;">
                                                 <img src="{{ asset('storage/' . $gallery->image) }}" alt="Gallery Image" style="max-width:120px;max-height:120px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-                                                <div style="font-size:0.85rem;color:#888;">Current gallery image</div>
+                                                <div style="font-size:0.85rem;color:#888;">Gambar galeri saat ini</div>
                                                 <div style="margin-top:5px;">
                                                     <label style="font-size:0.9em;color:#b00;">
                                                         <input type="checkbox" name="remove_gallery[]" value="{{ $gallery->id }}"> Hapus gambar ini
@@ -415,7 +461,7 @@
                                         <input type="file" name="gallery[]" class="form-control gallery-input @error('gallery') is-invalid @enderror" accept="image/*" onchange="previewSingleGalleryImage(this)">
                                         <div class="file-upload-label">
                                             <i class="fas fa-cloud-upload-alt"></i>
-                                            <div>Upload gallery image</div>
+                                            <div>Unggah gambar galeri</div>
                                         </div>
                                     </div>
                                 @endif
@@ -433,13 +479,13 @@
                 <div class="form-section">
                     <div class="form-section-title">
                         <i class="fas fa-shopping-cart"></i>
-                        <span>Marketplace Links</span>
+                        <span>Link Marketplace</span>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="shopee_url">
                                 <i class="fab fa-shopify"></i>
-                                Shopee URL
+                                URL Shopee
                             </label>
                             <input type="url" name="shopee_url" id="shopee_url" class="form-control @error('shopee_url') is-invalid @enderror" value="{{ old('shopee_url', $product->shopee_url ?? '') }}" placeholder="https://shopee.co.id/...">
                             @error('shopee_url')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
@@ -447,7 +493,7 @@
                         <div class="form-group">
                             <label for="tokopedia_url">
                                 <i class="fas fa-store"></i>
-                                Tokopedia URL
+                                URL Tokopedia
                             </label>
                             <input type="url" name="tokopedia_url" id="tokopedia_url" class="form-control @error('tokopedia_url') is-invalid @enderror" value="{{ old('tokopedia_url', $product->tokopedia_url ?? '') }}" placeholder="https://tokopedia.com/...">
                             @error('tokopedia_url')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
@@ -457,14 +503,14 @@
             </div>
             <div class="product-form-footer">
                 <div class="footer-info">
-                    <i class="fas fa-asterisk text-danger"></i> Required fields
+                    <i class="fas fa-asterisk text-danger"></i> Wajib diisi
                 </div>
                 <div class="footer-actions">
                     <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">
-                        <i class="fas fa-times"></i> Cancel
+                        <i class="fas fa-times"></i> Batal
                     </a>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Update Product
+                        <i class="fas fa-save"></i> Perbarui Produk
                     </button>
                 </div>
             </div>

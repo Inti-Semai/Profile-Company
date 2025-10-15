@@ -3,11 +3,11 @@
 @section('content')
 <div class="page-header">
     <div>
-        <h1>Edit Gallery Image</h1>
-        <p>Update gallery image details</p>
+    <h1>Edit Gambar Galeri</h1>
+    <p>Perbarui detail gambar galeri</p>
     </div>
     <a href="{{ route('admin.gallery.index') }}" class="btn btn-secondary">
-        <i class="fas fa-arrow-left"></i> Back to Gallery
+        <i class="fas fa-arrow-left"></i> Kembali ke Galeri
     </a>
 </div>
 
@@ -18,17 +18,17 @@
             @method('PUT')
 
             <div class="form-group">
-                <label for="title">Title (Optional)</label>
+                <label for="title">Judul (Opsional)</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror"
                        id="title" name="title" value="{{ old('title', $gallery->title) }}"
-                       placeholder="Enter image title">
+                       placeholder="Masukkan judul gambar">
                 @error('title')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="image">Image</label>
+                <label for="image">Gambar</label>
                 @if($gallery->image)
                     <div class="current-image">
                         <img src="{{ $gallery->image_url }}" alt="{{ $gallery->title }}">
@@ -36,32 +36,21 @@
                 @endif
                 <input type="file" class="form-control @error('image') is-invalid @enderror"
                        id="image" name="image" accept="image/*">
-                <small class="form-text text-muted">Upload a new image to replace the current one. Max size: 10MB</small>
+                <small class="form-text text-muted">Unggah gambar baru untuk mengganti gambar saat ini. Maksimal 10MB</small>
                 @error('image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
                 <div id="imagePreview" class="image-preview" style="display: none;">
-                    <img id="preview" src="" alt="Preview">
+                    <img id="preview" src="" alt="Pratinjau">
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label for="order">Display Order</label>
-                <input type="number" class="form-control @error('order') is-invalid @enderror"
-                       id="order" name="order" value="{{ old('order', $gallery->order) }}"
-                       placeholder="0">
-                <small class="form-text text-muted">Lower numbers appear first</small>
-                @error('order')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
             </div>
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Update Image
+                    <i class="fas fa-save"></i> Perbarui Gambar
                 </button>
                 <a href="{{ route('admin.gallery.index') }}" class="btn btn-secondary">
-                    <i class="fas fa-times"></i> Cancel
+                    <i class="fas fa-times"></i> Batal
                 </a>
             </div>
         </form>
@@ -217,6 +206,52 @@
         background: var(--dark-green);
         color: white;
     }
+@media (max-width: 1200px) {
+    .card-body {
+        padding: 18px;
+    }
+}
+@media (max-width: 992px) {
+    .page-header h1 {
+        font-size: 20px;
+    }
+    .btn {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
+@media (max-width: 768px) {
+    .card-body {
+        padding: 8px;
+        max-width: 100vw;
+    }
+    .form-actions {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+    .btn {
+        width: 100%;
+        padding: 10px 0;
+    }
+    .image-preview, .current-image {
+        max-width: 100vw;
+    }
+}
+@media (max-width: 480px) {
+    .page-header {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    .card-body {
+        padding: 2px;
+    }
+    .btn {
+        font-size: 11px;
+        padding: 8px 0;
+    }
+}
 </style>
 
 <script>

@@ -3,11 +3,11 @@
 @section('content')
 <div class="page-header">
     <div>
-        <h1>Gallery Management</h1>
-        <p>Manage gallery images for the landing page</p>
+    <h1>Manajemen Galeri</h1>
+    <p>Kelola gambar galeri untuk halaman utama</p>
     </div>
     <a href="{{ route('admin.gallery.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Add New Image
+        <i class="fas fa-plus"></i> Tambah Gambar Baru
     </a>
 </div>
 
@@ -27,19 +27,18 @@
                             <img src="{{ $gallery->image_url }}" alt="{{ $gallery->title }}">
                         </div>
                         <div class="gallery-info">
-                            <h4>{{ $gallery->title ?? 'Untitled' }}</h4>
-                            <span class="order-badge">Order: {{ $gallery->order }}</span>
+                            <h4>{{ $gallery->title ?? 'Tanpa Judul' }}</h4>
                         </div>
                         <div class="gallery-actions">
                             <a href="{{ route('admin.gallery.edit', $gallery) }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <form action="{{ route('admin.gallery.destroy', $gallery) }}" method="POST" style="display: inline;" 
-                                  onsubmit="return confirm('Are you sure you want to delete this image?')">
+                            <form action="{{ route('admin.gallery.destroy', $gallery) }}" method="POST" style="display: inline;"
+                                  onsubmit="return confirm('Apakah Anda yakin ingin menghapus gambar ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="fas fa-trash"></i> Delete
+                                    <i class="fas fa-trash"></i> Hapus
                                 </button>
                             </form>
                         </div>
@@ -49,10 +48,10 @@
         @else
             <div class="empty-state">
                 <i class="fas fa-images"></i>
-                <h3>No Images Yet</h3>
-                <p>Start adding images to your gallery</p>
+                <h3>Belum Ada Gambar</h3>
+                <p>Mulai tambahkan gambar ke galeri Anda</p>
                 <a href="{{ route('admin.gallery.create') }}" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> Add First Image
+                    <i class="fas fa-plus"></i> Tambah Gambar Pertama
                 </a>
             </div>
         @endif
@@ -235,5 +234,61 @@
         color: var(--text-light);
         margin-bottom: 25px;
     }
+@media (max-width: 1200px) {
+    .card-body {
+        padding: 18px;
+    }
+    .gallery-grid {
+        gap: 14px;
+    }
+}
+@media (max-width: 992px) {
+    .page-header h1 {
+        font-size: 20px;
+    }
+    .gallery-info h4 {
+        font-size: 14px;
+    }
+    .btn {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
+@media (max-width: 768px) {
+    .card-body {
+        padding: 8px;
+    }
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .gallery-image {
+        height: 140px;
+    }
+    .btn {
+        width: 100%;
+        padding: 10px 0;
+    }
+    .empty-state {
+        padding: 30px 4px;
+    }
+}
+@media (max-width: 480px) {
+    .page-header {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    .card-body {
+        padding: 2px;
+    }
+    .gallery-image {
+        height: 90px;
+    }
+    .btn {
+        font-size: 11px;
+        padding: 8px 0;
+    }
+}
 </style>
 @endsection

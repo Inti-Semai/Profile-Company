@@ -2,147 +2,78 @@
 
 @section('content')
 <div class="dashboard-container">
-    <!-- Stats Cards -->
+    <!-- Kartu Statistik Admin -->
     <div class="stats-grid">
-        <!-- Customers Card -->
+        <!-- Produk Card -->
         <div class="stat-card">
             <div class="stat-icon customers">
-                <i class="fas fa-users"></i>
-            </div>
-            <div class="stat-content">
-                <h3>Customers</h3>
-                <div class="stat-value">3,782</div>
-                <div class="stat-change positive">
-                    <i class="fas fa-arrow-up"></i>
-                    <span>11.01%</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Orders Card -->
-        <div class="stat-card">
-            <div class="stat-icon orders">
                 <i class="fas fa-box"></i>
             </div>
             <div class="stat-content">
-                <h3>Orders</h3>
-                <div class="stat-value">5,359</div>
-                <div class="stat-change negative">
-                    <i class="fas fa-arrow-down"></i>
-                    <span>9.05%</span>
-                </div>
+                <h3>Total Produk</h3>
+                <div class="stat-value">{{ $totalProducts ?? 0 }}</div>
             </div>
         </div>
-
-        <!-- Revenue Card -->
+        <!-- Galeri Card -->
+        <div class="stat-card">
+            <div class="stat-icon orders">
+                <i class="fas fa-images"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Total Galeri</h3>
+                <div class="stat-value">{{ $totalGalleries ?? 0 }}</div>
+            </div>
+        </div>
+        <!-- Info Perusahaan Card -->
         <div class="stat-card">
             <div class="stat-icon revenue">
-                <i class="fas fa-dollar-sign"></i>
+                <i class="fas fa-building"></i>
             </div>
             <div class="stat-content">
-                <h3>Revenue</h3>
-                <div class="stat-value">$45,289</div>
-                <div class="stat-change positive">
-                    <i class="fas fa-arrow-up"></i>
-                    <span>18.47%</span>
-                </div>
+                <h3>Info Perusahaan</h3>
+                <div class="stat-value">{{ $totalCompanyInfo ?? 0 }}</div>
             </div>
         </div>
-
-        <!-- Growth Card -->
+        <!-- Admin/User Card -->
         <div class="stat-card">
             <div class="stat-icon growth">
-                <i class="fas fa-chart-line"></i>
+                <i class="fas fa-user-shield"></i>
             </div>
             <div class="stat-content">
-                <h3>Growth</h3>
-                <div class="stat-value">+24.5%</div>
-                <div class="stat-change positive">
-                    <i class="fas fa-arrow-up"></i>
-                    <span>12.33%</span>
-                </div>
+                <h3>Total Admin</h3>
+                <div class="stat-value">{{ $totalAdmins ?? 0 }}</div>
             </div>
         </div>
     </div>
 
     <!-- Charts Row -->
     <div class="charts-row">
-        <!-- Monthly Sales Chart -->
+        <!-- Bar Chart Produk & Galeri -->
         <div class="chart-card large">
             <div class="card-header">
-                <h3>Monthly Sales</h3>
-                <button class="menu-btn">
-                    <i class="fas fa-ellipsis-h"></i>
-                </button>
+                <h3>Statistik Produk & Galeri per Bulan</h3>
             </div>
             <div class="chart-container">
-                <canvas id="monthlySalesChart"></canvas>
+                <canvas id="produkGaleriChart"></canvas>
             </div>
         </div>
-
-        <!-- Monthly Target -->
+        <!-- Pie Chart Komposisi Produk -->
         <div class="chart-card small">
             <div class="card-header">
-                <h3>Monthly Target</h3>
-                <button class="menu-btn">
-                    <i class="fas fa-ellipsis-h"></i>
-                </button>
+                <h3>Komposisi Produk</h3>
             </div>
-            <div class="target-container">
-                <div class="target-text">Target you've set for each month</div>
-                <div class="progress-circle">
-                    <svg width="200" height="200" viewBox="0 0 200 200">
-                        <circle cx="100" cy="100" r="85" fill="none" stroke="#E5E7EB" stroke-width="15"/>
-                        <circle cx="100" cy="100" r="85" fill="none" stroke="url(#gradient)" stroke-width="15" 
-                                stroke-dasharray="534" stroke-dashoffset="133" stroke-linecap="round" 
-                                transform="rotate(-90 100 100)"/>
-                        <defs>
-                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#FF6B1E;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#FB8B23;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <div class="progress-value">
-                        <div class="percentage">75.55%</div>
-                        <div class="growth">+10%</div>
-                    </div>
-                </div>
-                <div class="earnings-text">You earn $3287 today, it's higher than last month. Keep up your good work!</div>
-                
-                <div class="target-stats">
-                    <div class="target-stat">
-                        <div class="stat-label">Target</div>
-                        <div class="stat-amount red">$20K <i class="fas fa-arrow-down"></i></div>
-                    </div>
-                    <div class="target-stat">
-                        <div class="stat-label">Revenue</div>
-                        <div class="stat-amount green">$20K <i class="fas fa-arrow-up"></i></div>
-                    </div>
-                    <div class="target-stat">
-                        <div class="stat-label">Today</div>
-                        <div class="stat-amount green">$20K <i class="fas fa-arrow-up"></i></div>
-                    </div>
-                </div>
+            <div class="chart-container">
+                <canvas id="pieProdukChart"></canvas>
             </div>
         </div>
     </div>
 
-    <!-- Statistics Chart -->
+    <!-- Statistik Lainnya -->
     <div class="statistics-card">
         <div class="card-header">
             <div>
-                <h3>Statistics</h3>
-                <p class="card-subtitle">Target you've set for each month</p>
-            </div>
-            <div class="stats-tabs">
-                <button class="tab-btn active">Overview</button>
-                <button class="tab-btn">Sales</button>
-                <button class="tab-btn">Revenue</button>
-            </div>
-            <div class="date-range">
-                <i class="fas fa-calendar"></i>
-                <span>Sep 30, 2025 - Oct 6, 2025</span>
+                <h3>Statistik Lainnya</h3>
+                <p class="card-subtitle">Data terkait aktivitas admin</p>
             </div>
         </div>
         <div class="chart-container">
@@ -427,14 +358,88 @@
     }
 
     @media (max-width: 1024px) {
+        .dashboard-container {
+            padding: 0 8px;
+        }
         .charts-row {
             grid-template-columns: 1fr;
         }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
+        .dashboard-container {
+            padding: 0 4px;
+        }
         .stats-grid {
             grid-template-columns: 1fr;
+            gap: 14px;
+        }
+        .stat-card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 16px;
+        }
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            font-size: 18px;
+        }
+        .stat-content h3 {
+            font-size: 13px;
+        }
+        .stat-value {
+            font-size: 22px;
+        }
+        .charts-row {
+            gap: 14px;
+        }
+        .chart-card {
+            padding: 14px;
+        }
+        .card-header {
+            margin-bottom: 12px;
+        }
+        .card-header h3 {
+            font-size: 15px;
+        }
+        .chart-container {
+            height: 220px;
+        }
+        .statistics-card {
+            padding: 14px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .dashboard-container {
+            padding: 0 2px;
+        }
+        .stat-card {
+            padding: 10px;
+        }
+        .stat-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 15px;
+        }
+        .stat-content h3 {
+            font-size: 12px;
+        }
+        .stat-value {
+            font-size: 16px;
+        }
+        .chart-card {
+            padding: 8px;
+        }
+        .card-header h3 {
+            font-size: 13px;
+        }
+        .chart-container {
+            height: 140px;
+        }
+        .statistics-card {
+            padding: 8px;
         }
     }
 </style>
@@ -443,26 +448,35 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Monthly Sales Chart
-    const monthlySalesCtx = document.getElementById('monthlySalesChart').getContext('2d');
-    new Chart(monthlySalesCtx, {
+    // Bar Chart Produk & Galeri per Bulan
+    const produkGaleriCtx = document.getElementById('produkGaleriChart').getContext('2d');
+    new Chart(produkGaleriCtx, {
         type: 'bar',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [{
-                label: 'Sales',
-                data: [150, 380, 210, 310, 180, 280, 320, 120, 280, 370, 300, 180],
-                backgroundColor: '#3B5B18',
-                borderRadius: 8,
-                barThickness: 30
-            }]
+            labels: {!! json_encode($months ?? ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"]) !!},
+            datasets: [
+                {
+                    label: 'Produk',
+                    data: {!! json_encode($produkPerBulan ?? [0,0,0,0,0,0,0,0,0,0,0,0]) !!},
+                    backgroundColor: '#3B5B18',
+                    borderRadius: 8,
+                    barThickness: 24
+                },
+                {
+                    label: 'Galeri',
+                    data: {!! json_encode($galeriPerBulan ?? [0,0,0,0,0,0,0,0,0,0,0,0]) !!},
+                    backgroundColor: '#FB8B23',
+                    borderRadius: 8,
+                    barThickness: 24
+                }
+            ]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    display: false
+                    display: true
                 }
             },
             scales: {
@@ -481,25 +495,42 @@
         }
     });
 
-    // Statistics Chart
+    // Pie Chart Komposisi Produk
+    const pieProdukCtx = document.getElementById('pieProdukChart').getContext('2d');
+    new Chart(pieProdukCtx, {
+        type: 'pie',
+        data: {
+            labels: {!! json_encode($pieLabels ?? ["Aktif", "Tidak Aktif"]) !!},
+            datasets: [{
+                data: {!! json_encode($pieData ?? [0,0]) !!},
+                backgroundColor: [
+                    '#3B5B18',
+                    '#A6B37D'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+
+    // Statistik Lainnya (dummy)
     const statisticsCtx = document.getElementById('statisticsChart').getContext('2d');
     new Chart(statisticsCtx, {
         type: 'line',
         data: {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
             datasets: [{
-                label: 'This Week',
-                data: [120, 180, 150, 200, 170, 250, 220],
+                label: 'Aktivitas Admin',
+                data: [12, 18, 15, 20, 17, 25, 22],
                 borderColor: '#3B5B18',
                 backgroundColor: 'rgba(59, 91, 24, 0.1)',
-                fill: true,
-                tension: 0.4,
-                borderWidth: 3
-            }, {
-                label: 'Last Week',
-                data: [100, 150, 130, 180, 140, 200, 180],
-                borderColor: '#A6B37D',
-                backgroundColor: 'rgba(166, 179, 125, 0.1)',
                 fill: true,
                 tension: 0.4,
                 borderWidth: 3

@@ -57,4 +57,8 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
 
     // Product Management
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
+
+    // Profile
+    Route::get('/profile', [\App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
 });

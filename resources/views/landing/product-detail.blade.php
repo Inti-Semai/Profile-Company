@@ -599,19 +599,21 @@
         /* Marketplace Section */
         .marketplace-section {
             margin: 40px auto 0;
-            text-align: center;
+            text-align: left;
         }
 
         .marketplace-section > div:first-child {
             font-size: 20px;
             font-weight: 600;
-            margin-bottom: 18px;
+            margin-bottom: 22px;
             padding-left: 0;
+            text-align: left;
+            margin-left: 180px;
         }
 
         .marketplace-buttons {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 32px;
             flex-wrap: wrap;
             margin-bottom: 48px;
@@ -1454,11 +1456,9 @@
             </div>
             <div class="product-specifications">
                 <h2 class="spec-title">Spesifikasi</h2>
-                <ul>
-                    @foreach(explode('\n', $specifications) as $spec)
-                        <li>{{ $spec }}</li>
-                    @endforeach
-                </ul>
+                <div class="specification-content" style="white-space: pre-line;">
+                    {!! nl2br(e($specifications)) !!}
+                </div>
             </div>
         </div>
 

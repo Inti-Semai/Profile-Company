@@ -1,12 +1,13 @@
-<aside class="sidebar" id="sidebar">
+<div id="sidebar-overlay" style="display:none;position:fixed;z-index:1999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.25);transition:opacity 0.3s;"></div>
+<aside class="sidebar" id="sidebar" tabindex="-1" aria-label="Sidebar Navigation">
     <div class="sidebar-header">
         <div class="logo">
             <div class="logo-icon">
                 <i class="fas fa-layer-group"></i>
             </div>
-            <span class="logo-text">Admin Panel</span>
+            <span class="logo-text">Panel Admin</span>
         </div>
-        <button class="toggle-btn" onclick="toggleSidebar()">
+        <button class="toggle-btn" onclick="toggleSidebar()" style="z-index:2100;position:relative;display:inline-flex;align-items:center;justify-content:center;">
             <i class="fas fa-bars"></i>
         </button>
         <button class="expand-btn" onclick="toggleSidebar()" title="Expand Sidebar">
@@ -20,49 +21,57 @@
 
             <!-- Dashboard -->
             <div class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <a href="{{ route('admin.dashboard') }}" class="menu-link" data-title="Dashboard">
+                <a href="{{ route('admin.dashboard') }}" class="menu-link" data-title="Dasbor">
                     <i class="fas fa-th-large"></i>
                     <span class="menu-text">Dashboard</span>
                 </a>
             </div>
 
-            <!-- Company Settings -->
+            <!-- Pengaturan Perusahaan -->
             <div class="menu-item {{ request()->routeIs('admin.company-settings.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.company-settings.edit') }}" class="menu-link" data-title="Company Settings">
+                <a href="{{ route('admin.company-settings.edit') }}" class="menu-link" data-title="Pengaturan Perusahaan">
                     <i class="fas fa-building"></i>
-                    <span class="menu-text">Company Settings</span>
+                    <span class="menu-text">Pengaturan Perusahaan</span>
                 </a>
             </div>
 
-            <!-- Gallery Management -->
+            <!-- Galeri -->
             <div class="menu-item {{ request()->routeIs('admin.gallery.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.gallery.index') }}" class="menu-link" data-title="Gallery">
+                <a href="{{ route('admin.gallery.index') }}" class="menu-link" data-title="Galeri">
                     <i class="fas fa-images"></i>
-                    <span class="menu-text">Gallery</span>
+                    <span class="menu-text">Galeri</span>
                 </a>
             </div>
 
-            <!-- About Us Management -->
+            <!-- Tentang Kami -->
             <div class="menu-item {{ request()->routeIs('admin.about-us.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.about-us.edit') }}" class="menu-link" data-title="About Us">
+                <a href="{{ route('admin.about-us.edit') }}" class="menu-link" data-title="Tentang Kami">
                     <i class="fas fa-info-circle"></i>
-                    <span class="menu-text">About Us</span>
+                    <span class="menu-text">Tentang Kami</span>
                 </a>
             </div>
 
-             <!-- Product Landing -->
+            <!-- Landing Produk -->
             <div class="menu-item {{ request()->routeIs('admin.product-landing.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.product-landing.edit') }}" class="menu-link" data-title="Product Landing">
+                <a href="{{ route('admin.product-landing.edit') }}" class="menu-link" data-title="Landing Produk">
                     <i class="fas fa-rocket"></i>
-                    <span class="menu-text">Product Landing</span>
+                    <span class="menu-text">Landing Produk</span>
                 </a>
             </div>
 
-            <!-- Produk Management -->
+            <!-- Produk -->
             <div class="menu-item {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
                 <a href="{{ route('admin.products.index') }}" class="menu-link" data-title="Produk">
                     <i class="fas fa-box"></i>
                     <span class="menu-text">Produk</span>
+                </a>
+            </div>
+
+            <!-- Profil Saya -->
+            <div class="menu-item {{ request()->routeIs('admin.profile.edit') ? 'active' : '' }}">
+                <a href="{{ route('admin.profile.edit') }}" class="menu-link" data-title="Profil Saya">
+                    <i class="fas fa-user"></i>
+                    <span class="menu-text">Profil Saya</span>
                 </a>
             </div>
         </div>
@@ -70,6 +79,83 @@
 </aside>
 
 <style>
+    /* Compact sidebar for all screens */
+    .sidebar {
+        min-width: 64px;
+        width: 220px;
+        max-width: 90vw;
+        background: #fff;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 2000;
+        transition: all 0.3s;
+    }
+    .sidebar-content {
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+        display: block;
+    }
+    .sidebar.mobile-open .sidebar-content {
+        display: block !important;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+    @media (max-width: 1024px) {
+        .sidebar {
+            width: 180px;
+        }
+    }
+    @media (max-width: 768px) {
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 80vw;
+            min-width: 0;
+            max-width: 320px;
+            height: 100vh;
+            z-index: 2000;
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+            box-shadow: 2px 0 16px rgba(0,0,0,0.12);
+        }
+        .sidebar.mobile-open {
+            transform: translateX(0);
+        }
+        .sidebar-header {
+            padding: 14px 8px;
+        }
+        .sidebar-content {
+            padding: 8px 0;
+        }
+        .menu-link {
+            padding: 10px 10px;
+            font-size: 13px;
+        }
+        .logo-text {
+            font-size: 15px;
+        }
+        .toggle-btn {
+            display: inline-flex !important;
+        }
+    }
+    @media (max-width: 480px) {
+        .sidebar {
+            width: 100vw;
+            max-width: 100vw;
+        }
+        .sidebar-header {
+            padding: 10px 4px;
+        }
+        .menu-link {
+            padding: 8px 6px;
+            font-size: 12px;
+        }
+        .logo-text {
+            font-size: 13px;
+        }
+    }
     .sidebar {
         position: fixed;
         left: 0;
@@ -380,13 +466,118 @@
         color: #3B5B18;
     }
 
-    @media (max-width: 768px) {
-        .sidebar {
-            transform: translateX(-100%);
-        }
 
-        .sidebar.mobile-open {
-            transform: translateX(0);
+</style>
+<script>
+// Sidebar mobile toggle logic with overlay and compact mode
+function toggleSidebar(forceClose = false) {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    if (window.innerWidth <= 768) {
+        if (forceClose) {
+            sidebar.classList.remove('mobile-open');
+            overlay.style.display = 'none';
+        } else {
+            const isOpen = sidebar.classList.toggle('mobile-open');
+            overlay.style.display = isOpen ? 'block' : 'none';
         }
+    } else {
+        sidebar.classList.toggle('collapsed');
     }
+}
+
+// Ensure sidebar is always compact and functional
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const links = sidebar.querySelectorAll('.menu-link');
+    links.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('mobile-open');
+                overlay.style.display = 'none';
+            }
+        });
+    });
+    // Overlay click closes sidebar
+    overlay.addEventListener('click', function() {
+        toggleSidebar(true);
+    });
+    // On resize, always hide overlay if not mobile
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            overlay.style.display = 'none';
+            sidebar.classList.remove('mobile-open');
+        }
+    });
+    // Always show hamburger on mobile
+    const toggleBtn = document.querySelector('.toggle-btn');
+    if (toggleBtn) {
+        toggleBtn.style.display = 'inline-flex';
+    }
+});
+</script>
+
+<style>
+/* Responsive improvements for sidebar */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 220px;
+    }
+}
+@media (max-width: 992px) {
+    .sidebar {
+        width: 180px;
+    }
+    .logo-text, .menu-text {
+        font-size: 13px;
+    }
+}
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 80vw;
+        min-width: 0;
+        max-width: 320px;
+        height: 100vh;
+        z-index: 2000;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+        box-shadow: 2px 0 16px rgba(0,0,0,0.12);
+    }
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+    .sidebar-header {
+        padding: 16px 10px;
+    }
+    .sidebar-content {
+        padding: 10px 0;
+    }
+    .menu-link {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    .logo-text {
+        font-size: 15px;
+    }
+}
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100vw;
+        max-width: 100vw;
+    }
+    .sidebar-header {
+        padding: 12px 6px;
+    }
+    .menu-link {
+        padding: 9px 8px;
+        font-size: 12px;
+    }
+    .logo-text {
+        font-size: 13px;
+    }
+}
 </style>

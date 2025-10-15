@@ -10,7 +10,7 @@
     }
 
     .page-header {
-        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+        background: linear-gradient(135deg, var(--dark-green) 0%, var(--dark-green) 100%);
         color: white;
         padding: 30px;
         border-radius: 15px;
@@ -28,38 +28,6 @@
         margin: 0;
         opacity: 0.9;
         font-size: 16px;
-    }
-
-    .info-banner {
-        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
-        opacity: 0.15;
-        border-left: 4px solid var(--primary-green);
-        padding: 20px 25px;
-        border-radius: 10px;
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .info-banner i {
-        font-size: 24px;
-        color: var(--primary-green);
-    }
-
-    .info-banner-content {
-        flex: 1;
-    }
-
-    .info-banner-content strong {
-        color: var(--primary-green);
-        font-size: 16px;
-    }
-
-    .info-banner a {
-        color: var(--primary-green);
-        text-decoration: underline;
-        font-weight: 600;
     }
 
     .section-card {
@@ -245,22 +213,86 @@
         margin-bottom: 25px;
     }
 
-    @media (max-width: 768px) {
-        .image-grid {
-            grid-template-columns: 1fr;
-        }
+</style>
 
-        .page-header h1 {
-            font-size: 24px;
-        }
+<style>
+/* Responsive improvements for About Us admin page */
+@media (max-width: 1200px) {
+    .about-us-form {
+        max-width: 98vw;
+        padding: 0 10px;
     }
+    .section-card {
+        padding: 18px;
+    }
+}
+@media (max-width: 992px) {
+    .about-us-form {
+        max-width: 100vw;
+        padding: 0 2vw;
+    }
+    .section-card {
+        padding: 12px;
+    }
+    .page-header {
+        padding: 18px;
+    }
+    .form-group label {
+        font-size: 13px;
+    }
+}
+@media (max-width: 768px) {
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+    .about-us-form {
+        padding: 0 1vw;
+    }
+    .page-header h1 {
+        font-size: 20px;
+    }
+    .section-header h3 {
+        font-size: 16px;
+    }
+    .form-group label {
+        font-size: 12px;
+    }
+    .form-control {
+        font-size: 12px;
+        padding: 9px 10px;
+    }
+    .btn {
+        font-size: 12px;
+        padding: 9px 18px;
+    }
+}
+@media (max-width: 480px) {
+    .about-us-form {
+        padding: 0 2px;
+    }
+    .page-header {
+        padding: 10px 2px;
+    }
+    .section-card {
+        padding: 6px;
+    }
+    .form-actions {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+    .btn {
+        width: 100%;
+        padding: 10px 0;
+    }
+}
 </style>
 
 <div class="about-us-form">
     <!-- Page Header -->
     <div class="page-header">
-        <h1><i class="fas fa-info-circle"></i> About Us Content Management</h1>
-        <p>Customize the content and images displayed on your About Us page</p>
+    <h1><i class="fas fa-info-circle"></i> Manajemen Konten Tentang Kami</h1>
+    <p>Atur konten dan gambar yang ditampilkan pada halaman Tentang Kami</p>
     </div>
 
     @if(session('success'))
@@ -273,24 +305,15 @@
         @csrf
         @method('PUT')
 
-        <!-- Info Banner -->
-        <div class="info-banner">
-            <i class="fas fa-lightbulb"></i>
-            <div class="info-banner-content">
-                <strong>Important Note:</strong><br>
-                Hero background image and footer settings are managed in <a href="{{ route('admin.company-settings.edit') }}">Company Settings</a>. Here you can customize the hero text, content card, and gallery images.
-            </div>
-        </div>
-
         <!-- Hero Text Section -->
         <div class="section-card">
             <div class="section-header">
                 <i class="fas fa-heading"></i>
-                <h3>Hero Section Text</h3>
+                <h3>Bagian Teks Hero</h3>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="hero_text"><i class="fas fa-font"></i> Hero Title Text (Indonesia)</label>
+                    <label for="hero_text"><i class="fas fa-font"></i> Teks Judul Hero (Indonesia)</label>
                     <input type="text" name="hero_text" id="hero_text" class="form-control @error('hero_text') is-invalid @enderror" value="{{ old('hero_text', $aboutUs->hero_text) }}" placeholder="Tentang Kami">
                     <small class="form-hint">Teks hero dalam bahasa Indonesia</small>
                     @error('hero_text')
@@ -298,9 +321,9 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="hero_title_text_en"><i class="fas fa-font"></i> Hero Title Text (English)</label>
+                    <label for="hero_title_text_en"><i class="fas fa-font"></i> Teks Judul Hero (English)</label>
                     <input type="text" name="hero_title_text_en" id="hero_title_text_en" class="form-control @error('hero_title_text_en') is-invalid @enderror" value="{{ old('hero_title_text_en', $aboutUs->hero_title_text_en) }}" placeholder="About Us">
-                    <small class="form-hint">Hero text in English</small>
+                    <small class="form-hint">Teks hero dalam bahasa Inggris</small>
                     @error('hero_title_text_en')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -312,11 +335,11 @@
         <div class="section-card">
             <div class="section-header">
                 <i class="fas fa-file-alt"></i>
-                <h3>Content Card</h3>
+                <h3>Bagian Tentang Kami</h3>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="main_title"><i class="fas fa-heading"></i> Main Title (Indonesia)</label>
+                    <label for="main_title"><i class="fas fa-heading"></i> Judul Utama (Indonesia)</label>
                     <input type="text" name="main_title" id="main_title" class="form-control @error('main_title') is-invalid @enderror" value="{{ old('main_title', $aboutUs->main_title) }}" placeholder="KENALI KAMI LEBIH DEKAT">
                     <small class="form-hint">Judul utama dalam bahasa Indonesia</small>
                     @error('main_title')
@@ -324,9 +347,9 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="main_title_en"><i class="fas fa-heading"></i> Main Title (English)</label>
+                    <label for="main_title_en"><i class="fas fa-heading"></i> Judul Utama (English)</label>
                     <input type="text" name="main_title_en" id="main_title_en" class="form-control @error('main_title_en') is-invalid @enderror" value="{{ old('main_title_en', $aboutUs->main_title_en) }}" placeholder="GET TO KNOW US BETTER">
-                    <small class="form-hint">Main title in English</small>
+                    <small class="form-hint">Judul utama dalam bahasa Inggris</small>
                     @error('main_title_en')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -334,7 +357,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="intro_text"><i class="fas fa-align-left"></i> Introduction Text (Indonesia)</label>
+                    <label for="intro_text"><i class="fas fa-align-left"></i> Teks Pengantar (Indonesia)</label>
                     <textarea name="intro_text" id="intro_text" rows="8" class="form-control @error('intro_text') is-invalid @enderror" placeholder="Ceritakan tentang perusahaan Anda...">{{ old('intro_text', $aboutUs->intro_text) }}</textarea>
                     <small class="form-hint">Pengenalan atau deskripsi lengkap dalam bahasa Indonesia</small>
                     @error('intro_text')
@@ -342,9 +365,9 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="intro_text_en"><i class="fas fa-align-left"></i> Introduction Text (English)</label>
+                    <label for="intro_text_en"><i class="fas fa-align-left"></i> Teks Pengantar (English)</label>
                     <textarea name="intro_text_en" id="intro_text_en" rows="8" class="form-control @error('intro_text_en') is-invalid @enderror" placeholder="Tell about your company...">{{ old('intro_text_en', $aboutUs->intro_text_en) }}</textarea>
-                    <small class="form-hint">Introduction or full description in English</small>
+                    <small class="form-hint">Pengenalan atau deskripsi lengkap dalam bahasa Inggris</small>
                     @error('intro_text_en')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -356,14 +379,14 @@
         <div class="section-card">
             <div class="section-header">
                 <i class="fas fa-images"></i>
-                <h3>Gallery Images</h3>
+                <h3>Gambar Galeri</h3>
             </div>
 
             <div class="image-grid">
                 <!-- Image 1 -->
                 <div class="image-upload-box">
                     <label for="image_1">
-                        <i class="fas fa-image"></i> Image 1
+                        <i class="fas fa-image"></i> Gambar 1
                     </label>
                     @if($aboutUs->image_1)
                         <div class="image-preview">
@@ -376,7 +399,7 @@
                                id="image_1"
                                class="form-control @error('image_1') is-invalid @enderror"
                                accept="image/*">
-                        <small class="form-hint">Recommended: 600x400px, Max 10MB</small>
+                        <small class="form-hint">Rekomendasi: 600x400px, Maks 10MB</small>
                         @error('image_1')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -386,7 +409,7 @@
                 <!-- Image 2 -->
                 <div class="image-upload-box">
                     <label for="image_2">
-                        <i class="fas fa-image"></i> Image 2
+                        <i class="fas fa-image"></i> Gambar 2
                     </label>
                     @if($aboutUs->image_2)
                         <div class="image-preview">
@@ -399,7 +422,7 @@
                                id="image_2"
                                class="form-control @error('image_2') is-invalid @enderror"
                                accept="image/*">
-                        <small class="form-hint">Recommended: 600x400px, Max 10MB</small>
+                        <small class="form-hint">Rekomendasi: 600x400px, Maks 10MB</small>
                         @error('image_2')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -409,7 +432,7 @@
                 <!-- Image 3 -->
                 <div class="image-upload-box">
                     <label for="image_3">
-                        <i class="fas fa-image"></i> Image 3
+                        <i class="fas fa-image"></i> Gambar 3
                     </label>
                     @if($aboutUs->image_3)
                         <div class="image-preview">
@@ -422,7 +445,7 @@
                                id="image_3"
                                class="form-control @error('image_3') is-invalid @enderror"
                                accept="image/*">
-                        <small class="form-hint">Recommended: 600x400px, Max 10MB</small>
+                        <small class="form-hint">Rekomendasi: 600x400px, Maks 10MB</small>
                         @error('image_3')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -432,7 +455,7 @@
                 <!-- Image 4 -->
                 <div class="image-upload-box">
                     <label for="image_4">
-                        <i class="fas fa-image"></i> Image 4
+                        <i class="fas fa-image"></i> Gambar 4
                     </label>
                     @if($aboutUs->image_4)
                         <div class="image-preview">
@@ -445,7 +468,7 @@
                                id="image_4"
                                class="form-control @error('image_4') is-invalid @enderror"
                                accept="image/*">
-                        <small class="form-hint">Recommended: 600x400px, Max 10MB</small>
+                        <small class="form-hint">Rekomendasi: 600x400px, Maks 10MB</small>
                         @error('image_4')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -457,10 +480,10 @@
         <!-- Form Actions -->
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save"></i> Update About Us
+                <i class="fas fa-save"></i> Perbarui Tentang Kami
             </button>
             <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Back to Dashboard
+                <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
             </a>
         </div>
     </form>

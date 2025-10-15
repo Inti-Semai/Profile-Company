@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
         $setting = CompanySetting::first();
         $product = Product::findOrFail($id);
-        $specifications = $product->specification; // Mengambil spesifikasi dari database
+        $specifications = $product->specification;
         $landing = \App\Models\ProductLanding::first();
         return view('landing.product-detail', compact('setting', 'product', 'specifications', 'landing'));
     }
@@ -34,9 +34,10 @@ class ProductController extends Controller
 
     public function showEnglish($id)
     {
-        $setting = CompanySetting::first();
-        $product = Product::findOrFail($id);
-        $landing = \App\Models\ProductLanding::first();
-        return view('landing.en.product-detail', compact('setting', 'product', 'landing'));
+    $setting = CompanySetting::first();
+    $product = Product::findOrFail($id);
+    $landing = \App\Models\ProductLanding::first();
+    $specifications_en = $product->specifications_en ?? '';
+    return view('landing.en.product_detailen', compact('setting', 'product', 'landing', 'specifications_en'));
     }
 }

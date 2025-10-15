@@ -7,7 +7,7 @@
         border-radius: 18px;
         box-shadow: 0 2px 16px rgba(49,70,11,0.08);
         border: 2.5px solid #31460B;
-        max-width: 520px;
+        max-width: 1100px;
         margin: 40px auto 0 auto;
         padding: 36px 32px 32px 32px;
     }
@@ -64,6 +64,38 @@
         text-align: center;
         font-weight: 600;
     }
+    @media (max-width: 992px) {
+        .product-landing-card {
+            padding: 18px 6vw;
+        }
+        .product-landing-card h2 {
+            font-size: 1.2rem;
+        }
+        .product-landing-label {
+            font-size: 0.98rem;
+        }
+        .product-landing-input {
+            font-size: 0.98rem;
+            padding: 10px 10px;
+        }
+        .product-landing-btn {
+            font-size: 1rem;
+            padding: 10px 18px;
+        }
+        form > div[style*="grid-template-columns"] {
+            grid-template-columns: 1fr !important;
+            gap: 18px !important;
+        }
+    }
+    @media (max-width: 600px) {
+        .product-landing-card {
+            padding: 8px 2vw;
+        }
+        .product-landing-btn {
+            width: 100%;
+            padding: 10px 0;
+        }
+    }
 </style>
 <div class="product-landing-card" style="max-width:1100px;">
     <h2>Edit Product Landing</h2>
@@ -76,14 +108,14 @@
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
             <div>
                 <div class="mb-3">
-                    <label for="hero_subtitle_top" class="product-landing-label">Hero Subtitle Top (ID)</label>
+                    <label for="hero_subtitle_top" class="product-landing-label">Text Hero (ID)</label>
                     <input type="text" class="product-landing-input @error('hero_subtitle_top') is-invalid @enderror" id="hero_subtitle_top" name="hero_subtitle_top" value="{{ old('hero_subtitle_top', $landing->hero_subtitle_top ?? '') }}">
                     @error('hero_subtitle_top')
                         <div class="invalid-feedback" style="color:#b94a48;">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="hero_subtitle_bottom" class="product-landing-label">Hero Subtitle Bottom (ID)</label>
+                    <label for="hero_subtitle_bottom" class="product-landing-label">Sub Judul (ID)</label>
                     <input type="text" class="product-landing-input @error('hero_subtitle_bottom') is-invalid @enderror" id="hero_subtitle_bottom" name="hero_subtitle_bottom" value="{{ old('hero_subtitle_bottom', $landing->hero_subtitle_bottom ?? '') }}">
                     @error('hero_subtitle_bottom')
                         <div class="invalid-feedback" style="color:#b94a48;">{{ $message }}</div>
@@ -92,14 +124,14 @@
             </div>
             <div>
                 <div class="mb-3">
-                    <label for="hero_subtitle_top_en" class="product-landing-label">Hero Subtitle Top (EN)</label>
+                    <label for="hero_subtitle_top_en" class="product-landing-label">Text Hero (EN)</label>
                     <input type="text" class="product-landing-input @error('hero_subtitle_top_en') is-invalid @enderror" id="hero_subtitle_top_en" name="hero_subtitle_top_en" value="{{ old('hero_subtitle_top_en', $landing->hero_subtitle_top_en ?? '') }}">
                     @error('hero_subtitle_top_en')
                         <div class="invalid-feedback" style="color:#b94a48;">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="hero_subtitle_bottom_en" class="product-landing-label">Hero Subtitle Bottom (EN)</label>
+                    <label for="hero_subtitle_bottom_en" class="product-landing-label">Sub Judul(EN)</label>
                     <input type="text" class="product-landing-input @error('hero_subtitle_bottom_en') is-invalid @enderror" id="hero_subtitle_bottom_en" name="hero_subtitle_bottom_en" value="{{ old('hero_subtitle_bottom_en', $landing->hero_subtitle_bottom_en ?? '') }}">
                     @error('hero_subtitle_bottom_en')
                         <div class="invalid-feedback" style="color:#b94a48;">{{ $message }}</div>
@@ -107,7 +139,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="product-landing-btn" style="margin-left:auto; margin-right:auto; display:block;">Simpan</button>
+    <button type="submit" class="product-landing-btn" style="margin-left:auto; margin-right:auto; display:block;">Simpan</button>
     </form>
 </div>
 @endsection
