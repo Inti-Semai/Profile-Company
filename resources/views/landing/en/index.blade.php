@@ -278,11 +278,15 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
             opacity: 0;
+            /* don't capture pointer events when invisible/closed */
+            pointer-events: none;
             transition: opacity 0.3s ease;
         }
 
         .mobile-menu-overlay.active {
             opacity: 1;
+            /* overlay receives clicks only when active */
+            pointer-events: auto;
         }
 
         /* Hero Section */
@@ -1477,6 +1481,114 @@
                 height: 200px;
             }
         }
+
+        /* Tweak mobile sidebar so it fits narrow screens (<=475, 375, 320) and match ID index behavior */
+        @media (max-width: 475px) {
+            .search-box,
+            .search-input,
+            .search-btn,
+            .nav-right .search-box,
+            .nav-right .search-input,
+            .nav-right .search-btn {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+
+            .language-selector {
+                display: inline-flex !important;
+                position: absolute !important;
+                right: 60px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 1250 !important;
+                font-weight: 700 !important;
+                color: var(--text-dark) !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                position: absolute !important;
+                right: 12px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 2000 !important;
+            }
+
+            .hamburger span {
+                background: var(--text-dark) !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .navbar-container {
+                gap: 10px;
+            }
+
+            .logo {
+                font-size: 11px;
+            }
+
+            /* Tweak mobile sidebar so it fits narrow screens (370-375px) */
+            .nav-menu {
+                width: min(260px, 80vw) !important;
+                padding: 60px 18px 20px !important;
+            }
+
+            .nav-menu a {
+                font-size: 14px;
+                padding: 12px 0;
+            }
+
+            /* Force hamburger visible and positioned on the right for very small screens */
+            .hamburger {
+                display: flex !important;
+                padding: 6px;
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1102; /* above navbar and overlay */
+            }
+
+            /* ensure the hamburger icon bars are visible over background */
+            .hamburger span {
+                background: var(--text-dark);
+            }
+
+            /* hide only the search box on very small devices (370/375) */
+            .search-box {
+                display: none !important;
+            }
+
+            .hero-content h1,
+            .hero-content p {
+                font-size: 20px;
+            }
+
+            .vision-content h2,
+            .mission-content h2 {
+                font-size: 26px;
+            }
+
+            .gallery-item {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            /* tighten nav menu for very tiny screens */
+            .nav-menu {
+                width: min(240px, 82vw) !important;
+                padding: 60px 12px 18px !important;
+            }
+
+            .hamburger {
+                right: 10px !important;
+                padding: 4px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1679,28 +1791,54 @@
     @endif
 
     <script>
-        // Hamburger Menu Toggle
+        // Hamburger Menu Toggle - allow only hamburger or overlay to toggle the mobile menu
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
         const mobileOverlay = document.querySelector('.mobile-menu-overlay');
         const body = document.body;
 
-        function toggleMenu() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        function setMenuState(open) {
+            if (open) {
+                hamburger.classList.add('active');
+                navMenu.classList.add('active');
+                mobileOverlay.classList.add('active');
+                body.style.overflow = 'hidden';
+            } else {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                body.style.overflow = '';
+            }
         }
 
-        hamburger.addEventListener('click', toggleMenu);
-        mobileOverlay.addEventListener('click', toggleMenu);
+        // Toggle only when explicitly requested by hamburger (open/close) or overlay (close)
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            setMenuState(!navMenu.classList.contains('active'));
+        });
 
-        // Close menu when clicking nav links
+        mobileOverlay.addEventListener('click', function(e) {
+            // clicking the overlay should close the menu when open
+            if (navMenu.classList.contains('active')) {
+                setMenuState(false);
+            }
+        });
+
+        // Close menu when clicking nav links (only links inside the mobile nav)
         document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function(e) {
                 if (navMenu.classList.contains('active')) {
-                    toggleMenu();
+                    setMenuState(false);
                 }
+            });
+        });
+
+        // Prevent footer and social links from toggling or interacting with the overlay/menu
+        // (some devices/browsers may bubble clicks unexpectedly). We stop propagation on those links.
+        document.querySelectorAll('.footer a, .social-links a, .whatsapp-button, .map-container iframe').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // allow normal navigation but don't let this click bubble to parent handlers
+                e.stopPropagation();
             });
         });
 
@@ -1714,12 +1852,14 @@
             }
         });
 
+        // Active navbar based on scroll position
         const sections = document.querySelectorAll('[id]');
         const navLinks = document.querySelectorAll('.nav-link');
 
         window.addEventListener('scroll', function() {
             let current = 'home';
 
+            // Check if at bottom of page
             if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
                 current = 'contact-us';
             } else {
@@ -1744,6 +1884,7 @@
             });
         });
 
+        // Smooth scroll for links
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');

@@ -345,7 +345,11 @@
 
         .mobile-menu-overlay.active {
             opacity: 1;
+            pointer-events: auto;
         }
+
+        /* When hidden overlay shouldn't capture clicks */
+        .mobile-menu-overlay { pointer-events: none; }
 
         .spec-title {
             color: #000 !important;
@@ -354,7 +358,6 @@
             text-align: center;
         }
 
-        /* Footer Styles */
         .footer {
             background: var(--dark-green);
             color: white;
@@ -1176,6 +1179,26 @@
             }
         }
 
+        /* Extra small mobile and parity tweaks (match ID navbar at small widths) */
+        @media (max-width: 475px) {
+            .search-box { display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
+            .hamburger { display: flex !important; position: absolute !important; right: 12px !important; top: 50% !important; transform: translateY(-50%) !important; padding: 6px !important; z-index: 1102 !important; }
+            .language-selector { position: absolute !important; right: 60px !important; top: 50% !important; transform: translateY(-50%) !important; }
+        }
+
+        @media (max-width: 375px) {
+            .navbar-container { gap: 8px; }
+            .logo { font-size: 12px; }
+            .nav-menu a { font-size: 12px; }
+            .hamburger { margin-right: 6px !important; right: 12px !important; }
+            .nav-menu { width: min(260px, 80vw) !important; padding: 60px 18px 20px !important; }
+        }
+
+        @media (max-width: 320px) {
+            .hamburger span { width: 20px !important; height: 2px !important; }
+            .nav-menu { width: min(240px, 82vw) !important; padding: 60px 12px 18px !important; }
+        }
+
         @media (max-width: 320px) {
             .navbar {
                 padding: 8px 10px;
@@ -1375,6 +1398,59 @@
                 width: 24px;
                 height: 24px;
             }
+        }
+    </style>
+    <!-- Canonical small-breakpoint rules to match en/index.blade.php -->
+    <style>
+        @media (max-width: 475px) {
+            .search-box,
+            .search-input,
+            .search-btn,
+            .nav-right .search-box,
+            .nav-right .search-input,
+            .nav-right .search-btn {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+
+            .language-selector {
+                display: inline-flex !important;
+                position: absolute !important;
+                right: 60px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 1250 !important;
+                font-weight: 700 !important;
+                color: var(--text-dark) !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                position: absolute !important;
+                right: 12px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 2000 !important;
+            }
+
+            .hamburger span {
+                background: var(--text-dark) !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .navbar-container { gap: 10px; }
+            .logo { font-size: 11px; }
+            .nav-menu { width: min(260px, 80vw) !important; padding: 60px 18px 20px !important; }
+            .nav-menu a { font-size: 14px; padding: 12px 0; }
+            .hamburger { display: flex !important; padding: 6px !important; position: absolute !important; right: 12px !important; top: 50% !important; transform: translateY(-50%) !important; z-index: 1102 !important; }
+        }
+
+        @media (max-width: 320px) {
+            .nav-menu { width: min(240px, 82vw) !important; padding: 60px 12px 18px !important; }
+            .hamburger { right: 10px !important; padding: 4px !important; }
         }
     </style>
 </head>
@@ -1579,36 +1655,44 @@
                 },
             });
 
-            // Hamburger Menu Toggle
-            function toggleMenu() {
-                const hamburger = document.querySelector('.hamburger');
-                const navMenu = document.querySelector('.nav-menu');
-                const overlay = document.querySelector('.mobile-menu-overlay');
-                const body = document.body;
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const body = document.body;
 
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-                overlay.classList.toggle('active');
-                body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : '';
+            function setMenuState(open) {
+                if (!hamburger || !navMenu || !overlay) return;
+                hamburger.classList.toggle('active', open);
+                navMenu.classList.toggle('active', open);
+                overlay.classList.toggle('active', open);
+                body.style.overflow = open ? 'hidden' : '';
             }
 
-            // Event listeners for hamburger menu
-            document.querySelector('.hamburger').addEventListener('click', toggleMenu);
-            document.querySelector('.mobile-menu-overlay').addEventListener('click', toggleMenu);
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    setMenuState(!navMenu.classList.contains('active'));
+                });
+            }
 
-            // Close menu when clicking nav links
+            if (overlay) {
+                overlay.addEventListener('click', function() { setMenuState(false); });
+            }
+
             document.querySelectorAll('.nav-menu a').forEach(link => {
                 link.addEventListener('click', function() {
-                    const hamburger = document.querySelector('.hamburger');
-                    if (hamburger.classList.contains('active')) {
-                        toggleMenu();
-                    }
+                    if (window.innerWidth <= 1023) setMenuState(false);
                 });
+            });
+
+            // Prevent footer / social clicks from accidentally toggling the menu
+            document.querySelectorAll('.footer a, .social-links a, .whatsapp-button, .map-container iframe').forEach(el => {
+                el.addEventListener('click', function(ev) { ev.stopPropagation(); });
             });
 
             // Navbar scroll effect
             window.addEventListener('scroll', function() {
                 const navbar = document.querySelector('.navbar');
+                if (!navbar) return;
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {

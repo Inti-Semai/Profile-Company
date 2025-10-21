@@ -281,11 +281,15 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
             opacity: 0;
+            /* don't capture pointer events when invisible/closed */
+            pointer-events: none;
             transition: opacity 0.3s ease;
         }
 
         .mobile-menu-overlay.active {
             opacity: 1;
+            /* overlay receives clicks only when active */
+            pointer-events: auto;
         }
 
         /* Hero Section */
@@ -1442,6 +1446,66 @@
             }
         }
     </style>
+    <style>
+        @media (max-width: 375px) {
+            .navbar-container {
+                gap: 10px;
+            }
+
+            .nav-menu {
+                width: min(260px, 80vw) !important;
+                padding: 60px 18px 20px !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                padding: 6px;
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1102;
+            }
+
+            .search-box {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 475px) {
+            .search-box,
+            .search-input,
+            .search-btn,
+            .nav-right .search-box,
+            .nav-right .search-input,
+            .nav-right .search-btn {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+
+            .language-selector {
+                display: inline-flex !important;
+                position: absolute !important;
+                right: 60px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 1250 !important;
+                font-weight: 700 !important;
+                color: var(--text-dark) !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                position: absolute !important;
+                right: 12px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 2000 !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -1715,29 +1779,49 @@
     @endif
 
     <script>
-        // Hamburger Menu Toggle
+        // Hamburger Menu Toggle - guarded pattern
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
         const mobileOverlay = document.querySelector('.mobile-menu-overlay');
         const body = document.body;
 
-        function toggleMenu() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        function setMenuState(open) {
+            if (open) {
+                hamburger.classList.add('active');
+                navMenu.classList.add('active');
+                mobileOverlay.classList.add('active');
+                body.style.overflow = 'hidden';
+            } else {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                body.style.overflow = '';
+            }
         }
 
-        hamburger.addEventListener('click', toggleMenu);
-        mobileOverlay.addEventListener('click', toggleMenu);
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            setMenuState(!navMenu.classList.contains('active'));
+        });
+
+        mobileOverlay.addEventListener('click', function(e) {
+            if (navMenu.classList.contains('active')) {
+                setMenuState(false);
+            }
+        });
 
         // Close menu when clicking nav links
         document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 1023) {
-                    toggleMenu();
+            link.addEventListener('click', function(e) {
+                if (navMenu.classList.contains('active')) {
+                    setMenuState(false);
                 }
             });
+        });
+
+        // Prevent footer and social links from toggling or interacting with the overlay/menu
+        document.querySelectorAll('.footer a, .social-links a').forEach(link => {
+            link.addEventListener('click', function(e) { e.stopPropagation(); });
         });
 
         // Navbar scroll effect

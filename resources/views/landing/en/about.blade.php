@@ -145,7 +145,7 @@
             transition: color 0.3s;
             text-decoration: none;
         }
-        
+
         .navbar.scrolled .language-selector {
             color: var(--text-dark);
         }
@@ -253,11 +253,14 @@
             z-index: 999;
             opacity: 0;
             transition: opacity 0.3s ease;
+            /* allow overlay to block clicks when visible */
+            pointer-events: none;
         }
 
         .mobile-menu-overlay.active {
             display: block;
             opacity: 1;
+            pointer-events: auto;
         }
 
         /* Hero Section */
@@ -791,7 +794,7 @@
             }
         }
 
-        /* Tablet Portrait (768px - 1023px) */
+    /* Tablet Portrait (768px - 1023px) */
         @media (max-width: 1023px) {
             .hero {
                 justify-content: center;
@@ -916,8 +919,23 @@
             }
         }
 
+        /* Small mobile tweaks for consistent index-like behavior */
+        @media (max-width: 475px) {
+            /* Hide search input on very small screens to keep header tidy */
+            .search-box { display: none !important; }
+            .hamburger { display: flex !important; position: relative; margin-left: auto; }
+        }
+
+        @media (max-width: 375px) {
+            .navbar-container { gap: 8px; }
+            .logo { font-size: 12px; }
+            .nav-menu a { font-size: 12px; }
+            /* ensure hamburger sits at the right edge */
+            .hamburger { margin-right: 6px; }
+        }
+
         /* Mobile (768px and below) */
-        @media (max-width: 768px) {
+    @media (max-width: 768px) {
             .navbar {
                 padding: 12px 20px;
             }
@@ -1044,6 +1062,102 @@
             }
         }
     </style>
+    <!-- Canonical small-breakpoint rules to match en/index.blade.php -->
+    <style>
+        /* Tweak mobile sidebar so it fits narrow screens (<=475, 375, 320) and match ID index behavior */
+        @media (max-width: 475px) {
+            .search-box,
+            .search-input,
+            .search-btn,
+            .nav-right .search-box,
+            .nav-right .search-input,
+            .nav-right .search-btn {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+
+            .language-selector {
+                display: inline-flex !important;
+                position: absolute !important;
+                right: 60px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 1250 !important;
+                font-weight: 700 !important;
+                color: var(--text-dark) !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                position: absolute !important;
+                right: 12px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 2000 !important;
+            }
+
+            .hamburger span {
+                background: var(--text-dark) !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .navbar-container {
+                gap: 10px;
+            }
+
+            .logo {
+                font-size: 11px;
+            }
+
+            /* Tweak mobile sidebar so it fits narrow screens (370-375px) */
+            .nav-menu {
+                width: min(260px, 80vw) !important;
+                padding: 60px 18px 20px !important;
+            }
+
+            .nav-menu a {
+                font-size: 14px;
+                padding: 12px 0;
+            }
+
+            /* Force hamburger visible and positioned on the right for very small screens */
+            .hamburger {
+                display: flex !important;
+                padding: 6px !important;
+                position: absolute !important;
+                right: 12px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 1102 !important; /* above navbar and overlay */
+            }
+
+            /* ensure the hamburger icon bars are visible over background */
+            .hamburger span {
+                background: var(--text-dark) !important;
+            }
+
+            /* hide only the search box on very small devices (370/375) */
+            .search-box {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 320px) {
+            /* tighten nav menu for very tiny screens */
+            .nav-menu {
+                width: min(240px, 82vw) !important;
+                padding: 60px 12px 18px !important;
+            }
+
+            .hamburger {
+                right: 10px !important;
+                padding: 4px !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -1063,20 +1177,6 @@
                 <li><a href="{{ route('contact.en') }}" class="nav-link">Contact Us</a></li>
             </ul>
 
-            <div class="nav-right">
-                <a href="{{ route('about') }}"class="language-selector">ID</a>
-                <div class="search-box">
-                    <input type="text" placeholder="Search..." class="search-input">
-                    <button class="search-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.35-4.35"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Hamburger Menu Button -->
             <button class="hamburger" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -1226,41 +1326,52 @@
     @endif
 
     <script>
-        // Hamburger Menu Toggle
-        function toggleMenu() {
+        document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
             const overlay = document.querySelector('.mobile-menu-overlay');
             const body = document.body;
 
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : '';
-        }
+            function setMenuState(open) {
+                if (!hamburger || !navMenu || !overlay) return;
+                hamburger.classList.toggle('active', open);
+                navMenu.classList.toggle('active', open);
+                overlay.classList.toggle('active', open);
+                body.style.overflow = open ? 'hidden' : '';
+            }
 
-        // Event listeners for hamburger menu
-        document.querySelector('.hamburger').addEventListener('click', toggleMenu);
-        document.querySelector('.mobile-menu-overlay').addEventListener('click', toggleMenu);
+            if (hamburger) {
+                hamburger.addEventListener('click', function(e) {
+                    const isOpen = navMenu.classList.contains('active');
+                    setMenuState(!isOpen);
+                });
+            }
 
-        // Close menu when clicking nav links
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                const hamburger = document.querySelector('.hamburger');
-                if (hamburger.classList.contains('active')) {
-                    toggleMenu();
+            if (overlay) {
+                overlay.addEventListener('click', function() { setMenuState(false); });
+            }
+
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 1023) setMenuState(false);
+                });
+            });
+
+            // Prevent footer / social clicks from accidentally toggling the menu
+            document.querySelectorAll('.footer a, .social-links a, .whatsapp-button, .map-container iframe').forEach(el => {
+                el.addEventListener('click', function(ev) { ev.stopPropagation(); });
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (!navbar) return;
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
                 }
             });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
         });
     </script>
 </body>
