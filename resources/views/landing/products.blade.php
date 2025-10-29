@@ -321,7 +321,7 @@
             margin-top: 0;
             padding-top: 100px;
             height: 70vh;
-            min-height: 650px;
+            min-height: 400px;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%233B5B18" width="1200" height="400"/></svg>');
             background-size: cover;
             background-position: center;
@@ -650,6 +650,10 @@
             text-align: center;
             min-height: 32px;
             font-weight: 400;
+            word-break: break-word;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            text-align: justify;
         }
 
         .product-links {
@@ -1845,7 +1849,7 @@
                     @endif
                 </div>
                 <h3 class="product-title">{{ $product->name }}</h3>
-                <div class="product-spec">{{ $product->specification }}</div>
+                <div class="product-spec">{{ Str::limit($product->description, 50, '...') }}</div>
                 <div class="product-links marketplace-icons">
                     @if($product->shopee_url)
                         <a href="{{ $product->shopee_url }}" target="_blank" class="shop-link">
@@ -2013,58 +2017,7 @@
             }
         });
 
-        // Active navbar based on scroll position
-        const sections = document.querySelectorAll('[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', function() {
-            let current = 'beranda';
-
-            // Check if at bottom of page
-            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
-                current = 'hubungi-kami';
-            } else {
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= (sectionTop - 150)) {
-                        const sectionId = section.getAttribute('id');
-                        if (sectionId && sectionId !== 'hubungi-kami') {
-                            current = sectionId;
-                        }
-                    }
-                });
-            }
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const href = link.getAttribute('href');
-                if (href === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scroll untuk links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-
-                // Hanya prevent default untuk link internal (yang dimulai dengan #)
-                if (targetId.startsWith('#')) {
-                    e.preventDefault();
-                    const targetSection = document.querySelector(targetId);
-
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-                // Link eksternal atau route (tidak dimulai dengan #) akan berfungsi normal
-            });
-        });
+        // Show More / Show Less functionality
         document.addEventListener('DOMContentLoaded', function() {
             var showMoreBtn = document.getElementById('showMoreBtn');
             var showLessBtn = document.getElementById('showLessBtn');

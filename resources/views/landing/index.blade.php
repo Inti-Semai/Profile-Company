@@ -1850,56 +1850,7 @@
             }
         });
 
-        // Active navbar based on scroll position
-        const sections = document.querySelectorAll('[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', function() {
-            let current = 'beranda';
-
-            // Check if at bottom of page
-            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
-                current = 'hubungi-kami';
-            } else {
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= (sectionTop - 150)) {
-                        const sectionId = section.getAttribute('id');
-                        if (sectionId && sectionId !== 'hubungi-kami') {
-                            current = sectionId;
-                        }
-                    }
-                });
-            }
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const href = link.getAttribute('href');
-                if (href === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scroll untuk links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-
-                if (targetId.startsWith('#')) {
-                    e.preventDefault();
-                    const targetSection = document.querySelector(targetId);
-
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
+       
     </script>
 </body>
 </html>

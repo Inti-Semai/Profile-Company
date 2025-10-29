@@ -268,7 +268,7 @@
             margin-top: 0;
             padding-top: 100px;
             height: 70vh;
-            min-height: 650px;
+            min-height: 400px;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%233B5B18" width="1200" height="400"/></svg>');
             background-size: cover;
             background-position: center;
@@ -1176,6 +1176,19 @@
                 <li><a href="{{ route('products.en') }}" class="nav-link">Products</a></li>
                 <li><a href="{{ route('contact.en') }}" class="nav-link">Contact Us</a></li>
             </ul>
+
+            <div class="nav-right">
+                <a href="{{ route('about') }}" class="language-selector">ID</a>
+                <div class="search-box">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <button class="search-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
             <button class="hamburger" aria-label="Toggle menu">
                 <span></span>

@@ -561,8 +561,10 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             min-width: 0;
+            padding: 0 15px;
+            max-width: 100%;
         }
 
         .product-specifications h2 {
@@ -586,6 +588,20 @@
             border-bottom: 1px solid rgba(59, 91, 24, 0.1);
         }
 
+        .specification-content {
+            word-break: break-word;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            text-align: justify;
+            font-size: 1rem;
+            color: #31460B;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            line-height: 1;
+            max-width: 100%;
+        }
+
         .action-buttons {
             display: flex;
             gap: 10px;
@@ -603,7 +619,7 @@
         /* Marketplace Section */
         .marketplace-section {
             margin: 40px auto 0;
-            text-align: left;
+            text-align: center;
         }
 
         .marketplace-section > div:first-child {
@@ -611,13 +627,13 @@
             font-weight: 600;
             margin-bottom: 22px;
             padding-left: 0;
-            text-align: left;
-            margin-left: 180px;
+            text-align: center;
+            margin-left: 0;
         }
 
         .marketplace-buttons {
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
             gap: 32px;
             flex-wrap: wrap;
             margin-bottom: 48px;
@@ -1554,7 +1570,7 @@
             </div>
             <div class="product-specifications">
                 <h2 class="spec-title">Spesifikasi</h2>
-                <div class="specification-content" style="white-space: pre-line;">
+                <div class="specification-content" style="white-space: pre-line;word-break:break-word;word-wrap:break-word;overflow-wrap:break-word;text-align:justify;">
                     {!! nl2br(e($specifications)) !!}
                 </div>
             </div>
