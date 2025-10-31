@@ -87,7 +87,7 @@
             background-color: #f8f9fa;
         }
 
-       /* Navbar */
+        /* Navbar */
         .navbar {
             background: rgba(255, 255, 255, 0.10);
             backdrop-filter: blur(5px);
@@ -104,6 +104,62 @@
             backdrop-filter: blur(5px);
             box-shadow: 0 2px 20px rgba(0,0,0,0.06);
             padding: 15px 80px;
+        }
+
+        /* Large Desktop (1280px+) */
+        @media (min-width: 1280px) {
+            .navbar {
+                padding: 20px 80px;
+            }
+
+            .navbar.scrolled {
+                padding: 15px 80px;
+            }
+
+            .nav-menu {
+                gap: 40px;
+            }
+
+            .nav-menu a {
+                font-size: 15px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .logo-icon {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* Desktop/Laptop (1024px - 1279px) */
+        @media (min-width: 1024px) and (max-width: 1279px) {
+            .navbar {
+                padding: 15px 40px;
+            }
+
+            .navbar.scrolled {
+                padding: 12px 40px;
+            }
+
+            .nav-menu {
+                gap: 25px;
+            }
+
+            .nav-menu a {
+                font-size: 13px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+            }
         }
 
         .navbar-container {
@@ -671,6 +727,15 @@
 
         /* Responsive for Navbar and Footer */
         @media (max-width: 1023px) {
+            .hero {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
             .navbar {
                 padding: 15px 30px;
             }
@@ -693,11 +758,13 @@
                 height: 36px;
             }
 
+            /* Show hamburger on tablet portrait */
             .hamburger {
                 display: flex;
                 order: 3;
             }
 
+            /* Mobile menu slide-in */
             .nav-menu {
                 position: fixed;
                 top: 0;
@@ -752,6 +819,10 @@
 
             .search-box {
                 width: 180px;
+            }
+
+            .search-input {
+                font-size: 13px;
             }
 
             .container {
@@ -841,11 +912,13 @@
                 height: 35px;
             }
 
+            /* Show hamburger on mobile */
             .hamburger {
                 display: flex;
                 order: 3;
             }
 
+            /* Mobile menu slide-in */
             .nav-menu {
                 position: fixed;
                 top: 0;
@@ -1010,6 +1083,11 @@
             .logo-icon {
                 width: 30px;
                 height: 30px;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 3;
             }
 
             .nav-menu {

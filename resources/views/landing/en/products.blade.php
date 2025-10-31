@@ -392,42 +392,24 @@
         /* Marketplace Icons */
         .marketplace-icons {
             display: flex;
-            gap: 8px;
-        }
-
-        .shop-link {
-            background: white;
-            border-radius: 6px;
-            border: 3px solid var(--dark-green);
-
-            padding: 4px 8px;
-            display: inline-flex;
+            gap: 6.4px; /* 8px * 0.8 */
+            flex-wrap: wrap;
             align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .shop-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .shop-icon {
-            height: 28px;
             width: auto;
-            transition: transform 0.3s ease;
         }
 
         .shop-link {
             background: white;
-            border-radius: 12px;
-            border: 1.5px solid #E8E8E8;
-            padding: 4px;
+            border-radius: 9.6px; /* 12px * 0.8 */
+            border: 1.2px solid #E8E8E8; /* 1.5px * 0.8 */
+            padding: 3.2px; /* 4px * 0.8 */
             display: inline-flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            width: 67.79px;  /* Sama dengan height button detail */
-            height: 67.79px; /* Sama dengan height button detail */
+            width: 54.2px; /* 67.79px * 0.8 */
+            height: 54.2px; /* 67.79px * 0.8 */
+            flex-shrink: 0;
         }
 
         .shop-link:hover {
@@ -585,46 +567,46 @@
             font-size: 14px;
         }
 
-        /* Product Grid */
+        /* Product Grid - 80% scaling */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            gap: 19.2px; /* 24px * 0.8 */
             justify-content: center;
-            max-width: 1280px;
+            max-width: 1024px; /* 1280px * 0.8 */
             margin: 0 auto;
         }
 
         .product-card {
             background: var(--light-green);
-            border-radius: 16px;
-            border: 3px solid var(--dark-green);
-            padding: 16px;
+            border-radius: 12.8px; /* 16px * 0.8 */
+            border: 2.4px solid var(--dark-green); /* 3px * 0.8 */
+            padding: 12.8px; /* 16px * 0.8 */
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
             height: auto;
-            min-height: 600px;
+            min-height: 480px; /* 600px * 0.8 */
             position: relative;
-            max-width: 620px;
+            max-width: 496px; /* 620px * 0.8 */
             margin: 0 auto;
         }
 
         .product-image-container {
             background: white;
-            border-radius: 12px;
-            border: 2px solid var(--light-green);
+            border-radius: 9.6px; /* 12px * 0.8 */
+            border: 1.6px solid var(--light-green); /* 2px * 0.8 */
             width: 100%;
-            max-width: 500px; /* Scaled proportionally from 702.6px for 1366px screens */
-            height: 400px;
+            max-width: 400px; /* 500px * 0.8 */
+            height: 320px; /* 400px * 0.8 */
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 16px; /* 20px * 0.8 */
             position: relative;
             overflow: hidden;
-            padding: 16px;
+            padding: 12.8px; /* 16px * 0.8 */
         }
 
         .product-image {
@@ -636,19 +618,19 @@
         }
 
         .product-title {
-            font-size: 32px;
+            font-size: 25.6px; /* 32px * 0.8 */
             font-weight: 700;
             color: var(--dark-green);
-            margin-bottom: 8px;
+            margin-bottom: 6.4px; /* 8px * 0.8 */
             text-align: center;
         }
 
         .product-spec {
             color: var(--dark-green);
-            font-size: 20px;
-            margin-bottom: 20px;
+            font-size: 16px; /* 20px * 0.8 */
+            margin-bottom: 16px; /* 20px * 0.8 */
             text-align: center;
-            min-height: 32px;
+            min-height: 25.6px; /* 32px * 0.8 */
             font-weight: 400;
             word-break: break-word;
             word-wrap: break-word;
@@ -658,12 +640,14 @@
 
         .product-links {
             position: absolute;
-            left: 32px;
-            bottom: 32px;
+            left: 25.6px; /* 32px * 0.8 */
+            bottom: 25.6px; /* 32px * 0.8 */
             display: flex;
-            gap: 12px;
+            flex-wrap: wrap;
+            gap: 9.6px; /* 12px * 0.8 */
             z-index: 2;
-            height: 67.79px; /* Sama dengan height button detail */
+            align-items: flex-start;
+            max-width: 200px;
         }
 
         .detail-button {
@@ -671,20 +655,20 @@
             background: var(--light-orange);
             color: #191900;
             font-weight: 700;
-            border-radius: 32px;
-            width: 288.75px;
-            height: 67.79px;
+            border-radius: 25.6px; /* 32px * 0.8 */
+            width: 231px; /* 288.75px * 0.8 */
+            height: 54.2px; /* 67.79px * 0.8 */
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            border: 3px solid var(--dark-green);
+            font-size: 1rem; /* 1.25rem * 0.8 */
+            border: 2.4px solid var(--dark-green); /* 3px * 0.8 */
             font-family: 'Poppins', sans-serif;
             letter-spacing: 0.5px;
             text-decoration: none;
             transition: all 0.3s ease;
             position: absolute;
-            right: 32px;
-            bottom: 32px;
+            right: 25.6px; /* 32px * 0.8 */
+            bottom: 25.6px; /* 32px * 0.8 */
         }
 
         .detail-button:hover {
@@ -751,22 +735,22 @@
         /* Large Desktop (1920px+) */
         @media (min-width: 1920px) {
             .product-grid {
-                max-width: 1800px;
-                gap: 40px;
+                max-width: 1440px; /* 1800px * 0.8 */
+                gap: 32px; /* 40px * 0.8 */
             }
             .product-card {
-                max-width: 860px;
-                min-height: 800px;
+                max-width: 688px; /* 860px * 0.8 */
+                min-height: 640px; /* 800px * 0.8 */
             }
             .product-image-container {
-                max-width: 702.6px;
-                height: 500px;
+                max-width: 562px; /* 702.6px * 0.8 */
+                height: 400px; /* 500px * 0.8 */
             }
             .product-title {
-                font-size: 36px;
+                font-size: 28.8px; /* 36px * 0.8 */
             }
             .product-spec {
-                font-size: 22px;
+                font-size: 17.6px; /* 22px * 0.8 */
             }
         }
 
@@ -822,45 +806,45 @@
             }
 
             .product-grid {
-                max-width: 1800px;
-                gap: 40px;
+                max-width: 1440px; /* 1800px * 0.8 */
+                gap: 32px; /* 40px * 0.8 */
             }
 
             .product-card {
-                max-width: 850px;
-                min-height: 820px;
-                padding: 20px;
+                max-width: 680px; /* 850px * 0.8 */
+                min-height: 656px; /* 820px * 0.8 */
+                padding: 16px; /* 20px * 0.8 */
             }
 
             .product-image-container {
-                max-width: 810px;
-                height: 480px;
+                max-width: 648px; /* 810px * 0.8 */
+                height: 384px; /* 480px * 0.8 */
             }
 
             .product-title {
-                font-size: 36px;
-                margin-bottom: 20px;
+                font-size: 28.8px; /* 36px * 0.8 */
+                margin-bottom: 16px; /* 20px * 0.8 */
             }
 
             .product-spec {
-                font-size: 22px;
+                font-size: 17.6px; /* 22px * 0.8 */
                 line-height: 1.7;
             }
 
             .detail-button {
-                width: 280px;
-                height: 64px;
-                font-size: 1.3rem;
+                width: 224px; /* 280px * 0.8 */
+                height: 51.2px; /* 64px * 0.8 */
+                font-size: 1.04rem; /* 1.3rem * 0.8 */
             }
 
             .shop-link {
-                width: 64px;
-                height: 64px;
+                width: 51.2px; /* 64px * 0.8 */
+                height: 51.2px; /* 64px * 0.8 */
             }
 
             .shop-link svg {
-                width: 32px;
-                height: 32px;
+                width: 25.6px; /* 32px * 0.8 */
+                height: 25.6px; /* 32px * 0.8 */
             }
 
             .footer {
@@ -931,38 +915,38 @@
             }
 
             .product-grid {
-                max-width: 1700px;
-                gap: 38px;
+                max-width: 1360px; /* 1700px * 0.8 */
+                gap: 30.4px; /* 38px * 0.8 */
             }
 
             .product-card {
-                max-width: 800px;
-                min-height: 780px;
-                padding: 18px;
+                max-width: 640px; /* 800px * 0.8 */
+                min-height: 624px; /* 780px * 0.8 */
+                padding: 14.4px; /* 18px * 0.8 */
             }
 
             .product-image-container {
-                max-width: 760px;
-                height: 450px;
+                max-width: 608px; /* 760px * 0.8 */
+                height: 360px; /* 450px * 0.8 */
             }
 
             .product-title {
-                font-size: 34px;
+                font-size: 27.2px; /* 34px * 0.8 */
             }
 
             .product-spec {
-                font-size: 21px;
+                font-size: 16.8px; /* 21px * 0.8 */
             }
 
             .detail-button {
-                width: 270px;
-                height: 62px;
-                font-size: 1.2rem;
+                width: 216px; /* 270px * 0.8 */
+                height: 49.6px; /* 62px * 0.8 */
+                font-size: 0.96rem; /* 1.2rem * 0.8 */
             }
 
             .shop-link {
-                width: 62px;
-                height: 62px;
+                width: 49.6px; /* 62px * 0.8 */
+                height: 49.6px; /* 62px * 0.8 */
             }
 
             .footer {
@@ -989,18 +973,18 @@
             }
 
             .product-grid {
-                max-width: 1400px;
-                gap: 32px;
+                max-width: 1120px; /* 1400px * 0.8 */
+                gap: 25.6px; /* 32px * 0.8 */
             }
 
             .product-card {
-                max-width: 680px;
-                min-height: 720px;
+                max-width: 544px; /* 680px * 0.8 */
+                min-height: 576px; /* 720px * 0.8 */
             }
 
             .product-image-container {
-                max-width: 620px;
-                height: 410px;
+                max-width: 496px; /* 620px * 0.8 */
+                height: 328px; /* 410px * 0.8 */
             }
         }
 
@@ -1036,43 +1020,43 @@
             }
 
             .product-grid {
-                gap: 24px;
-                max-width: 1200px;
+                gap: 19.2px; /* 24px * 0.8 */
+                max-width: 960px; /* 1200px * 0.8 */
             }
 
             .product-card {
-                max-width: 580px;
-                min-height: 650px;
-                padding: 14px;
+                max-width: 464px; /* 580px * 0.8 */
+                min-height: 520px; /* 650px * 0.8 */
+                padding: 11.2px; /* 14px * 0.8 */
             }
 
             .product-image-container {
-                max-width: 520px;
-                height: 380px;
+                max-width: 416px; /* 520px * 0.8 */
+                height: 304px; /* 380px * 0.8 */
             }
 
             .product-title {
-                font-size: 28px;
+                font-size: 22.4px; /* 28px * 0.8 */
             }
 
             .product-spec {
-                font-size: 18px;
+                font-size: 14.4px; /* 18px * 0.8 */
             }
 
             .detail-button {
-                width: 240px;
-                height: 56px;
-                font-size: 1.1rem;
+                width: 192px; /* 240px * 0.8 */
+                height: 44.8px; /* 56px * 0.8 */
+                font-size: 0.88rem; /* 1.1rem * 0.8 */
             }
 
             .product-links {
-                left: 24px;
-                bottom: 24px;
+                left: 19.2px; /* 24px * 0.8 */
+                bottom: 19.2px; /* 24px * 0.8 */
             }
 
             .shop-link {
-                width: 56px;
-                height: 56px;
+                width: 44.8px; /* 56px * 0.8 */
+                height: 44.8px; /* 56px * 0.8 */
             }
         }
 
@@ -1104,18 +1088,18 @@
             }
 
             .product-grid {
-                gap: 20px;
-                max-width: 1100px;
+                gap: 16px; /* 20px * 0.8 */
+                max-width: 880px; /* 1100px * 0.8 */
             }
 
             .product-card {
-                max-width: 520px;
-                min-height: 620px;
+                max-width: 416px; /* 520px * 0.8 */
+                min-height: 496px; /* 620px * 0.8 */
             }
 
             .product-image-container {
-                max-width: 480px;
-                height: 350px;
+                max-width: 384px; /* 480px * 0.8 */
+                height: 280px; /* 350px * 0.8 */
             }
         }
 
@@ -1239,43 +1223,43 @@
             }
 
             .product-grid {
-                grid-template-columns: 1fr;
-                gap: 28px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 22.4px; /* 28px * 0.8 */
             }
 
             .product-card {
                 max-width: 100%;
-                min-height: 580px;
+                min-height: 464px; /* 580px * 0.8 */
             }
 
             .product-image-container {
-                height: 320px;
+                height: 256px; /* 320px * 0.8 */
             }
 
             .product-title {
-                font-size: 26px;
+                font-size: 20.8px; /* 26px * 0.8 */
             }
 
             .product-spec {
-                font-size: 17px;
+                font-size: 13.6px; /* 17px * 0.8 */
             }
 
             .detail-button {
-                width: 200px;
-                height: 52px;
-                font-size: 1rem;
-                right: 24px;
-                bottom: 24px;
+                width: 160px; /* 200px * 0.8 */
+                height: 41.6px; /* 52px * 0.8 */
+                font-size: 0.8rem; /* 1rem * 0.8 */
+                right: 19.2px; /* 24px * 0.8 */
+                bottom: 19.2px; /* 24px * 0.8 */
             }
 
             .product-links {
-                left: 20px;
-                bottom: 20px;
+                left: 16px; /* 20px * 0.8 */
+                bottom: 16px; /* 20px * 0.8 */
             }
 
             .shop-link {
-                width: 52px;
-                height: 52px;
+                width: 41.6px; /* 52px * 0.8 */
+                height: 41.6px; /* 52px * 0.8 */
             }
 
             .footer {
@@ -1416,51 +1400,51 @@
 
             .product-grid {
                 grid-template-columns: 1fr;
-                gap: 24px;
+                gap: 19.2px; /* 24px * 0.8 */
             }
 
             .product-card {
                 max-width: 100%;
-                min-height: 520px;
-                padding: 12px;
+                min-height: 416px; /* 520px * 0.8 */
+                padding: 9.6px; /* 12px * 0.8 */
             }
 
             .product-image-container {
-                height: 280px;
+                height: 224px; /* 280px * 0.8 */
             }
 
             .product-title {
-                font-size: 24px;
-                margin-bottom: 6px;
+                font-size: 19.2px; /* 24px * 0.8 */
+                margin-bottom: 4.8px; /* 6px * 0.8 */
             }
 
             .product-spec {
-                font-size: 16px;
-                margin-bottom: 16px;
+                font-size: 12.8px; /* 16px * 0.8 */
+                margin-bottom: 12.8px; /* 16px * 0.8 */
             }
 
             .detail-button {
-                width: 180px;
-                height: 50px;
-                font-size: 1rem;
-                right: 16px;
-                bottom: 16px;
+                width: 144px; /* 180px * 0.8 */
+                height: 40px; /* 50px * 0.8 */
+                font-size: 0.8rem; /* 1rem * 0.8 */
+                right: 12.8px; /* 16px * 0.8 */
+                bottom: 12.8px; /* 16px * 0.8 */
             }
 
             .product-links {
-                left: 16px;
-                bottom: 16px;
-                height: 50px;
+                left: 12.8px; /* 16px * 0.8 */
+                bottom: 12.8px; /* 16px * 0.8 */
+                height: 40px; /* 50px * 0.8 */
             }
 
             .shop-link {
-                width: 50px;
-                height: 50px;
+                width: 40px; /* 50px * 0.8 */
+                height: 40px; /* 50px * 0.8 */
             }
 
             .load-more-btn {
-                font-size: 1.15rem;
-                padding: 6px 20px;
+                font-size: 0.92rem; /* 1.15rem * 0.8 */
+                padding: 4.8px 16px; /* 6px 20px * 0.8 */
             }
 
             .footer {
@@ -1573,46 +1557,46 @@
             }
 
             .product-grid {
-                gap: 20px;
+                gap: 16px; /* 20px * 0.8 */
             }
 
             .product-card {
-                min-height: 480px;
-                padding: 10px;
+                min-height: 384px; /* 480px * 0.8 */
+                padding: 8px; /* 10px * 0.8 */
             }
 
             .product-image-container {
-                height: 240px;
-                padding: 12px;
+                height: 192px; /* 240px * 0.8 */
+                padding: 9.6px; /* 12px * 0.8 */
             }
 
             .product-title {
-                font-size: 22px;
+                font-size: 17.6px; /* 22px * 0.8 */
             }
 
             .product-spec {
-                font-size: 15px;
-                min-height: 24px;
+                font-size: 12px; /* 15px * 0.8 */
+                min-height: 19.2px; /* 24px * 0.8 */
             }
 
             .detail-button {
-                width: 160px;
-                height: 46px;
-                font-size: 0.95rem;
-                right: 12px;
-                bottom: 12px;
+                width: 128px; /* 160px * 0.8 */
+                height: 36.8px; /* 46px * 0.8 */
+                font-size: 0.76rem; /* 0.95rem * 0.8 */
+                right: 9.6px; /* 12px * 0.8 */
+                bottom: 9.6px; /* 12px * 0.8 */
             }
 
             .product-links {
-                left: 12px;
-                bottom: 12px;
-                height: 46px;
-                gap: 8px;
+                left: 9.6px; /* 12px * 0.8 */
+                bottom: 9.6px; /* 12px * 0.8 */
+                height: 36.8px; /* 46px * 0.8 */
+                gap: 6.4px; /* 8px * 0.8 */
             }
 
             .shop-link {
-                width: 46px;
-                height: 46px;
+                width: 36.8px; /* 46px * 0.8 */
+                height: 36.8px; /* 46px * 0.8 */
             }
 
             .load-more-btn {
@@ -1696,30 +1680,30 @@
             }
 
             .product-card {
-                min-height: 450px;
+                min-height: 360px; /* 450px * 0.8 */
             }
 
             .product-image-container {
-                height: 220px;
+                height: 176px; /* 220px * 0.8 */
             }
 
             .product-title {
-                font-size: 20px;
+                font-size: 16px; /* 20px * 0.8 */
             }
 
             .product-spec {
-                font-size: 14px;
+                font-size: 11.2px; /* 14px * 0.8 */
             }
 
             .detail-button {
-                width: 140px;
-                height: 42px;
-                font-size: 0.9rem;
+                width: 112px; /* 140px * 0.8 */
+                height: 33.6px; /* 42px * 0.8 */
+                font-size: 0.72rem; /* 0.9rem * 0.8 */
             }
 
             .shop-link {
-                width: 42px;
-                height: 42px;
+                width: 33.6px; /* 42px * 0.8 */
+                height: 33.6px; /* 42px * 0.8 */
             }
         }
     </style>
