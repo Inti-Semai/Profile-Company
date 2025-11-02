@@ -139,6 +139,7 @@
                 transform: none;
                 margin: 0 auto;
                 justify-content: center;
+            }
         }
 
         /* Desktop/Laptop (1024px - 1279px) */
