@@ -12,7 +12,8 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $galleries = Gallery::orderBy('order')->get();
+        // Only show global gallery items (not attached to a product)
+        $galleries = Gallery::whereNull('product_id')->orderBy('order')->get();
         $admin = Auth::guard('admin')->user();
         return view('admin.pages.gallery.index', compact('galleries', 'admin'));
     }

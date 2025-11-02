@@ -780,7 +780,6 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                /* move nav items to top in the mobile sidebar */
                 padding: 40px 30px 30px;
                 justify-content: flex-start;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);

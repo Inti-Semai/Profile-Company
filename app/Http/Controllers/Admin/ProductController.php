@@ -43,6 +43,7 @@ class ProductController extends Controller
                 $galleryPath = $galleryImage->store('products/gallery', 'public');
                 $product->galleries()->create([
                     'image' => $galleryPath,
+                    'product_id' => $product->id,
                 ]);
             }
         }
@@ -96,6 +97,7 @@ class ProductController extends Controller
                     $galleryPath = $galleryImage->store('products/gallery', 'public');
                     $product->galleries()->create([
                         'image' => $galleryPath,
+                        'product_id' => $product->id,
                     ]);
                 }
             }

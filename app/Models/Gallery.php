@@ -17,4 +17,10 @@ class Gallery extends Model
     {
         return $this->image ? asset('storage/' . $this->image) : null;
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
 }
