@@ -602,18 +602,170 @@
             min-width: 0;
         }
 
-        .product-swiper {
+        .product-image-wrapper {
+            position: relative;
             width: 100%;
-            height: 400px;
             border-radius: 12px;
             overflow: hidden;
+            background: #fff;
+        }
+
+        .product-swiper {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .product-swiper .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
         }
 
         .product-swiper .swiper-slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: 12px;
+            display: block;
+        }
+
+        /* Zoom Button Styling */
+        .zoom-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 8px;
+            padding: 6px 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: #3B5B18;
+            transition: all 0.3s;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .zoom-btn:hover {
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .zoom-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Zoom Modal Styling */
+        .zoom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zoom-modal.active {
+            display: flex;
+        }
+
+        .zoom-modal-container {
+            position: relative;
+            width: 50%;
+            height: 50%;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+
+        .zoom-modal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .zoom-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s;
+        }
+
+        .zoom-modal-close:hover {
+            color: #ccc;
+        }
+
+        /* Zoom Controls */
+        .zoom-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2001;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .zoom-controls button {
+            background: #3B5B18;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .zoom-controls button:hover {
+            background: #31460B;
+            transform: scale(1.05);
+        }
+
+        .zoom-controls button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 15px;
+            color: #3B5B18;
+            font-weight: 600;
+            min-width: 60px;
         }
 
         .product-specifications {
@@ -910,8 +1062,10 @@
                 height: auto;
             }
 
-            .product-swiper {
-                height: 300px;
+            .product-image {
+                width: 100%;
+                max-width: 590px;
+                margin: 0 auto;
             }
 
             .product-specifications h2 {
@@ -1066,10 +1220,6 @@
                 padding: 12px;
             }
 
-            .product-swiper {
-                height: 250px;
-            }
-
             .product-specifications h2 {
                 font-size: 1.125rem;
                 margin-bottom: 16px;
@@ -1194,10 +1344,6 @@
             .product-section {
                 padding: 12px;
                 border-radius: 8px;
-            }
-
-            .product-swiper {
-                height: 200px;
             }
 
             .product-specifications h2 {
@@ -1379,11 +1525,6 @@
             .product-section {
                 padding: 8px;
                 gap: 8px;
-                border-radius: 6px;
-            }
-
-            .product-swiper {
-                height: 160px;
                 border-radius: 6px;
             }
 
@@ -1601,27 +1742,39 @@
         </div>
         <div class="product-section">
             <div class="product-image">
-                <!-- Swiper -->
-                <div class="swiper product-swiper">
-                    <div class="swiper-wrapper">
-                        @if($product->image_url)
-                        <div class="swiper-slide">
-                            <img src="{{ $product->image_url }}" alt="Cover Image">
+                <!-- Swiper Wrapper for Aspect Ratio -->
+                <div class="product-image-wrapper" id="productImageWrapper">
+                    <div class="swiper product-swiper" id="productSwiper">
+                        <div class="swiper-wrapper">
+                            @if($product->image_url)
+                            <div class="swiper-slide">
+                                <img src="{{ $product->image_url }}" alt="Cover Image">
+                                <button class="zoom-btn" onclick="openZoom(this)">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                        <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            @endif
+                            @if($product->galleries && $product->galleries->count())
+                                @foreach($product->galleries as $gallery)
+                                    <div class="swiper-slide">
+                                        <img src="{{ $gallery->image_url }}" alt="Gallery Image">
+                                        <button class="zoom-btn" onclick="openZoom(this)">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                                <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
-                        @endif
-                        @if($product->galleries && $product->galleries->count())
-                            @foreach($product->galleries as $gallery)
-                                <div class="swiper-slide">
-                                    <img src="{{ $gallery->image_url }}" alt="Gallery Image">
-                                </div>
-                            @endforeach
-                        @endif
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                        <!-- Add Navigation -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
                     </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-                    <!-- Add Navigation -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
             <div class="product-specifications">
@@ -1631,7 +1784,21 @@
                 </div>
             </div>
         </div>
-        <div class="marketplace-section">
+
+<!-- Zoom Modal -->
+<div class="zoom-modal" id="zoomModal">
+    <div class="zoom-modal-container">
+        <img class="zoom-modal-img" id="zoomModalImg" src="" alt="Zoomed Image">
+        <button class="zoom-modal-close" onclick="closeZoom()">×</button>
+    </div>
+</div>
+
+<!-- Zoom Controls -->
+<div class="zoom-controls" id="zoomControls" style="display: none;">
+    <button id="zoomOutBtn" onclick="zoomOut()" title="Zoom Out">−</button>
+    <div class="zoom-level"><span id="zoomPercentage">100%</span></div>
+    <button id="zoomInBtn" onclick="zoomIn()" title="Zoom In">+</button>
+</div>        <div class="marketplace-section">
             <div>Visit Us On</div>
             <div class="marketplace-buttons">
                 @if($product->tokopedia_url)
@@ -1740,9 +1907,23 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        const FIXED_ASPECT_RATIO = 566 / 702; // 0.806
+
+        const productImageWrapper = document.getElementById('productImageWrapper');
+        const productSwiperEl = document.getElementById('productSwiper');
+
+        function setFixedHeight() {
+            const wrapperWidth = productImageWrapper.offsetWidth;
+            const fixedHeight = wrapperWidth * FIXED_ASPECT_RATIO;
+            productImageWrapper.style.height = fixedHeight + 'px';
+            productSwiperEl.style.height = fixedHeight + 'px';
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(setFixedHeight, 100);
+
             // Initialize Swiper
-            new Swiper('.product-swiper', {
+            const swiper = new Swiper('#productSwiper', {
                 loop: true,
                 pagination: {
                     el: '.swiper-pagination',
@@ -1752,6 +1933,10 @@
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
+            });
+
+            window.addEventListener('resize', function() {
+                setFixedHeight();
             });
 
             const hamburger = document.querySelector('.hamburger');
@@ -1798,6 +1983,85 @@
                     navbar.classList.remove('scrolled');
                 }
             });
+        });
+
+        // Zoom Variables
+        let currentZoom = 1.0;
+        const MIN_ZOOM = 1.0;
+        const MAX_ZOOM = 2.5;
+        const ZOOM_STEP = 0.1;
+
+        // Zoom Functions
+        function openZoom(button) {
+            const img = button.previousElementSibling;
+            const modal = document.getElementById('zoomModal');
+            const modalImg = document.getElementById('zoomModalImg');
+            
+            modalImg.src = img.src;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Show zoom controls and reset zoom
+            currentZoom = 1.0;
+            updateZoomDisplay();
+            document.getElementById('zoomControls').style.display = 'flex';
+        }
+
+        function closeZoom() {
+            const modal = document.getElementById('zoomModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('zoomControls').style.display = 'none';
+            
+            // Reset zoom
+            currentZoom = 1.0;
+            const modalImg = document.getElementById('zoomModalImg');
+            modalImg.style.transform = 'scale(1)';
+        }
+
+        function zoomIn() {
+            if (currentZoom < MAX_ZOOM) {
+                currentZoom += ZOOM_STEP;
+                updateZoomDisplay();
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > MIN_ZOOM) {
+                currentZoom -= ZOOM_STEP;
+                updateZoomDisplay();
+            }
+        }
+
+        function updateZoomDisplay() {
+            const modalImg = document.getElementById('zoomModalImg');
+            const zoomPercentage = document.getElementById('zoomPercentage');
+            const zoomInBtn = document.getElementById('zoomInBtn');
+            const zoomOutBtn = document.getElementById('zoomOutBtn');
+            
+            // Apply zoom transform
+            modalImg.style.transform = `scale(${currentZoom})`;
+            
+            // Update percentage display
+            zoomPercentage.textContent = `${Math.round(currentZoom * 100)}%`;
+            
+            // Disable/enable buttons
+            zoomInBtn.disabled = currentZoom >= MAX_ZOOM;
+            zoomOutBtn.disabled = currentZoom <= MIN_ZOOM;
+        }
+
+        // Close modal saat click outside
+        document.getElementById('zoomModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeZoom();
+            }
+        });
+
+        // Close modal saat tekan ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeZoom();
+            }
         });
     </script>
 </body>
