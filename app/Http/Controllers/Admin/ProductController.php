@@ -27,12 +27,12 @@ class ProductController extends Controller
             'name_en' => 'nullable|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
             'gallery.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'specification' => 'nullable|string',
-            'specification_en' => 'nullable|string',
+            'description' => 'nullable|string',
+            'description_en' => 'nullable|string',
             'shopee_url' => 'nullable|url',
             'tokopedia_url' => 'nullable|url',
         ]);
-        $data = $request->only(['name', 'name_en', 'specification', 'specification_en', 'shopee_url', 'tokopedia_url']);
+        $data = $request->only(['name', 'name_en', 'description', 'description_en', 'shopee_url', 'tokopedia_url']);
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('products', 'public');
         }

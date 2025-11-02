@@ -792,6 +792,15 @@
                 width: 38px;
                 height: 38px;
             }
+
+            /* Fix: avoid nav overlap with right-side controls at intermediate widths */
+            .nav-menu {
+                position: static;
+                left: auto;
+                transform: none;
+                margin: 0 auto;
+                justify-content: center;
+            }
         }
 
     /* Tablet Portrait (768px - 1023px) */
@@ -841,7 +850,8 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* reduced top padding so items start near the top when sidebar opens */
+                padding: 40px 30px 30px;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
@@ -849,6 +859,7 @@
                 transform: none;
                 left: auto;
                 align-items: flex-start;
+                justify-content: flex-start;
             }
 
             .nav-menu.active {
@@ -974,7 +985,8 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* reduced top padding so items start near the top when sidebar opens */
+                padding: 40px 30px 30px;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
@@ -982,6 +994,7 @@
                 transform: none;
                 left: auto;
                 align-items: flex-start;
+                justify-content: flex-start;
             }
 
             .nav-menu.active {
@@ -1176,6 +1189,19 @@
                 <li><a href="{{ route('products.en') }}" class="nav-link">Products</a></li>
                 <li><a href="{{ route('contact.en') }}" class="nav-link">Contact Us</a></li>
             </ul>
+
+            <div class="nav-right">
+                <a href="{{ route('about') }}" class="language-selector">ID</a>
+                <div class="search-box">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <button class="search-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
             <button class="hamburger" aria-label="Toggle menu">
                 <span></span>

@@ -383,20 +383,20 @@
                     </div>
                     <div class="form-row" style="gap:40px;">
                         <div class="form-group full-width" style="flex:1;">
-                            <label for="specification">
+                            <label for="description">
                                 <i class="fas fa-list"></i>
                                 Spesifikasi Produk (ID)
                             </label>
-                            <textarea name="specification" id="specification" class="form-control @error('specification') is-invalid @enderror" rows="5" placeholder="Tulis spesifikasi produk...">{{ old('specification', $product->specification ?? '') }}</textarea>
-                            @error('specification')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
+                            <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="5" placeholder="Tulis spesifikasi produk...">{{ old('description', $product->description ?? '') }}</textarea>
+                            @error('description')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
                         </div>
                         <div class="form-group full-width" style="flex:1;">
-                            <label for="specification_en">
+                            <label for="description_en">
                                 <i class="fas fa-list"></i>
                                 Spesifikasi Produk (EN)
                             </label>
-                            <textarea name="specification_en" id="specification_en" class="form-control @error('specification_en') is-invalid @enderror" rows="5" placeholder="Product specification (English)">{{ old('specification_en', $product->specification_en ?? '') }}</textarea>
-                            @error('specification_en')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
+                            <textarea name="description_en" id="description_en" class="form-control @error('description_en') is-invalid @enderror" rows="5" placeholder="Product specification (English)">{{ old('description_en', $product->description_en ?? '') }}</textarea>
+                            @error('description_en')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
                         </div>
                     </div>
                 </div>

@@ -722,6 +722,14 @@
                 width: 36px;
                 height: 36px;
             }
+            /* Fix: avoid nav overlap with right-side controls at intermediate widths */
+            .nav-menu {
+                position: static;
+                left: auto;
+                transform: none;
+                margin: 0 auto;
+                justify-content: center;
+            }
 
             /* Show hamburger on tablet portrait */
             .hamburger {
@@ -738,7 +746,8 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* reduced top padding so items start near the top when sidebar opens */
+                padding: 40px 30px 30px;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
@@ -746,6 +755,7 @@
                 transform: none;
                 left: auto;
                 align-items: flex-start;
+                justify-content: flex-start;
             }
 
             .nav-menu.active {
@@ -885,7 +895,8 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* reduced top padding so items start near the top when sidebar opens */
+                padding: 40px 30px 30px;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
@@ -893,6 +904,7 @@
                 transform: none;
                 left: auto;
                 align-items: flex-start;
+                justify-content: flex-start;
             }
 
             .nav-menu.active {

@@ -939,6 +939,15 @@
                 height: 38px;
             }
 
+            /* Fix: avoid nav overlap with right-side controls at intermediate widths */
+            .nav-menu {
+                position: static;
+                left: auto;
+                transform: none;
+                margin: 0 auto;
+                justify-content: center;
+            }
+
             .contact-section {
                 padding: 50px 30px;
             }
@@ -995,7 +1004,9 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* move nav items to top in the mobile sidebar */
+                padding: 40px 30px 30px;
+                justify-content: flex-start;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
@@ -1122,7 +1133,9 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* move nav items to top in the mobile sidebar */
+                padding: 40px 30px 30px;
+                justify-content: flex-start;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;

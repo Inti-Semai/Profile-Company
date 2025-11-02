@@ -278,14 +278,12 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
             opacity: 0;
-            /* don't capture pointer events when invisible/closed */
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
 
         .mobile-menu-overlay.active {
             opacity: 1;
-            /* overlay receives clicks only when active */
             pointer-events: auto;
         }
 
@@ -965,6 +963,14 @@
                 gap: 25px;
             }
 
+            .nav-menu {
+                position: static;
+                left: auto;
+                transform: none;
+                margin: 0 auto;
+                justify-content: center;
+            }
+
             .nav-menu a {
                 font-size: 13px;
             }
@@ -1035,7 +1041,9 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* move nav items to top in the mobile sidebar */
+                padding: 40px 30px 30px;
+                justify-content: flex-start;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
@@ -1850,56 +1858,7 @@
             }
         });
 
-        // Active navbar based on scroll position
-        const sections = document.querySelectorAll('[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
 
-        window.addEventListener('scroll', function() {
-            let current = 'beranda';
-
-            // Check if at bottom of page
-            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
-                current = 'hubungi-kami';
-            } else {
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= (sectionTop - 150)) {
-                        const sectionId = section.getAttribute('id');
-                        if (sectionId && sectionId !== 'hubungi-kami') {
-                            current = sectionId;
-                        }
-                    }
-                });
-            }
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const href = link.getAttribute('href');
-                if (href === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scroll untuk links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-
-                if (targetId.startsWith('#')) {
-                    e.preventDefault();
-                    const targetSection = document.querySelector(targetId);
-
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
     </script>
 </body>
 </html>

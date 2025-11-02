@@ -989,7 +989,8 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* reduced top padding so items start near the top when sidebar opens */
+                padding: 40px 30px 30px;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
@@ -997,6 +998,7 @@
                 transform: none;
                 left: auto;
                 align-items: flex-start;
+                justify-content: flex-start;
             }
 
             .nav-menu.active {
@@ -1142,7 +1144,8 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* reduced top padding so items start near the top when sidebar opens */
+                padding: 40px 30px 30px;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
@@ -1150,6 +1153,7 @@
                 transform: none;
                 left: auto;
                 align-items: flex-start;
+                justify-content: flex-start;
             }
 
             .nav-menu.active {
@@ -1852,56 +1856,6 @@
             }
         });
 
-        // Active navbar based on scroll position
-        const sections = document.querySelectorAll('[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', function() {
-            let current = 'home';
-
-            // Check if at bottom of page
-            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
-                current = 'contact-us';
-            } else {
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= (sectionTop - 150)) {
-                        const sectionId = section.getAttribute('id');
-                        if (sectionId && sectionId !== 'contact-us') {
-                            current = sectionId;
-                        }
-                    }
-                });
-            }
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const href = link.getAttribute('href');
-                if (href === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scroll for links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-
-                if (targetId.startsWith('#')) {
-                    e.preventDefault();
-                    const targetSection = document.querySelector(targetId);
-
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
     </script>
 </body>
 </html>

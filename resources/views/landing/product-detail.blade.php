@@ -87,7 +87,7 @@
             background-color: #f8f9fa;
         }
 
-       /* Navbar */
+        /* Navbar */
         .navbar {
             background: rgba(255, 255, 255, 0.10);
             backdrop-filter: blur(5px);
@@ -104,6 +104,69 @@
             backdrop-filter: blur(5px);
             box-shadow: 0 2px 20px rgba(0,0,0,0.06);
             padding: 15px 80px;
+        }
+
+        /* Large Desktop (1280px+) */
+        @media (min-width: 1280px) {
+            .navbar {
+                padding: 20px 80px;
+            }
+
+            .navbar.scrolled {
+                padding: 15px 80px;
+            }
+
+            .nav-menu {
+                gap: 40px;
+            }
+
+            .nav-menu a {
+                font-size: 15px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .logo-icon {
+                width: 45px;
+                height: 45px;
+            }
+            /* Fix: avoid nav overlap with right-side controls at intermediate widths */
+            .nav-menu {
+                position: static;
+                left: auto;
+                transform: none;
+                margin: 0 auto;
+                justify-content: center;
+        }
+
+        /* Desktop/Laptop (1024px - 1279px) */
+        @media (min-width: 1024px) and (max-width: 1279px) {
+            .navbar {
+                padding: 15px 40px;
+            }
+
+            .navbar.scrolled {
+                padding: 12px 40px;
+            }
+
+            .nav-menu {
+                gap: 25px;
+            }
+
+            .nav-menu a {
+                font-size: 13px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+            }
         }
 
         .navbar-container {
@@ -561,8 +624,10 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             min-width: 0;
+            padding: 0 15px;
+            max-width: 100%;
         }
 
         .product-specifications h2 {
@@ -586,6 +651,20 @@
             border-bottom: 1px solid rgba(59, 91, 24, 0.1);
         }
 
+        .specification-content {
+            word-break: break-word;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            text-align: justify;
+            font-size: 1rem;
+            color: #31460B;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            line-height: 1;
+            max-width: 100%;
+        }
+
         .action-buttons {
             display: flex;
             gap: 10px;
@@ -603,7 +682,7 @@
         /* Marketplace Section */
         .marketplace-section {
             margin: 40px auto 0;
-            text-align: left;
+            text-align: center;
         }
 
         .marketplace-section > div:first-child {
@@ -611,13 +690,13 @@
             font-weight: 600;
             margin-bottom: 22px;
             padding-left: 0;
-            text-align: left;
-            margin-left: 180px;
+            text-align: center;
+            margin-left: 0;
         }
 
         .marketplace-buttons {
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
             gap: 32px;
             flex-wrap: wrap;
             margin-bottom: 48px;
@@ -655,6 +734,15 @@
 
         /* Responsive for Navbar and Footer */
         @media (max-width: 1023px) {
+            .hero {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
             .navbar {
                 padding: 15px 30px;
             }
@@ -677,11 +765,13 @@
                 height: 36px;
             }
 
+            /* Show hamburger on tablet portrait */
             .hamburger {
                 display: flex;
                 order: 3;
             }
 
+            /* Mobile menu slide-in */
             .nav-menu {
                 position: fixed;
                 top: 0;
@@ -690,7 +780,9 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* move nav items to top in the mobile sidebar */
+                padding: 40px 30px 30px;
+                justify-content: flex-start;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
@@ -736,6 +828,10 @@
 
             .search-box {
                 width: 180px;
+            }
+
+            .search-input {
+                font-size: 13px;
             }
 
             .container {
@@ -825,11 +921,13 @@
                 height: 35px;
             }
 
+            /* Show hamburger on mobile */
             .hamburger {
                 display: flex;
                 order: 3;
             }
 
+            /* Mobile menu slide-in */
             .nav-menu {
                 position: fixed;
                 top: 0;
@@ -838,7 +936,9 @@
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                padding: 80px 30px 30px;
+                /* move nav items to top in the mobile sidebar */
+                padding: 40px 30px 30px;
+                justify-content: flex-start;
                 box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
@@ -994,6 +1094,11 @@
             .logo-icon {
                 width: 30px;
                 height: 30px;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 3;
             }
 
             .nav-menu {
@@ -1554,7 +1659,7 @@
             </div>
             <div class="product-specifications">
                 <h2 class="spec-title">Spesifikasi</h2>
-                <div class="specification-content" style="white-space: pre-line;">
+                <div class="specification-content" style="white-space: pre-line;word-break:break-word;word-wrap:break-word;overflow-wrap:break-word;text-align:justify;">
                     {!! nl2br(e($specifications)) !!}
                 </div>
             </div>

@@ -75,7 +75,7 @@
                                 @endif
                             </td>
                             <td>{{ $product->name }}</td>
-                            <td style="max-width:220px;white-space:pre-line;">{{ $product->specification }}</td>
+                            <td style="max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $product->description }}</td>
                             <td>
                                 @if($product->shopee_url)
                                     <a href="{{ $product->shopee_url }}" target="_blank" class="btn btn-secondary">Shopee</a>
