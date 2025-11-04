@@ -936,7 +936,7 @@
             }
 
             .about-gallery {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
                 padding: 0 30px;
             }
