@@ -51,14 +51,6 @@
                 </a>
             </div>
 
-            <!-- Landing Produk -->
-            <div class="menu-item {{ request()->routeIs('admin.product-landing.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.product-landing.edit') }}" class="menu-link" data-title="Landing Produk">
-                    <i class="fas fa-rocket"></i>
-                    <span class="menu-text">Landing Produk</span>
-                </a>
-            </div>
-
             <!-- Produk -->
             <div class="menu-item {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
                 <a href="{{ route('admin.products.index') }}" class="menu-link" data-title="Produk">

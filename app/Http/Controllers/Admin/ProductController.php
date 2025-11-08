@@ -26,7 +26,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'gallery.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'gallery.*' => 'nullable|file|mimes:jpeg,png,jpg,gif,mp4,avi,mov,wmv|max:102400',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
             'shopee_url' => 'nullable|url',
@@ -37,14 +37,22 @@ class ProductController extends Controller
             $data['image'] = $request->file('image')->store('products', 'public');
         }
         $product = Product::create($data);
-        // Simpan multiple gallery images
+        // Simpan multiple gallery files (gambar dan video)
         if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $galleryImage) {
-                $galleryPath = $galleryImage->store('products/gallery', 'public');
-                $product->galleries()->create([
-                    'image' => $galleryPath,
-                    'product_id' => $product->id,
-                ]);
+            foreach ($request->file('gallery') as $galleryFile) {
+                if ($galleryFile) {
+                    // Tentukan folder berdasarkan tipe file
+                    $mimeType = $galleryFile->getMimeType();
+                    if (strpos($mimeType, 'video') !== false) {
+                        $galleryPath = $galleryFile->store('products/gallery/videos', 'public');
+                    } else {
+                        $galleryPath = $galleryFile->store('products/gallery', 'public');
+                    }
+                    $product->galleries()->create([
+                        'image' => $galleryPath,
+                        'product_id' => $product->id,
+                    ]);
+                }
             }
         }
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully!');
@@ -61,7 +69,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'gallery.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'gallery.*' => 'nullable|file|mimes:jpeg,png,jpg,gif,mp4,avi,mov,wmv|max:102400',
             'description' => 'nullable|string',
             'description_en' => 'nullable|string',
             'shopee_url' => 'nullable|url',
@@ -79,9 +87,9 @@ class ProductController extends Controller
         }
         $product->update($data);
 
-        // Handle gallery images update
+        // Handle gallery images/videos update
         if ($request->has('remove_gallery')) {
-            // Remove selected gallery images (IDs in remove_gallery[])
+            // Remove selected gallery files (IDs in remove_gallery[])
             foreach ($request->input('remove_gallery') as $galleryId) {
                 $gallery = $product->galleries()->find($galleryId);
                 if ($gallery) {
@@ -92,9 +100,15 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('gallery')) {
-            foreach ($request->file('gallery') as $galleryImage) {
-                if ($galleryImage) {
-                    $galleryPath = $galleryImage->store('products/gallery', 'public');
+            foreach ($request->file('gallery') as $galleryFile) {
+                if ($galleryFile) {
+                    // Tentukan folder berdasarkan tipe file
+                    $mimeType = $galleryFile->getMimeType();
+                    if (strpos($mimeType, 'video') !== false) {
+                        $galleryPath = $galleryFile->store('products/gallery/videos', 'public');
+                    } else {
+                        $galleryPath = $galleryFile->store('products/gallery', 'public');
+                    }
                     $product->galleries()->create([
                         'image' => $galleryPath,
                         'product_id' => $product->id,

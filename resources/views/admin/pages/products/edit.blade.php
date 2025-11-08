@@ -433,24 +433,31 @@
                         <div class="form-group">
                             <label>
                                 <i class="fas fa-images"></i>
-                                Gambar Galeri (bisa lebih dari satu)
+                                Media Galeri (Gambar & Video)
                             </label>
                             <div id="gallery-inputs">
                                 @if(isset($product) && $product->galleries && count($product->galleries))
                                     @foreach($product->galleries as $gallery)
                                         <div class="file-upload-wrapper gallery-input-row" style="align-items:flex-start;">
-                                            <input type="file" name="gallery[]" class="form-control gallery-input" accept="image/*" onchange="previewSingleGalleryImage(this)">
+                                            <input type="file" name="gallery[]" class="form-control gallery-input" accept="image/*,video/mp4,video/avi,video/quicktime,video/x-ms-wmv" onchange="previewGalleryFile(this)">
                                             <div class="file-upload-label">
                                                 <i class="fas fa-cloud-upload-alt"></i>
-                                                <div>Unggah gambar galeri</div>
+                                                <div>Unggah gambar atau video</div>
                                             </div>
                                             <button type="button" class="btn btn-danger" style="margin-left:10px;" onclick="removeGalleryInput(this)"><i class="fas fa-trash"></i></button>
                                             <div style="margin-top:10px;">
-                                                <img src="{{ asset('storage/' . $gallery->image) }}" alt="Gallery Image" style="max-width:120px;max-height:120px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-                                                <div style="font-size:0.85rem;color:#888;">Gambar galeri saat ini</div>
+                                                @if(strpos($gallery->image, '.mp4') !== false || strpos($gallery->image, '.avi') !== false || strpos($gallery->image, '.mov') !== false || strpos($gallery->image, '.wmv') !== false)
+                                                    <video width="120" height="120" style="border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                                                        <source src="{{ asset('storage/' . $gallery->image) }}" type="video/mp4">
+                                                    </video>
+                                                    <div style="font-size:0.85rem;color:#888;">Video galeri saat ini</div>
+                                                @else
+                                                    <img src="{{ asset('storage/' . $gallery->image) }}" alt="Gallery Image" style="max-width:120px;max-height:120px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                                                    <div style="font-size:0.85rem;color:#888;">Gambar galeri saat ini</div>
+                                                @endif
                                                 <div style="margin-top:5px;">
                                                     <label style="font-size:0.9em;color:#b00;">
-                                                        <input type="checkbox" name="remove_gallery[]" value="{{ $gallery->id }}"> Hapus gambar ini
+                                                        <input type="checkbox" name="remove_gallery[]" value="{{ $gallery->id }}"> Hapus media ini
                                                     </label>
                                                 </div>
                                             </div>
@@ -458,19 +465,19 @@
                                     @endforeach
                                 @else
                                     <div class="file-upload-wrapper gallery-input-row">
-                                        <input type="file" name="gallery[]" class="form-control gallery-input @error('gallery') is-invalid @enderror" accept="image/*" onchange="previewSingleGalleryImage(this)">
+                                        <input type="file" name="gallery[]" class="form-control gallery-input @error('gallery') is-invalid @enderror" accept="image/*,video/mp4,video/avi,video/quicktime,video/x-ms-wmv" onchange="previewGalleryFile(this)">
                                         <div class="file-upload-label">
                                             <i class="fas fa-cloud-upload-alt"></i>
-                                            <div>Unggah gambar galeri</div>
+                                            <div>Unggah gambar atau video</div>
                                         </div>
                                     </div>
                                 @endif
                             </div>
-                            <button type="button" class="btn btn-secondary" style="margin-top:10px;" onclick="addGalleryInput()"><i class="fas fa-plus"></i> Tambah Gambar</button>
+                            <button type="button" class="btn btn-secondary" style="margin-top:10px;" onclick="addGalleryInput()"><i class="fas fa-plus"></i> Tambah Media</button>
                             <div id="gallery-preview" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;"></div>
                             <small class="form-text text-muted">
                                 <i class="fas fa-info-circle"></i>
-                                Opsional, untuk galeri produk (tidak tampil di landing utama)
+                                Gambar: JPG, PNG, GIF (max 10MB) | Video: MP4, AVI, MOV, WMV (max 100MB)
                             </small>
                             @error('gallery')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
                         </div>
@@ -523,10 +530,10 @@ function addGalleryInput() {
     const row = document.createElement('div');
     row.className = 'file-upload-wrapper gallery-input-row';
     row.innerHTML = `
-        <input type="file" name="gallery[]" class="form-control gallery-input" accept="image/*" onchange="previewSingleGalleryImage(this)">
+        <input type="file" name="gallery[]" class="form-control gallery-input" accept="image/*,video/mp4,video/avi,video/quicktime,video/x-ms-wmv" onchange="previewGalleryFile(this)">
         <div class="file-upload-label">
             <i class="fas fa-cloud-upload-alt"></i>
-            <div>Upload gallery image</div>
+            <div>Unggah gambar atau video</div>
         </div>
         <button type="button" class="btn btn-danger" style="margin-left:10px;" onclick="removeGalleryInput(this)"><i class="fas fa-trash"></i></button>
     `;
@@ -536,7 +543,7 @@ function removeGalleryInput(btn) {
     btn.parentElement.remove();
     updateGalleryPreview();
 }
-function previewSingleGalleryImage(input) {
+function previewGalleryFile(input) {
     updateGalleryPreview();
 }
 function updateGalleryPreview() {
@@ -545,18 +552,32 @@ function updateGalleryPreview() {
     const inputs = document.querySelectorAll('.gallery-input');
     inputs.forEach(input => {
         if (input.files && input.files[0]) {
+            const file = input.files[0];
+            const isVideo = file.type.startsWith('video/');
+            
             const reader = new FileReader();
             reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.maxWidth = '90px';
-                img.style.maxHeight = '90px';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '8px';
-                img.style.border = '1px solid #e0e0e0';
-                preview.appendChild(img);
+                if (isVideo) {
+                    const video = document.createElement('video');
+                    video.src = e.target.result;
+                    video.style.maxWidth = '90px';
+                    video.style.maxHeight = '90px';
+                    video.style.borderRadius = '8px';
+                    video.style.border = '1px solid #e0e0e0';
+                    video.style.backgroundColor = '#000';
+                    preview.appendChild(video);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '90px';
+                    img.style.maxHeight = '90px';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '8px';
+                    img.style.border = '1px solid #e0e0e0';
+                    preview.appendChild(img);
+                }
             };
-            reader.readAsDataURL(input.files[0]);
+            reader.readAsDataURL(file);
         }
     });
 }

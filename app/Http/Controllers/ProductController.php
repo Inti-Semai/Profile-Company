@@ -34,10 +34,10 @@ class ProductController extends Controller
 
     public function showEnglish($id)
     {
-    $setting = CompanySetting::first();
-    $product = Product::findOrFail($id);
-    $landing = \App\Models\ProductLanding::first();
-    $specifications_en = $product->description_en ?? '';
-    return view('landing.en.product_detailen', compact('setting', 'product', 'landing', 'specifications_en'));
+        $setting = CompanySetting::first();
+        $product = Product::findOrFail($id);
+        $landing = \App\Models\ProductLanding::first();
+        $specifications_en = $product->description_en ?? '';
+        return view('landing.en.product_detailen', compact('setting', 'product', 'landing', 'specifications_en'));
     }
 }

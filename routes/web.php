@@ -51,10 +51,6 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
     Route::get('/about-us', [AboutUsController::class, 'edit'])->name('about-us.edit');
     Route::put('/about-us', [AboutUsController::class, 'update'])->name('about-us.update');
 
-    // Product Landing Page
-    Route::get('/product-landing', [\App\Http\Controllers\Admin\ProductLandingController::class, 'edit'])->name('product-landing.edit');
-    Route::put('/product-landing', [\App\Http\Controllers\Admin\ProductLandingController::class, 'update'])->name('product-landing.update');
-
     // Product Management
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
 

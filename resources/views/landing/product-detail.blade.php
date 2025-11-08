@@ -1800,9 +1800,11 @@
                             @if($product->image_url)
                             <div class="swiper-slide">
                                 <img src="{{ $product->image_url }}" alt="Cover Image">
-                                <button class="zoom-btn" onclick="openZoom(this)">
+                                <button class="zoom-btn" onclick="openZoom(this)" title="Perbesar gambar">
                                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"></path>
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.35-4.35"></path>
+                                        <path d="M11 8v6M8 11h6"></path>
                                     </svg>
                                 </button>
                             </div>
@@ -1810,12 +1812,21 @@
                             @if($product->galleries && $product->galleries->count())
                                 @foreach($product->galleries as $gallery)
                                     <div class="swiper-slide">
-                                        <img src="{{ $gallery->image_url }}" alt="Gallery Image">
-                                        <button class="zoom-btn" onclick="openZoom(this)">
-                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                                <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"></path>
-                                            </svg>
-                                        </button>
+                                        @if($gallery->isVideo())
+                                            <video width="100%" height="auto" controls style="display: block; object-fit: contain;">
+                                                <source src="{{ $gallery->image_url }}" type="video/mp4">
+                                                Browser Anda tidak mendukung tag video.
+                                            </video>
+                                        @else
+                                            <img src="{{ $gallery->image_url }}" alt="Gallery Image">
+                                            <button class="zoom-btn" onclick="openZoom(this)" title="Perbesar gambar">
+                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                                    <circle cx="11" cy="11" r="8"></circle>
+                                                    <path d="m21 21-4.35-4.35"></path>
+                                                    <path d="M11 8v6M8 11h6"></path>
+                                                </svg>
+                                            </button>
+                                        @endif
                                     </div>
                                 @endforeach
                             @endif

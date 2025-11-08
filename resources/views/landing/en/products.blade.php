@@ -1830,12 +1830,6 @@
         </div>
     </section>
     <div class="container" style="margin-top: 60px;">
-        <div class="page-title-container">
-            <span class="page-title">
-                {{ $landing->hero_subtitle_bottom_en ?? 'Innovation for Better and Sustainable Results' }}
-                <span class="title-underline"></span>
-            </span>
-        </div>
         <div style="margin-bottom:130px;"></div>
     <div class="product-grid" id="productGrid">
         @foreach($products as $i => $product)

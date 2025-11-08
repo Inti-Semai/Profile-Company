@@ -479,22 +479,22 @@
                         <div class="form-group">
                             <label>
                                 <i class="fas fa-images"></i>
-                                Gambar Galeri (bisa lebih dari satu)
+                                Media Galeri (Gambar & Video)
                             </label>
                             <div id="gallery-inputs">
                                 <div class="file-upload-wrapper gallery-input-row">
-                                    <input type="file" name="gallery[]" class="form-control gallery-input @error('gallery') is-invalid @enderror" accept="image/*" onchange="previewSingleGalleryImage(this)">
+                                    <input type="file" name="gallery[]" class="form-control gallery-input" accept="image/*,video/mp4,video/avi,video/quicktime,video/x-ms-wmv" onchange="previewGalleryFile(this)">
                                     <div class="file-upload-label">
                                         <i class="fas fa-cloud-upload-alt"></i>
-                                        <div>Unggah gambar galeri</div>
+                                        <div>Unggah gambar atau video</div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-secondary" style="margin-top:10px;" onclick="addGalleryInput()"><i class="fas fa-plus"></i> Tambah Gambar</button>
+                            <button type="button" class="btn btn-secondary" style="margin-top:10px;" onclick="addGalleryInput()"><i class="fas fa-plus"></i> Tambah Media</button>
                             <div id="gallery-preview" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;"></div>
                             <small class="form-text text-muted">
                                 <i class="fas fa-info-circle"></i>
-                                Opsional, untuk galeri produk (tidak tampil di landing utama)
+                                Gambar: JPG, PNG, GIF (max 10MB) | Video: MP4, AVI, MOV, WMV (max 100MB)
                             </small>
                             @error('gallery')<div class="invalid-feedback"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>@enderror
                         </div>
@@ -547,10 +547,10 @@ function addGalleryInput() {
     const row = document.createElement('div');
     row.className = 'file-upload-wrapper gallery-input-row';
     row.innerHTML = `
-        <input type="file" name="gallery[]" class="form-control gallery-input" accept="image/*" onchange="previewSingleGalleryImage(this)">
+        <input type="file" name="gallery[]" class="form-control gallery-input" accept="image/*,video/mp4,video/avi,video/quicktime,video/x-ms-wmv" onchange="previewGalleryFile(this)">
         <div class="file-upload-label">
             <i class="fas fa-cloud-upload-alt"></i>
-            <div>Upload gallery image</div>
+            <div>Unggah gambar atau video</div>
         </div>
         <button type="button" class="btn btn-danger" style="margin-left:10px;" onclick="removeGalleryInput(this)"><i class="fas fa-trash"></i></button>
     `;
@@ -563,24 +563,43 @@ function removeGalleryInput(btn) {
 function previewSingleGalleryImage(input) {
     updateGalleryPreview();
 }
+
+function previewGalleryFile(input) {
+    updateGalleryPreview();
+}
+
 function updateGalleryPreview() {
     const preview = document.getElementById('gallery-preview');
     preview.innerHTML = '';
     const inputs = document.querySelectorAll('.gallery-input');
     inputs.forEach(input => {
         if (input.files && input.files[0]) {
+            const file = input.files[0];
+            const isVideo = file.type.startsWith('video/');
+            
             const reader = new FileReader();
             reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.maxWidth = '90px';
-                img.style.maxHeight = '90px';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '8px';
-                img.style.border = '1px solid #e0e0e0';
-                preview.appendChild(img);
+                if (isVideo) {
+                    const video = document.createElement('video');
+                    video.src = e.target.result;
+                    video.style.maxWidth = '90px';
+                    video.style.maxHeight = '90px';
+                    video.style.borderRadius = '8px';
+                    video.style.border = '1px solid #e0e0e0';
+                    video.style.backgroundColor = '#000';
+                    preview.appendChild(video);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '90px';
+                    img.style.maxHeight = '90px';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '8px';
+                    img.style.border = '1px solid #e0e0e0';
+                    preview.appendChild(img);
+                }
             };
-            reader.readAsDataURL(input.files[0]);
+            reader.readAsDataURL(file);
         }
     });
 }
