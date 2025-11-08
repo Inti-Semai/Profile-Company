@@ -80,41 +80,6 @@
             box-shadow: 0 0 0 3px rgba(59, 91, 24, 0.1);
         }
 
-        .captcha-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .captcha-container img {
-            border-radius: 8px;
-            border: 2px solid #e1e8ed;
-            height: 50px;
-        }
-
-        .refresh-btn {
-            background: var(--primary-green);
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .refresh-btn:hover {
-            background: var(--dark-green);
-            transform: rotate(180deg);
-        }
-
-        .refresh-btn svg {
-            width: 24px;
-            height: 24px;
-        }
-
         .btn-login {
             width: 100%;
             padding: 16px;
@@ -192,33 +157,8 @@
                 >
             </div>
 
-            <div class="form-group">
-                <label>Captcha:</label>
-                <div class="captcha-container">
-                    <img src="{{ captcha_src('default') }}" alt="captcha" id="captcha-image">
-                    <button type="button" class="refresh-btn" onclick="refreshCaptcha()">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                    </button>
-                </div>
-                <input
-                    type="text"
-                    name="captcha"
-                    placeholder="Enter Captcha"
-                    class="{{ $errors->has('captcha') ? 'error-input' : '' }}"
-                    required
-                >
-            </div>
-
             <button type="submit" class="btn-login">Login</button>
         </form>
     </div>
-
-    <script>
-        function refreshCaptcha() {
-            document.getElementById('captcha-image').src = '{{ captcha_src('default') }}?' + Math.random();
-        }
-    </script>
 </body>
 </html>
