@@ -320,7 +320,7 @@
         .hero {
             margin-top: 0;
             padding-top: 100px;
-            height: 70vh;
+            height: 50vh;
             min-height: 400px;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%233B5B18" width="1200" height="400"/></svg>');
             background-size: cover;
@@ -386,7 +386,7 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 80px 50px;
+            padding: 15px 50px 80px 50px;
         }
 
         /* Marketplace Icons */
@@ -575,6 +575,8 @@
             justify-content: center;
             max-width: 1024px; /* 1280px * 0.8 */
             margin: 0 auto;
+            /* position grid close to hero for desktop */
+            margin-top: -120px;
         }
 
         .product-card {
@@ -643,10 +645,10 @@
             left: 25.6px; /* 32px * 0.8 */
             bottom: 25.6px; /* 32px * 0.8 */
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 9.6px; /* 12px * 0.8 */
             z-index: 2;
-            align-items: flex-start;
+            align-items: center;
             max-width: 200px;
         }
 
@@ -798,7 +800,7 @@
             }
 
             .container {
-                padding: 100px 120px;
+                padding: 15px 120px 100px 120px;
             }
 
             .page-title {
@@ -907,7 +909,7 @@
             }
 
             .container {
-                padding: 90px 100px;
+                padding: 15px 100px 90px 100px;
             }
 
             .page-title {
@@ -975,6 +977,7 @@
             .product-grid {
                 max-width: 1120px; /* 1400px * 0.8 */
                 gap: 25.6px; /* 32px * 0.8 */
+                margin-top: -140px;
             }
 
             .product-card {
@@ -1016,12 +1019,13 @@
             }
 
             .container {
-                padding: 60px 40px;
+                padding: 15px 40px 60px 40px;
             }
 
             .product-grid {
                 gap: 19.2px; /* 24px * 0.8 */
                 max-width: 960px; /* 1200px * 0.8 */
+                margin-top: -130px;
             }
 
             .product-card {
@@ -1052,6 +1056,7 @@
             .product-links {
                 left: 19.2px; /* 24px * 0.8 */
                 bottom: 19.2px; /* 24px * 0.8 */
+                flex-wrap: nowrap;
             }
 
             .shop-link {
@@ -1226,7 +1231,7 @@
             }
 
             .container {
-                padding: 50px 30px;
+                padding: 10px 30px 50px 30px;
             }
 
             .page-title {
@@ -1236,6 +1241,7 @@
             .product-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 22.4px; /* 28px * 0.8 */
+                margin-top: -100px;
             }
 
             .product-card {
@@ -1266,6 +1272,7 @@
             .product-links {
                 left: 16px; /* 20px * 0.8 */
                 bottom: 16px; /* 20px * 0.8 */
+                flex-wrap: nowrap;
             }
 
             .shop-link {
@@ -1404,7 +1411,7 @@
             }
 
             .container {
-                padding: 40px 20px;
+                padding: 8px 20px 40px 20px;
             }
 
             .page-title {
@@ -1412,8 +1419,9 @@
             }
 
             .product-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 19.2px; /* 24px * 0.8 */
+                margin-top: -45px;
             }
 
             .product-card {
@@ -1448,6 +1456,7 @@
                 left: 12.8px; /* 16px * 0.8 */
                 bottom: 12.8px; /* 16px * 0.8 */
                 height: 40px; /* 50px * 0.8 */
+                flex-wrap: nowrap;
             }
 
             .shop-link {
@@ -1550,7 +1559,11 @@
             .hero {
                 padding-left: 15px;
                 padding-right: 15px;
-                min-height: 350px;
+                min-height: 280px;
+            }
+
+            .hero-content h1 {
+                font-size: 26px;
             }
 
             .hero-content p {
@@ -1558,7 +1571,7 @@
             }
 
             .container {
-                padding: 30px 15px;
+                padding: 5px 15px 30px 15px;
             }
 
             .page-title {
@@ -1570,7 +1583,9 @@
             }
 
             .product-grid {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 16px; /* 20px * 0.8 */
+                margin-top: -120px;
             }
 
             .product-card {
@@ -1593,18 +1608,27 @@
             }
 
             .detail-button {
-                width: 128px; /* 160px * 0.8 */
-                height: 36.8px; /* 46px * 0.8 */
+                width: 100%;
+                height: auto;
                 font-size: 0.76rem; /* 0.95rem * 0.8 */
-                right: 9.6px; /* 12px * 0.8 */
-                bottom: 9.6px; /* 12px * 0.8 */
+                right: auto;
+                bottom: auto;
+                position: relative;
+                padding: 9.6px 12.8px; /* 12px 16px * 0.8 */
+                margin-top: 12.8px; /* 16px * 0.8 */
+                margin-left: 0;
+                margin-right: 0;
             }
 
             .product-links {
-                left: 9.6px; /* 12px * 0.8 */
-                bottom: 9.6px; /* 12px * 0.8 */
-                height: 36.8px; /* 46px * 0.8 */
+                left: 0;
+                bottom: auto;
+                height: auto;
                 gap: 6.4px; /* 8px * 0.8 */
+                position: relative;
+                width: 100%;
+                justify-content: center;
+                padding: 9.6px 0;
             }
 
             .shop-link {
@@ -1709,9 +1733,11 @@
             }
 
             .detail-button {
-                width: 112px; /* 140px * 0.8 */
-                height: 33.6px; /* 42px * 0.8 */
+                width: 100%;
+                height: auto;
                 font-size: 0.72rem; /* 0.9rem * 0.8 */
+                padding: 9.6px 12.8px; /* 12px 16px * 0.8 */
+                margin-top: 9.6px; /* 12px * 0.8 */
             }
 
             .shop-link {

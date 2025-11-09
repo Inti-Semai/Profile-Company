@@ -267,7 +267,7 @@
         .hero {
             margin-top: 0;
             padding-top: 100px;
-            height: 70vh;
+            height: 50vh;
             min-height: 400px;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%233B5B18" width="1200" height="400"/></svg>');
             background-size: cover;
@@ -1187,11 +1187,11 @@
             .hero {
                 padding-left: 15px;
                 padding-right: 15px;
-                min-height: 350px;
+                min-height: 280px;
             }
 
             .hero-content h1 {
-                font-size: 24px;
+                font-size: 26px;
             }
 
             .about-box {

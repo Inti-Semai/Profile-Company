@@ -267,7 +267,7 @@
         .hero {
             margin-top: 0;
             padding-top: 100px;
-            height: 70vh;
+            height: 50vh;
             min-height: 400px;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%233B5B18" width="1200" height="400"/></svg>');
             background-size: cover;
@@ -1031,20 +1031,13 @@
             }
 
             .hero {
-                min-height: 500px;
-                height: 60vh;
-                padding-left: 20px;
-                padding-right: 20px;
-                justify-content: center;
-                text-align: center;
-            }
-
-            .hero-content {
-                max-width: 100%;
+                min-height: 280px;
+                padding-left: 15px;
+                padding-right: 15px;
             }
 
             .hero-content h1 {
-                font-size: 32px;
+                font-size: 26px;
             }
 
             .about-box {
