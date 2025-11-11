@@ -438,26 +438,26 @@
                             <div id="gallery-inputs">
                                 @if(isset($product) && $product->galleries && count($product->galleries))
                                     @foreach($product->galleries as $gallery)
-                                        <div class="file-upload-wrapper gallery-input-row" style="align-items:flex-start;">
+                                        <div class="file-upload-wrapper gallery-input-row" style="align-items:flex-start;" data-gallery-id="{{ $gallery->id }}">
                                             <input type="file" name="gallery[]" class="form-control gallery-input" accept="image/*,video/mp4,video/avi,video/quicktime,video/x-ms-wmv" onchange="previewGalleryFile(this)">
                                             <div class="file-upload-label">
                                                 <i class="fas fa-cloud-upload-alt"></i>
                                                 <div>Unggah gambar atau video</div>
                                             </div>
                                             <button type="button" class="btn btn-danger" style="margin-left:10px;" onclick="removeGalleryInput(this)"><i class="fas fa-trash"></i></button>
-                                            <div style="margin-top:10px;">
+                                            <div style="margin-top:10px;" class="gallery-preview-wrapper">
                                                 @if(strpos($gallery->image, '.mp4') !== false || strpos($gallery->image, '.avi') !== false || strpos($gallery->image, '.mov') !== false || strpos($gallery->image, '.wmv') !== false)
-                                                    <video width="120" height="120" style="border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                                                    <video width="120" height="120" style="border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);" class="gallery-media-preview">
                                                         <source src="{{ asset('storage/' . $gallery->image) }}" type="video/mp4">
                                                     </video>
                                                     <div style="font-size:0.85rem;color:#888;">Video galeri saat ini</div>
                                                 @else
-                                                    <img src="{{ asset('storage/' . $gallery->image) }}" alt="Gallery Image" style="max-width:120px;max-height:120px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                                                    <img src="{{ asset('storage/' . $gallery->image) }}" alt="Gallery Image" style="max-width:120px;max-height:120px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);" class="gallery-media-preview">
                                                     <div style="font-size:0.85rem;color:#888;">Gambar galeri saat ini</div>
                                                 @endif
                                                 <div style="margin-top:5px;">
                                                     <label style="font-size:0.9em;color:#b00;">
-                                                        <input type="checkbox" name="remove_gallery[]" value="{{ $gallery->id }}"> Hapus media ini
+                                                        <input type="checkbox" name="remove_gallery[]" value="{{ $gallery->id }}" onchange="toggleGalleryRemoval(this)"> Hapus media ini
                                                     </label>
                                                 </div>
                                             </div>
@@ -525,6 +525,28 @@
     </form>
 </div>
 <script>
+function toggleGalleryRemoval(checkbox) {
+    const wrapper = checkbox.closest('.file-upload-wrapper');
+    const previewWrapper = wrapper.querySelector('.gallery-preview-wrapper');
+    const mediaPreview = wrapper.querySelector('.gallery-media-preview');
+    
+    if (checkbox.checked) {
+        // Hide the gallery item visually when marked for deletion
+        previewWrapper.style.opacity = '0.5';
+        previewWrapper.style.textDecoration = 'line-through';
+        if (mediaPreview) {
+            mediaPreview.style.opacity = '0.5';
+        }
+    } else {
+        // Show it again if unchecked
+        previewWrapper.style.opacity = '1';
+        previewWrapper.style.textDecoration = 'none';
+        if (mediaPreview) {
+            mediaPreview.style.opacity = '1';
+        }
+    }
+}
+
 function addGalleryInput() {
     const galleryInputs = document.getElementById('gallery-inputs');
     const row = document.createElement('div');

@@ -297,7 +297,7 @@
             margin-top: 0;
             padding-top: 100px;
             height: 50vh;
-            min-height: 400px;
+            min-height: 300px;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%233B5B18" width="1200" height="400"/></svg>');
             background-size: cover;
             background-position: center;

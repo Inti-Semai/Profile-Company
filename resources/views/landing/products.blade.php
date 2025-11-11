@@ -321,7 +321,7 @@
             margin-top: 0;
             padding-top: 100px;
             height: 50vh;
-            min-height: 400px;
+            min-height: 300px;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%233B5B18" width="1200" height="400"/></svg>');
             background-size: cover;
             background-position: center;
@@ -584,6 +584,7 @@
             border-radius: 12.8px; /* 16px * 0.8 */
             border: 2.4px solid var(--dark-green); /* 3px * 0.8 */
             padding: 12.8px; /* 16px * 0.8 */
+            padding-bottom: 100px; /* Space for absolutely-positioned buttons */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -638,6 +639,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             text-align: justify;
+            flex-grow: 1;
         }
 
         .product-links {
@@ -1428,6 +1430,8 @@
                 max-width: 100%;
                 min-height: 416px; /* 520px * 0.8 */
                 padding: 9.6px; /* 12px * 0.8 */
+                display: flex;
+                flex-direction: column;
             }
 
             .product-image-container {
@@ -1442,21 +1446,31 @@
             .product-spec {
                 font-size: 12.8px; /* 16px * 0.8 */
                 margin-bottom: 12.8px; /* 16px * 0.8 */
+                flex-grow: 1;
             }
 
             .detail-button {
-                width: 144px; /* 180px * 0.8 */
-                height: 40px; /* 50px * 0.8 */
+                width: 100%;
+                height: auto;
                 font-size: 0.8rem; /* 1rem * 0.8 */
-                right: 12.8px; /* 16px * 0.8 */
-                bottom: 12.8px; /* 16px * 0.8 */
+                position: relative;
+                right: auto;
+                bottom: auto;
+                margin-top: 16px;
+                padding: 9.6px 12.8px; /* 12px 16px * 0.8 */
             }
 
             .product-links {
-                left: 12.8px; /* 16px * 0.8 */
-                bottom: 12.8px; /* 16px * 0.8 */
-                height: 40px;
+                left: auto;
+                bottom: auto;
+                height: auto;
                 flex-wrap: nowrap;
+                position: relative;
+                width: 100%;
+                justify-content: center;
+                gap: 6.4px;
+                margin-top: 12px;
+                padding: 9.6px 0;
             }
 
             .shop-link {
@@ -1589,22 +1603,30 @@
             }
 
             .product-card {
-                min-height: 384px; /* 480px * 0.8 */
+                min-height: 280px; /* Reduced for more square layout */
                 padding: 8px; /* 10px * 0.8 */
+                display: flex;
+                flex-direction: column;
             }
 
             .product-image-container {
-                height: 192px; /* 240px * 0.8 */
+                height: 140px; /* Reduced for more square layout */
                 padding: 9.6px; /* 12px * 0.8 */
             }
 
             .product-title {
-                font-size: 17.6px; /* 22px * 0.8 */
+                font-size: 14px; /* Reduced for compact layout */
             }
 
             .product-spec {
-                font-size: 12px; /* 15px * 0.8 */
-                min-height: 19.2px; /* 24px * 0.8 */
+                font-size: 10px; /* Reduced from 12px */
+                min-height: auto; /* Allow flexible height */
+                flex-grow: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* Limit to 2 lines */
+                -webkit-box-orient: vertical;
             }
 
             .detail-button {
@@ -1615,7 +1637,7 @@
                 bottom: auto;
                 position: relative;
                 padding: 9.6px 12.8px; /* 12px 16px * 0.8 */
-                margin-top: 12.8px; /* 16px * 0.8 */
+                margin-top: 16px; /* Add gap from product-spec */
                 margin-left: 0;
                 margin-right: 0;
             }
@@ -1629,6 +1651,7 @@
                 width: 100%;
                 justify-content: center;
                 padding: 9.6px 0;
+                margin-top: 12px; /* Add gap from product-spec */
             }
 
             .shop-link {
@@ -1718,6 +1741,8 @@
 
             .product-card {
                 min-height: 360px; /* 450px * 0.8 */
+                display: flex;
+                flex-direction: column;
             }
 
             .product-image-container {
@@ -1730,6 +1755,7 @@
 
             .product-spec {
                 font-size: 11.2px; /* 14px * 0.8 */
+                flex-grow: 1;
             }
 
             .detail-button {

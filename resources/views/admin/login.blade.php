@@ -83,7 +83,7 @@
         .btn-login {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            background: linear-gradient(135deg, var(--orange) 0%, var(--light-orange) 100%);
             color: white;
             border: none;
             border-radius: 10px;
@@ -96,7 +96,7 @@
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(59, 91, 24, 0.3);
+            box-shadow: 0 10px 20px rgba(255, 107, 30, 0.3);
         }
 
         .btn-login:active {
