@@ -1358,7 +1358,7 @@
             .hero {
                 padding-left: 15px;
                 padding-right: 15px;
-                min-height: 350px;
+                min-height: 300px;
             }
 
             .hero-content h1,
@@ -1591,6 +1591,31 @@
             .hamburger {
                 right: 10px !important;
                 padding: 4px !important;
+            }
+        }
+
+        /* FORCE MOBILE HERO HEIGHT - FINAL OVERRIDE */
+        @media screen and (max-width: 425px) {
+            .hero {
+                min-height: 300px !important;
+                height: 300px !important;
+                max-height: 300px !important;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero {
+                min-height: 300px !important;
+                height: 300px !important;
+                max-height: 300px !important;
+            }
+        }
+
+        @media screen and (max-width: 375px) {
+            .hero {
+                min-height: 300px !important;
+                height: 300px !important;
+                max-height: 300px !important;
             }
         }
     </style>

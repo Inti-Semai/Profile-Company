@@ -1736,6 +1736,31 @@
                 font-size: 12px;
             }
         }
+
+        /* FORCE MOBILE HERO HEIGHT - FINAL OVERRIDE */
+        @media screen and (max-width: 425px) {
+            .hero {
+                min-height: 200px !important;
+                height: 200px !important;
+                max-height: 200px !important;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero {
+                min-height: 200px !important;
+                height: 200px !important;
+                max-height: 200px !important;
+            }
+        }
+
+        @media screen and (max-width: 375px) {
+            .hero {
+                min-height: 200px !important;
+                height: 200px !important;
+                max-height: 200px !important;
+            }
+        }
     </style>
 </head>
 <body>

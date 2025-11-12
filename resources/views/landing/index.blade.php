@@ -1255,8 +1255,8 @@
             .hero {
                 padding-left: 20px;
                 padding-right: 20px;
-                min-height: 400px;
-                height: 50vh;
+                min-height: 300px !important;
+                height: 300px !important;
                 text-align: center;
                 justify-content: center;
             }
@@ -1402,7 +1402,8 @@
             .hero {
                 padding-left: 15px;
                 padding-right: 15px;
-                min-height: 350px;
+                min-height: 300px !important;
+                height: 300px !important;
             }
 
             .hero-content h1,
@@ -1501,6 +1502,14 @@
             }
         }
 
+        @media (max-width: 425px) {
+            .hero {
+                min-height: 300px !important;
+                height: 300px !important;
+                max-height: 300px !important;
+            }
+        }
+
         @media (max-width: 375px) {
             .navbar-container {
                 gap: 10px;
@@ -1540,6 +1549,12 @@
             /* hide only the search box on very small devices (370/375) */
             .search-box {
                 display: none !important;
+            }
+
+            .hero {
+                min-height: 300px !important;
+                height: 300px !important;
+                max-height: 300px !important;
             }
 
             .hero-content h1,
@@ -1592,6 +1607,31 @@
 
             .hamburger span {
                 background: var(--text-dark) !important;
+            }
+        }
+
+        /* FORCE MOBILE HERO HEIGHT - FINAL OVERRIDE */
+        @media screen and (max-width: 425px) {
+            .hero {
+                min-height: 300px !important;
+                height: 300px !important;
+                max-height: 300px !important;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero {
+                min-height: 300px !important;
+                height: 300px !important;
+                max-height: 300px !important;
+            }
+        }
+
+        @media screen and (max-width: 375px) {
+            .hero {
+                min-height: 300px !important;
+                height: 300px !important;
+                max-height: 300px !important;
             }
         }
     </style>
